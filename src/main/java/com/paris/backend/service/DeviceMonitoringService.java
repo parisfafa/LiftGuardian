@@ -2,6 +2,7 @@ package com.paris.backend.service;
 
 import java.util.List;
 
+import com.paris.backend.model.Camera;
 import com.paris.backend.model.Device;
 import com.paris.backend.secondaryModel.ElevatorStatus;
 import com.paris.backend.secondaryModel.Record;
@@ -14,5 +15,9 @@ public interface DeviceMonitoringService {
 	public List<ElevatorStatus> findRecordById(String id);
 	
 	public void saveDevice(Device device);
+
+	public List<Camera> findAllCameras();
+	public void saveCamera(Camera camera);
+	public List<Camera> findCameraById(Long id);
 
 }

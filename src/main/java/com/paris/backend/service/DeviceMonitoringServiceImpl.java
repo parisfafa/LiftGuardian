@@ -2,6 +2,8 @@ package com.paris.backend.service;
 
 import java.util.List;
 
+import com.paris.backend.model.Camera;
+import com.paris.backend.repository.CameraRepository;
 import com.paris.backend.secondaryModel.ElevatorStatus;
 import com.paris.backend.secondaryModel.Record;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,8 @@ public class DeviceMonitoringServiceImpl implements DeviceMonitoringService{
 	@Autowired
 	private RecordRepository recordRepository;
 
+	@Autowired
+	private CameraRepository cameraRepository;
 	@Override
 	public List<Device> findAllDevices() {
 		return deviceRepository.findAll();
@@ -39,6 +43,24 @@ public class DeviceMonitoringServiceImpl implements DeviceMonitoringService{
 	@Override
 	public List<Device> findDeviceById(Long id) {
 		return deviceRepository.findDeviceById(id);
+	}
+
+
+	@Override
+	public List<Camera> findAllCameras() {
+		return cameraRepository.findAll();
+	}
+
+
+	@Override
+	public void saveCamera(Camera camera) {
+		cameraRepository.save(camera);
+
+	}
+
+	@Override
+	public List<Camera> findCameraById(Long id) {
+		return cameraRepository.findCameraById(id);
 	}
 
 }

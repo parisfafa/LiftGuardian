@@ -857,7 +857,21 @@
 																	</span>
 																</div>
 																<div class="help-block col-xs-12 col-sm-reset inline "><label th:if="${#fields.hasErrors('organization')}" th:errors="*{organization}" class="validation-message inline"></label></div>
-															</div>																																																				
+															</div>
+														<div class="form-group">
+															<label for="inputError2" class="col-xs-12 col-sm-3 control-label no-padding-right">Url</label>
+
+															<div class="col-xs-12 col-sm-5">
+																	<span class="input-icon block">
+																		<select class="chosen-select form-control" th:field="*{camera}" id="organization" data-placeholder="Choose a Role...">
+
+																			<option th:each="r : ${cameras}" th:value="${{r}}" th:text="${r.url}"></option>
+																		</select>
+																		<!--i class="ace-icon fa fa-times-circle red"></i-->
+																	</span>
+															</div>
+															<div class="help-block col-xs-12 col-sm-reset inline "><label th:if="${#fields.hasErrors('organization')}" th:errors="*{organization}" class="validation-message inline"></label></div>
+														</div>
 														<div class="form-actions center">
 															<button type="submit" class="btn btn-sm btn-success">
 																Submit

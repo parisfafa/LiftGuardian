@@ -5,6 +5,7 @@ import javax.validation.Valid;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.paris.backend.model.*;
 import com.paris.backend.secondaryModel.ElevatorStatus;
 import com.paris.backend.secondaryModel.Record;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,11 +15,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.paris.backend.model.Device;
-import com.paris.backend.model.ElevatorModel;
-import com.paris.backend.model.ElevatorType;
-import com.paris.backend.model.Manufacturer;
-import com.paris.backend.model.Organization;
 import com.paris.backend.service.BasicInfoService;
 import com.paris.backend.service.DeviceMonitoringService;
 
@@ -37,6 +33,7 @@ public class DeviceMonitoringController {
 
 		modelAndView.addObject("devices", devices);
 
+		System.out.println(devices.get(0).getCamera().getUrl()+"url");
 		modelAndView.setViewName("devices");
 
 		return modelAndView;
@@ -52,7 +49,9 @@ public class DeviceMonitoringController {
 		List<Manufacturer> manufacturers=basicInfoService.findAllManufacturer();
 		modelAndView.addObject("manufacturers", manufacturers);	
 		List<Organization> organizations=basicInfoService.findAllOrganization();
-		modelAndView.addObject("organizations", organizations);	
+		modelAndView.addObject("organizations", organizations);
+		List<Camera> cameras=deviceMonitoringService.findAllCameras();
+		modelAndView.addObject("cameras", cameras);
 		Device device = new Device();
 		modelAndView.addObject("device", device);
 		modelAndView.setViewName("newDevice");
@@ -69,7 +68,9 @@ public class DeviceMonitoringController {
 		List<Manufacturer> manufacturers=basicInfoService.findAllManufacturer();
 		modelAndView.addObject("manufacturers", manufacturers);	
 		List<Organization> organizations=basicInfoService.findAllOrganization();
-		modelAndView.addObject("organizations", organizations);	
+		modelAndView.addObject("organizations", organizations);
+		List<Camera> cameras=deviceMonitoringService.findAllCameras();
+		modelAndView.addObject("cameras", cameras);
 		String id=request.getParameter("id");
 
 		List<Device> device=deviceMonitoringService.findDeviceById(Long.parseLong(id));
@@ -150,5 +151,71 @@ public class DeviceMonitoringController {
 			return jsonRecord;
 		}
 		return  null;
+	}
+
+	@RequestMapping(value="/newCamera", method = RequestMethod.GET)
+	public ModelAndView newCamera(){
+		ModelAndView modelAndView = new ModelAndView();
+		Camera camera = new Camera();
+		modelAndView.addObject("camera", camera);
+		modelAndView.setViewName("newCamera");
+		return modelAndView;
+	}
+
+	@RequestMapping(value = "/newCamera", method = RequestMethod.POST)
+	public ModelAndView newCamera(@Valid Camera camera, BindingResult bindingResult) {
+		ModelAndView modelAndView = new ModelAndView();
+		if (bindingResult.hasErrors()) {
+			modelAndView.setViewName("newCamera");
+		} else {
+			deviceMonitoringService.saveCamera(camera);
+			modelAndView.addObject("successMessage", "Camera has been added successfully");
+			List<Camera> cameras=deviceMonitoringService.findAllCameras();
+			modelAndView.addObject("cameras", cameras);
+			modelAndView.setViewName("cameras");
+			return modelAndView;
+
+		}
+		return modelAndView;
+	}
+
+	@RequestMapping(value="/editCamera", method = RequestMethod.GET)
+	public ModelAndView editCamera(WebRequest request){
+		ModelAndView modelAndView = new ModelAndView();
+		String id=request.getParameter("id");
+		System.out.println(id);
+		List<Camera> cameras=deviceMonitoringService.findCameraById(Long.parseLong(id));
+		modelAndView.addObject("camera", cameras.get(0));
+		modelAndView.setViewName("editCamera");
+		return modelAndView;
+	}
+
+	@RequestMapping(value = "/editCamera", method = RequestMethod.POST)
+	public ModelAndView editCamera(@Valid Camera camera, BindingResult bindingResult) {
+		ModelAndView modelAndView = new ModelAndView();
+		if (bindingResult.hasErrors()) {
+			modelAndView.setViewName("editDevice");
+		} else {
+			deviceMonitoringService.saveCamera(camera);
+			modelAndView.addObject("successMessage", "Camera has been added successfully");
+			List<Camera> cameras=deviceMonitoringService.findAllCameras();
+			modelAndView.addObject("cameras", cameras);
+			modelAndView.setViewName("cameras");
+			return modelAndView;
+
+		}
+		return modelAndView;
+	}
+
+	@RequestMapping(value="/cameras", method = RequestMethod.GET)
+	public ModelAndView getCameras(){
+		ModelAndView modelAndView = new ModelAndView();
+		List<Camera> cameras=deviceMonitoringService.findAllCameras();
+
+		modelAndView.addObject("cameras", cameras);
+
+		modelAndView.setViewName("cameras");
+
+		return modelAndView;
 	}
 }
