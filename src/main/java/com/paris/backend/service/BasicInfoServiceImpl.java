@@ -5,10 +5,15 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.paris.backend.model.AlarmType;
 import com.paris.backend.model.ElevatorModel;
 import com.paris.backend.model.ElevatorType;
+import com.paris.backend.model.Manufacturer;
+import com.paris.backend.model.Organization;
+import com.paris.backend.repository.AlarmTypeRepository;
 import com.paris.backend.repository.ElevatorModelRepository;
 import com.paris.backend.repository.ElevatorTypeRepository;
+import com.paris.backend.repository.ManufacturerRepository;
 import com.paris.backend.repository.OrganizationRepository;
 
 @Service("basicInfoService")
@@ -19,8 +24,15 @@ public class BasicInfoServiceImpl implements BasicInfoService{
 
 	@Autowired
 	private ElevatorTypeRepository elevatorTypeRepository;
+	
 	@Autowired
 	private OrganizationRepository organizationRepository;
+	
+	@Autowired
+	private AlarmTypeRepository alarmTypeRepository;
+	
+	@Autowired
+	private ManufacturerRepository manufacturerRepository;
 	
 	@Override
 	public List<ElevatorModel> findAllElevatorModel() {
@@ -40,6 +52,7 @@ public class BasicInfoServiceImpl implements BasicInfoService{
 		elevatorModelRepository.removeById(id);
 		
 	}
+	
 	@Override
 	public void editElevatorType(ElevatorType elevatorType) {
 		//elevatorTypeRepository.updateElevatorType(elevatorType);		
@@ -59,5 +72,47 @@ public class BasicInfoServiceImpl implements BasicInfoService{
 	public void saveElevatorType(ElevatorType elevatorModel) {
 		elevatorTypeRepository.save(elevatorModel);		
 	}
+	@Override
+	public List<Organization> findAllOrganization() {
+		return organizationRepository.findAll();
+	}
+	@Override
+	public void deleteOrganizationById(int id) {
+		organizationRepository.removeById(id);
+		
+	}
+	@Override
+	public List<AlarmType> findAllAlarmType() {
+		return this.alarmTypeRepository.findAll();
+	}
+	@Override
+	public void deleteAlarmTypeById(int id) {
+		alarmTypeRepository.removeById(id);		
+	}
+	@Override
+	public void saveAlarmType(AlarmType alarmType) {
+		alarmTypeRepository.save(alarmType)	;	
+	}
+	@Override
+	public void saveOrganization(Organization organization) {
+		this.organizationRepository.save(organization);
+		
+	}
+	@Override
+	public List<Manufacturer> findAllManufacturer() {
+		return manufacturerRepository.findAll();
+	}
+	@Override
+	public void deleteManufacturerById(int id) {
+		manufacturerRepository.removeById(id);
+		
+	}
+	@Override
+	public void saveManufacturer(Manufacturer manufacturer) {
+		manufacturerRepository.save(manufacturer);
+		
+	}
+	
+	
 
 }

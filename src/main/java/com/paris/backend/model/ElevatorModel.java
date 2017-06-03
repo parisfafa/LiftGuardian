@@ -16,4 +16,22 @@ public class ElevatorModel {
 	private int id;
 	@Column(name="elevator_model")
 	private String elevatorModel;
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getElevatorModel() {
+		return elevatorModel;
+	}
+	public void setElevatorModel(String elevatorModel) {
+		this.elevatorModel = elevatorModel;
+	}
+	public ElevatorModel(String elevatorModel) {
+		super();
+		this.elevatorModel = elevatorModel;
+	}
+	public ElevatorModel() {
+	}
 }

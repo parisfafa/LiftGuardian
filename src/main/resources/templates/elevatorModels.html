@@ -772,10 +772,10 @@
 
 						<div class="page-header">
 							<h1>
-								Roles
+								Basic Information
 								<small>
 									<i class="ace-icon fa fa-angle-double-right"></i>
-									Role Management
+									Elevator Model Management
 								</small>
 							</h1>
 						</div><!-- /.page-header -->
@@ -862,7 +862,7 @@
 
 		<script th:inline="javascript">
 
-			var grid_data = [[${elevatorTypes}]];
+			var grid_data = [[${elevatorModels}]];
 
 			
 			var subgrid_data = 
@@ -950,7 +950,7 @@
 					data: grid_data,
 					datatype: "local",
 					height: 250,
-					colNames:[' ', 'ID','Role','Access'],
+					colNames:[' ', 'ID','Elevator Model Name'],
 					colModel:[
 						{name:'myac',index:'', width:80, fixed:true, sortable:false, resize:false,
 							formatter:'actions', 
@@ -963,7 +963,7 @@
 							}
 						},
 						{name:'id',index:'id', width:60, sorttype:"int", editable: true},
-						{name:'elevatorType',index:'elevatorType', width:100,editable: true,editoptions:{size:"20",maxlength:"30"}}
+						{name:'elevatorModel',index:'elevatorModel', width:100,editable: true,editoptions:{size:"20",maxlength:"30"}}
 					], 
 			
 					viewrecords : true,
@@ -988,7 +988,7 @@
 						}, 0);
 					},
 			
-					editurl: "/editRole",//nothing is saved
+					editurl: "/editElevatorModel",//nothing is saved
 					caption: "jqGrid with inline editing"
 			
 					//,autowidth: true,

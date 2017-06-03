@@ -481,7 +481,7 @@
 
 						<ul class="submenu">
 							<li class="">
-								<a href="tables.html">
+								<a href="organizations.html">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Organizations
 								</a>
@@ -514,7 +514,7 @@
 								<b class="arrow"></b>
 							</li>
 							<li class="">
-								<a href="jqgrid.html">
+								<a href="alarmType.html">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Alarm Type
 								</a>
@@ -775,7 +775,7 @@
 								Basic Information
 								<small>
 									<i class="ace-icon fa fa-angle-double-right"></i>
-									Elevator Type Management
+									Alarm Type Management
 								</small>
 							</h1>
 						</div><!-- /.page-header -->
@@ -862,7 +862,7 @@
 
 		<script th:inline="javascript">
 
-			var grid_data = [[${elevatorTypes}]];
+			var grid_data = [[${alarmTypes}]];
 
 			console.log("fafa"+grid_data);
 			var subgrid_data = 
@@ -950,7 +950,7 @@
 					data: grid_data,
 					datatype: "local",
 					height: 250,
-					colNames:[' ', 'ID','Elevator Type Name'],
+					colNames:[' ', 'ID','Alarm Type Name'],
 					colModel:[
 						{name:'myac',index:'', width:80, fixed:true, sortable:false, resize:false,
 							formatter:'actions', 
@@ -963,7 +963,7 @@
 							}
 						},
 						{name:'id',index:'id', width:60, sorttype:"int", editable: true},
-						{name:'elevatorType',index:'elevatorType', width:100,editable: true,editoptions:{size:"20",maxlength:"30"}}
+						{name:'alarmType',index:'alarmType', width:100,editable: true,editoptions:{size:"20",maxlength:"30"}}
 					], 
 			
 					viewrecords : true,
