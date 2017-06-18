@@ -1,28 +1,25 @@
 package com.paris.backend.controller;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.paris.backend.constants.OrganizationType;
 import com.paris.backend.model.AlarmType;
 import com.paris.backend.model.ElevatorModel;
 import com.paris.backend.model.ElevatorType;
+import com.paris.backend.model.MaintenanceType;
 import com.paris.backend.model.Manufacturer;
 import com.paris.backend.model.Organization;
-import com.paris.backend.model.Role;
-import com.paris.backend.model.User;
 import com.paris.backend.service.BasicInfoService;
-import com.paris.backend.service.UserService;
 
 @Controller
 public class BasicInfoController {
@@ -43,8 +40,10 @@ public class BasicInfoController {
 	@RequestMapping(value="/organizations", method = RequestMethod.GET)
 	public ModelAndView getOrganizations(){
 		ModelAndView modelAndView = new ModelAndView();
-		List<Organization> organizationList=basicInfoService.findAllOrganization();
-		modelAndView.addObject("organizations", organizationList);
+		List<Organization> organizations=basicInfoService.findAllOrganization();
+		List<OrganizationType> organizationTypes = Arrays.asList(OrganizationType.values());
+		modelAndView.addObject("organizations", organizations);
+		modelAndView.addObject("organizationTypes", organizationTypes);
 		modelAndView.setViewName("organizations");
 		return modelAndView;
 	}
@@ -89,7 +88,7 @@ public class BasicInfoController {
 			basicInfoService.deleteAlarmTypeById(id);
 		}
 		if("add".equals(request.getParameter("oper"))){
-			AlarmType alarmType=new AlarmType(request.getParameter("elevatorType"));
+			AlarmType alarmType=new AlarmType(request.getParameter("alarmType"));
 			basicInfoService.saveAlarmType(alarmType);
 		}
 		List<AlarmType> alarmTypeList=basicInfoService.findAllAlarmType();
@@ -135,6 +134,75 @@ public class BasicInfoController {
 		List<Manufacturer> manufacturers=basicInfoService.findAllManufacturer();
 		modelAndView.addObject("manufacturers", manufacturers);
 		modelAndView.setViewName("manufacturers");
+		return modelAndView;
+	}
+	
+	@RequestMapping(value="/maintenanceTypes", method = RequestMethod.GET)
+	public ModelAndView getMaintenanceTypes(){
+		ModelAndView modelAndView = new ModelAndView();
+		List<MaintenanceType> maintenanceTypes=basicInfoService.findAllMaintenanceType();
+		modelAndView.addObject("maintenanceTypes", maintenanceTypes);
+		modelAndView.setViewName("maintenanceTypes");
+		return modelAndView;
+	}
+	
+	@RequestMapping(value="/newOrganization", method = RequestMethod.GET)
+	public ModelAndView newOrganization(){
+		ModelAndView modelAndView = new ModelAndView();
+		List<OrganizationType> organizationTypes = Arrays.asList(OrganizationType.values());
+		modelAndView.addObject("organizationTypes", organizationTypes);
+
+		Organization organization = new Organization();
+		modelAndView.addObject("organization", organization);
+		modelAndView.setViewName("newOrganization");
+		return modelAndView;
+	}
+	
+	@RequestMapping(value = "/newOrganization", method = RequestMethod.POST)
+	public ModelAndView newOrganization(@Valid Organization organization, BindingResult bindingResult) {
+		ModelAndView modelAndView = new ModelAndView();
+		List<OrganizationType> organizationTypes = Arrays.asList(OrganizationType.values());
+		modelAndView.addObject("organizationTypes", organizationTypes);
+		if (bindingResult.hasErrors()) {
+			modelAndView.setViewName("newOrganization");
+		} else {
+
+			basicInfoService.saveOrganization(organization);
+			modelAndView.addObject("successMessage", "Organization has been added successfully");
+			List<Organization> Organizations=basicInfoService.findAllOrganization();
+			modelAndView.addObject("organizations", Organizations);
+			modelAndView.setViewName("organizations");
+			return modelAndView;
+			
+		}
+		return modelAndView;
+	}
+	
+	@RequestMapping(value="/newManufacturer", method = RequestMethod.GET)
+	public ModelAndView newManufacturer(){
+		ModelAndView modelAndView = new ModelAndView();
+
+		Manufacturer manufacturer = new Manufacturer();
+		modelAndView.addObject("manufacturer", manufacturer);
+		modelAndView.setViewName("newManufacturer");
+		return modelAndView;
+	}
+	
+	@RequestMapping(value = "/newManufacturer", method = RequestMethod.POST)
+	public ModelAndView newManufacturer(@Valid Manufacturer manufacturer, BindingResult bindingResult) {
+		ModelAndView modelAndView = new ModelAndView();
+		if (bindingResult.hasErrors()) {
+			modelAndView.setViewName("newOrganization");
+		} else {
+
+			basicInfoService.saveManufacturer(manufacturer);
+			modelAndView.addObject("successMessage", "Manufacturer has been added successfully");
+			List<Manufacturer> manufacturers=basicInfoService.findAllManufacturer();
+			modelAndView.addObject("manufacturers", manufacturers);
+			modelAndView.setViewName("manufacturers");
+			return modelAndView;
+			
+		}
 		return modelAndView;
 	}
 }

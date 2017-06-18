@@ -440,7 +440,7 @@
 							</li>
 
 							<li class="">
-								<a href="/roles">
+								<a href="typography.html">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Role
 								</a>
@@ -544,7 +544,7 @@
 
 						<ul class="submenu">
 							<li class="">
-								<a href="form-elements.html">
+								<a href="/devices">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Device List
 								</a>
@@ -671,7 +671,7 @@
 					</li>
 				</ul><!-- /.nav-list -->
 
-
+paris
 				<div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
 					<i id="sidebar-toggle-icon" class="ace-icon fa fa-angle-double-left ace-save-state" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
 				</div>
@@ -687,9 +687,9 @@
 							</li>
 
 							<li>
-								<a href="#">System</a>
+								<a href="#">Equipment</a>
 							</li>
-							<li class="active">Users</li>
+							<li class="active">Device List</li>
 						</ul><!-- /.breadcrumb -->
 
 						<div class="nav-search" id="nav-search">
@@ -703,93 +703,30 @@
 					</div>
 
 					<div class="page-content">
-						<div class="ace-settings-container" id="ace-settings-container">
-							<div class="btn btn-app btn-xs btn-warning ace-settings-btn" id="ace-settings-btn">
-								<i class="ace-icon fa fa-cog bigger-130"></i>
-							</div>
-
-							<div class="ace-settings-box clearfix" id="ace-settings-box">
-								<div class="pull-left width-50">
-									<div class="ace-settings-item">
-										<div class="pull-left">
-											<select id="skin-colorpicker" class="hide">
-												<option data-skin="no-skin" value="#438EB9">#438EB9</option>
-												<option data-skin="skin-1" value="#222A2D">#222A2D</option>
-												<option data-skin="skin-2" value="#C6487E">#C6487E</option>
-												<option data-skin="skin-3" value="#D0D0D0">#D0D0D0</option>
-											</select>
-										</div>
-										<span>&nbsp; Choose Skin</span>
-									</div>
-
-									<div class="ace-settings-item">
-										<input type="checkbox" class="ace ace-checkbox-2 ace-save-state" id="ace-settings-navbar" autocomplete="off" />
-										<label class="lbl" for="ace-settings-navbar"> Fixed Navbar</label>
-									</div>
-
-									<div class="ace-settings-item">
-										<input type="checkbox" class="ace ace-checkbox-2 ace-save-state" id="ace-settings-sidebar" autocomplete="off" />
-										<label class="lbl" for="ace-settings-sidebar"> Fixed Sidebar</label>
-									</div>
-
-									<div class="ace-settings-item">
-										<input type="checkbox" class="ace ace-checkbox-2 ace-save-state" id="ace-settings-breadcrumbs" autocomplete="off" />
-										<label class="lbl" for="ace-settings-breadcrumbs"> Fixed Breadcrumbs</label>
-									</div>
-
-									<div class="ace-settings-item">
-										<input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-rtl" autocomplete="off" />
-										<label class="lbl" for="ace-settings-rtl"> Right To Left (rtl)</label>
-									</div>
-
-									<div class="ace-settings-item">
-										<input type="checkbox" class="ace ace-checkbox-2 ace-save-state" id="ace-settings-add-container" autocomplete="off" />
-										<label class="lbl" for="ace-settings-add-container">
-											Inside
-											<b>.container</b>
-										</label>
-									</div>
-								</div><!-- /.pull-left -->
-
-								<div class="pull-left width-50">
-									<div class="ace-settings-item">
-										<input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-hover" autocomplete="off" />
-										<label class="lbl" for="ace-settings-hover"> Submenu on Hover</label>
-									</div>
-
-									<div class="ace-settings-item">
-										<input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-compact" autocomplete="off" />
-										<label class="lbl" for="ace-settings-compact"> Compact Sidebar</label>
-									</div>
-
-									<div class="ace-settings-item">
-										<input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-highlight" autocomplete="off" />
-										<label class="lbl" for="ace-settings-highlight"> Alt. Active Item</label>
-									</div>
-								</div><!-- /.pull-left -->
-							</div><!-- /.ace-settings-box -->
-						</div><!-- /.ace-settings-container -->
 
 						<div class="page-header">
 							<h1>
-								Basic Information
+								Equipment
 								<small>
 									<i class="ace-icon fa fa-angle-double-right"></i>
-									Manufacturer Management
+									Device List
 								</small>
+								<a class="inline pull-right" href="/registration">
+								<i class="ace-icon fa fa-plus-circle purple"></i>
+							</a>
 							</h1>
 						</div><!-- /.page-header -->
 
 						<div class="row">
 							<div class="col-xs-12">
 								<!-- PAGE CONTENT BEGINS -->
-								<div class="alert alert-info">
+								<div th:if="${successMessage}!=null" class="alert alert-success">
 									<button class="close" data-dismiss="alert">
 										<i class="ace-icon fa fa-times"></i>
 									</button>
 
 									<i class="ace-icon fa fa-hand-o-right"></i>
-									Please note that demo server is not configured to save the changes, therefore you may see an error message.
+									<span th:utext="${successMessage}"></span>
 								</div>
 
 								<table id="grid-table"></table>
@@ -862,9 +799,8 @@
 
 		<script th:inline="javascript">
 
-			var grid_data = [[${manufacturers}]];
+			var grid_data = [[${devices}]];
 
-			console.log("fafa"+grid_data);
 			var subgrid_data = 
 			[
 			 {id:"1", name:"sub grid item 1", qty: 11},
@@ -921,7 +857,7 @@
 					//direction: "rtl",
 			
 					//subgrid options
-					subGrid : false,
+					subGrid : true,
 					//subGridModel: [{ name : ['No','Item Name','Qty'], width : [55,200,80] }],
 					//datatype: "xml",
 					subGridOptions : {
@@ -950,7 +886,7 @@
 					data: grid_data,
 					datatype: "local",
 					height: 250,
-					colNames:[' ', 'ID','Manufacturer Name','Phone','Address','Description'],
+					colNames:[' ', 'ID','Name'],
 					colModel:[
 						{name:'myac',index:'', width:80, fixed:true, sortable:false, resize:false,
 							formatter:'actions', 
@@ -962,12 +898,8 @@
 								//editformbutton:true, editOptions:{recreateForm: true, beforeShowForm:beforeEditCallback}
 							}
 						},
-						{name:'id',index:'id', width:60, sorttype:"int", editable: true},
-						{name:'manufacturerName',index:'manufacturerName', width:100,editable: true,editoptions:{size:"20",maxlength:"30"}},
-						{name:'phone',index:'phone', width:100,editable: true,editoptions:{size:"20",maxlength:"30"}},
-						{name:'address',index:'address', width:100,editable: true,editoptions:{size:"20",maxlength:"30"}},
-						{name:'description',index:'description', width:100,editable: true,editoptions:{size:"20",maxlength:"30"}}
-						
+						{name:'id',index:'id', width:60, sorttype:"int", editable: false},
+						{name:'deviceName',index:'deviceName', width:60,editable: true,editoptions:{size:"20",maxlength:"30"}}
 					], 
 			
 					viewrecords : true,
@@ -992,8 +924,8 @@
 						}, 0);
 					},
 			
-					editurl: "/editElevatorType",//nothing is saved
-					caption: "Manufacturer List"
+					editurl: "/editUser",//nothing is saved
+					caption: "Device List"
 			
 					//,autowidth: true,
 			

@@ -36,11 +36,15 @@ CREATE TABLE `elevator_model` (
 
 DROP TABLE IF EXISTS `orgnization`;
 CREATE TABLE `orgnization` (
-  `orgnization_id` int(11) NOT NULL AUTO_INCREMENT,
+  `organization_id` int(11) NOT NULL AUTO_INCREMENT,
   `organization_type` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
   `organization_name` varchar(255) NOT NULL,
-  PRIMARY KEY (`orgnization_id`)
+   `phone` varchar(255) NOT NULL,
+    `address` varchar(255) NOT NULL,
+  PRIMARY KEY (`organization_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+insert into orgnization values(1,'Mantainer','organizaiton1','email@email.com','12345678','address1');
 
 DROP TABLE IF EXISTS `alarm_type`;
 CREATE TABLE `alarm_type` (
@@ -48,6 +52,14 @@ CREATE TABLE `alarm_type` (
   `alarm_type` varchar(255) NOT NULL,
   PRIMARY KEY (`alarm_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `maintenance_type`;
+CREATE TABLE `maintenance_type` (
+  `type_id` int(11) NOT NULL AUTO_INCREMENT,
+  `maintenance_type` varchar(255) NOT NULL,
+  PRIMARY KEY (`type_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+insert into maintenance_type values(1,'CHECK1');
 
 DROP TABLE IF EXISTS `manufacturer`;
 CREATE TABLE `manufacturer` (
@@ -58,3 +70,14 @@ CREATE TABLE `manufacturer` (
   `description` varchar(255) NOT NULL,
   PRIMARY KEY (`manufacturer_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+insert into manufacturer values(1,'manufacturerA',11111111,'AddressA','DescrptionA');
+
+
+DROP TABLE IF EXISTS `device`;
+CREATE TABLE `device` (
+  `deviceid` int(11) NOT NULL AUTO_INCREMENT,
+  `device_name` varchar(255) NOT NULL,
+  PRIMARY KEY (`deviceid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+insert into device values(12345678,'Elevator1');

@@ -8,11 +8,13 @@ import org.springframework.stereotype.Service;
 import com.paris.backend.model.AlarmType;
 import com.paris.backend.model.ElevatorModel;
 import com.paris.backend.model.ElevatorType;
+import com.paris.backend.model.MaintenanceType;
 import com.paris.backend.model.Manufacturer;
 import com.paris.backend.model.Organization;
 import com.paris.backend.repository.AlarmTypeRepository;
 import com.paris.backend.repository.ElevatorModelRepository;
 import com.paris.backend.repository.ElevatorTypeRepository;
+import com.paris.backend.repository.MaintenanceTypeRepository;
 import com.paris.backend.repository.ManufacturerRepository;
 import com.paris.backend.repository.OrganizationRepository;
 
@@ -33,6 +35,9 @@ public class BasicInfoServiceImpl implements BasicInfoService{
 	
 	@Autowired
 	private ManufacturerRepository manufacturerRepository;
+	
+	@Autowired
+	private MaintenanceTypeRepository maintenanceTypeRepository;
 	
 	@Override
 	public List<ElevatorModel> findAllElevatorModel() {
@@ -112,7 +117,19 @@ public class BasicInfoServiceImpl implements BasicInfoService{
 		manufacturerRepository.save(manufacturer);
 		
 	}
+	@Override
+	public List<MaintenanceType> findAllMaintenanceType() {
+		return this.maintenanceTypeRepository.findAll();
+	}
+	@Override
+	public void deleteMaintenanceTypeById(int id) {
+		maintenanceTypeRepository.removeById(id);
+		
+	}
 	
-	
-
+	@Override
+	public void saveMaintenanceType(MaintenanceType maintenanceType) {
+		maintenanceTypeRepository.save(maintenanceType);
+		
+	}
 }

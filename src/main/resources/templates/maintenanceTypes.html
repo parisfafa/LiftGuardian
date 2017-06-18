@@ -775,7 +775,7 @@
 								Basic Information
 								<small>
 									<i class="ace-icon fa fa-angle-double-right"></i>
-									Manufacturer Management
+									Alarm Type Management
 								</small>
 							</h1>
 						</div><!-- /.page-header -->
@@ -862,7 +862,7 @@
 
 		<script th:inline="javascript">
 
-			var grid_data = [[${manufacturers}]];
+			var grid_data = [[${maintenanceTypes}]];
 
 			console.log("fafa"+grid_data);
 			var subgrid_data = 
@@ -921,7 +921,7 @@
 					//direction: "rtl",
 			
 					//subgrid options
-					subGrid : false,
+					subGrid : true,
 					//subGridModel: [{ name : ['No','Item Name','Qty'], width : [55,200,80] }],
 					//datatype: "xml",
 					subGridOptions : {
@@ -950,7 +950,7 @@
 					data: grid_data,
 					datatype: "local",
 					height: 250,
-					colNames:[' ', 'ID','Manufacturer Name','Phone','Address','Description'],
+					colNames:[' ', 'ID','Maintenance Type Name'],
 					colModel:[
 						{name:'myac',index:'', width:80, fixed:true, sortable:false, resize:false,
 							formatter:'actions', 
@@ -963,11 +963,7 @@
 							}
 						},
 						{name:'id',index:'id', width:60, sorttype:"int", editable: true},
-						{name:'manufacturerName',index:'manufacturerName', width:100,editable: true,editoptions:{size:"20",maxlength:"30"}},
-						{name:'phone',index:'phone', width:100,editable: true,editoptions:{size:"20",maxlength:"30"}},
-						{name:'address',index:'address', width:100,editable: true,editoptions:{size:"20",maxlength:"30"}},
-						{name:'description',index:'description', width:100,editable: true,editoptions:{size:"20",maxlength:"30"}}
-						
+						{name:'maintenanceType',index:'maintenanceType', width:100,editable: true,editoptions:{size:"20",maxlength:"30"}}
 					], 
 			
 					viewrecords : true,
@@ -992,8 +988,8 @@
 						}, 0);
 					},
 			
-					editurl: "/editElevatorType",//nothing is saved
-					caption: "Manufacturer List"
+					editurl: "/editAlarmType",//nothing is saved
+					caption: "Maintenance Type List"
 			
 					//,autowidth: true,
 			

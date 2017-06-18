@@ -9,26 +9,15 @@ import javax.persistence.Table;
 
 import org.hibernate.validator.constraints.NotEmpty;
 @Entity
-@Table(name = "alarm_type")
-public class AlarmType {
+@Table(name = "device")
+public class Device {
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name="alarm_id")
+	@Column(name="deviceid")
 	private int id;
 	
-	@NotEmpty(message = "*Please provide your elevator type")
-	@Column(name="alarm_type")
-	private String alarmType;
-	
-	private String alarmCode;
-
-	public AlarmType() {
-	}
-
-	public AlarmType(String alarmType) {
-		super();
-		this.alarmType = alarmType;
-	}
+	@Column(name="device_name")
+	private String deviceName;
 
 	public int getId() {
 		return id;
@@ -38,12 +27,12 @@ public class AlarmType {
 		this.id = id;
 	}
 
-	public String getAlarmType() {
-		return alarmType;
+	public String getDeviceName() {
+		return deviceName;
 	}
 
-	public void setAlarmType(String alarmType) {
-		this.alarmType = alarmType;
+	public void setDeviceName(String deviceName) {
+		this.deviceName = deviceName;
 	}
 	
 }
