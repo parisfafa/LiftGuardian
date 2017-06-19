@@ -1,5 +1,6 @@
 package com.paris.backend.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -16,10 +17,9 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class ElevatorStatus {
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name="id")
+	@Column(name="recordid")
 	private int id;
 	
-	@NotEmpty(message = "*Please provide your elevator type")
 	@Column(name="rtuid")
 	private String rtuid;
 	
@@ -65,6 +65,11 @@ public class ElevatorStatus {
 	
 	@Column(name="bp")
 	private String bp;
+	
+	
+	@OneToOne(cascade = CascadeType.ALL,orphanRemoval=true,fetch = FetchType.EAGER)
+	@JoinColumn(name = "recordid")
+	private Record record;
 	
 	public ElevatorStatus() {
 	}
@@ -196,5 +201,16 @@ public class ElevatorStatus {
 	public void setBp(String bp) {
 		this.bp = bp;
 	}
+
+	public Record getRecord() {
+		return record;
+	}
+
+	public void setRecord(Record record) {
+		this.record = record;
+	}
+
+
+
 
 }

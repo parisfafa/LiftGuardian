@@ -17,12 +17,16 @@ import javax.persistence.Table;
 public class Record {
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name="recordId")
+	@Column(name="recordid")
 	private int id;
-	@Column(name="deviceId")
-	private String deviceId;
-	@Column(name="createTime")
-	private String createTime;
+	@Column(name="deviceid")
+	private String deviceid;
+	@Column(name="createtime")
+	private String createtime;
+	
+	@OneToOne(cascade = CascadeType.ALL,orphanRemoval=true,fetch = FetchType.EAGER)
+	@JoinColumn(name = "recordid")
+	private ElevatorStatus elevatorStatus;
 	
 	public int getId() {
 		return id;
@@ -30,23 +34,25 @@ public class Record {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getDeviceId() {
-		return deviceId;
+	
+	public String getDeviceid() {
+		return deviceid;
 	}
-	public void setDeviceId(String deviceId) {
-		this.deviceId = deviceId;
+	public void setDeviceid(String deviceid) {
+		this.deviceid = deviceid;
 	}
-	public String getCreateTime() {
-		return createTime;
+	public String getCreatetime() {
+		return createtime;
 	}
-	public void setCreateTime(String createTime) {
-		this.createTime = createTime;
+	public void setCreatetime(String createtime) {
+		this.createtime = createtime;
 	}
-	/*public ElevatorStatus getElevatorStatus() {
+	@OneToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL,mappedBy="recordid")
+	public ElevatorStatus getElevatorStatus() {
 		return elevatorStatus;
 	}
 	public void setElevatorStatus(ElevatorStatus elevatorStatus) {
 		this.elevatorStatus = elevatorStatus;
-	}*/
+	}
 
 }
