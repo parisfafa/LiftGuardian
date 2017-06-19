@@ -986,7 +986,11 @@
 						<div class="row">
 							<div class="col-xs-12">
 								<!-- PAGE CONTENT BEGINS -->
-
+									<p>Floor:</p><p th:text="${record.elevatorStatus.floor}"/>
+									<p>Door Status:</p><p th:text="${record.elevatorStatus.doorstatus}"/>
+									<p>Speed:</p><p th:text="${record.elevatorStatus.elevatorspeed}"/>
+									<p>Direction:</p><p th:text="${record.elevatorStatus.rundirection}"/>
+									<p>Body Status:</p><p th:text="${record.elevatorStatus.bodystatus}"/> 
 								<!-- PAGE CONTENT ENDS -->
 							</div><!-- /.col -->
 						</div><!-- /.row -->

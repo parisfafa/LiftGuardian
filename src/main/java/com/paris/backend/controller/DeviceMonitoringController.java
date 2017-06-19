@@ -35,7 +35,7 @@ public class DeviceMonitoringController {
 		String id=request.getParameter("id");
 		List<Record> record=deviceMonitoringService.findRecordById(id);
 		System.out.println("fafa record"+record.size()+record.get(0).getElevatorStatus().getFloor());
-		modelAndView.addObject("record", record);
+		modelAndView.addObject("record", record==null?null:record.get(0));
 
 		modelAndView.setViewName("status");
 		return modelAndView;
