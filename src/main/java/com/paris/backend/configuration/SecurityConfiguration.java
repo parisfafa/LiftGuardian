@@ -47,6 +47,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 			authorizeRequests()
 				.antMatchers("/users").permitAll()
 				.antMatchers("/roles").permitAll()
+				.antMatchers("/registration").permitAll()
 				.antMatchers("/elevatorTypes").permitAll()
 				.antMatchers("/elevatorModels").permitAll()
 				.antMatchers("/editElevatorType").permitAll()
