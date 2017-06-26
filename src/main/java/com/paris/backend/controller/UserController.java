@@ -22,6 +22,19 @@ public class UserController {
 	private UserService userService;
 	
 	
+	@RequestMapping(value="/about", method = RequestMethod.GET)
+	public ModelAndView getAbout(){
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("about");
+		return modelAndView;
+	}
+	@RequestMapping(value="/audit", method = RequestMethod.GET)
+	public ModelAndView getAudit(){
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("audit");
+		return modelAndView;
+	}
+	
 	@RequestMapping(value="/users", method = RequestMethod.GET)
 	public ModelAndView getUsers(){
 		ModelAndView modelAndView = new ModelAndView();
