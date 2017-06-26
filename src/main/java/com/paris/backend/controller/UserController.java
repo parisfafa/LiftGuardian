@@ -28,6 +28,12 @@ public class UserController {
 		modelAndView.setViewName("about");
 		return modelAndView;
 	}
+	@RequestMapping(value="/faq", method = RequestMethod.GET)
+	public ModelAndView getFaQ(){
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("faq");
+		return modelAndView;
+	}
 	@RequestMapping(value="/audit", method = RequestMethod.GET)
 	public ModelAndView getAudit(){
 		ModelAndView modelAndView = new ModelAndView();
