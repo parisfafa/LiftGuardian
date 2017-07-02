@@ -28,10 +28,7 @@ public class ElevatorModel {
 	public void setElevatorModel(String elevatorModel) {
 		this.elevatorModel = elevatorModel;
 	}
-	public ElevatorModel(String elevatorModel) {
-		super();
-		this.elevatorModel = elevatorModel;
-	}
+
 	public ElevatorModel() {
 	}
 }
