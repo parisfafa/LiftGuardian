@@ -42,4 +42,10 @@ public class DeviceMonitoringServiceImpl implements DeviceMonitoringService{
 		 
 	}
 
+	@Override
+	public void saveDevice(Device device) {
+		deviceRepository.save(device);
+		
+	}
+
 }

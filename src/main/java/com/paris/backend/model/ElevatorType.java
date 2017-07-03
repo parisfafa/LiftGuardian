@@ -18,15 +18,7 @@ public class ElevatorType {
 	
 	@NotEmpty(message = "*Please provide your elevator type")
 	@Column(name="elevator_type")
-	private String elevatorType;
-
-	public ElevatorType() {
-	}
-
-	public ElevatorType(String elevatorType) {
-		super();
-		this.elevatorType = elevatorType;
-	}
+	private String elevatorTypeName;
 
 	public int getId() {
 		return id;
@@ -36,13 +28,13 @@ public class ElevatorType {
 		this.id = id;
 	}
 
-	public String getElevatorType() {
-		return elevatorType;
+	public String getElevatorTypeName() {
+		return elevatorTypeName;
 	}
 
-	public void setElevatorType(String elevatorType) {
-		this.elevatorType = elevatorType;
+	public void setElevatorTypeName(String elevatorTypeName) {
+		this.elevatorTypeName = elevatorTypeName;
 	}
-	
+
 	
 }

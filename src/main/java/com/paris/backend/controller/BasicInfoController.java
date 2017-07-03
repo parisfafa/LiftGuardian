@@ -72,7 +72,8 @@ public class BasicInfoController {
 			basicInfoService.deleteElevatorTypeById(id);
 		}
 		if("add".equals(request.getParameter("oper"))){
-			ElevatorType elevatorType=new ElevatorType(request.getParameter("elevatorType"));
+			ElevatorType elevatorType=new ElevatorType();
+			elevatorType.setElevatorTypeName(request.getParameter("elevatorType"));
 			basicInfoService.saveElevatorType(elevatorType);
 		}
 		List<ElevatorType> elevatorTypeList=basicInfoService.findAllElevatorType();
@@ -120,7 +121,8 @@ public class BasicInfoController {
 			basicInfoService.deleteElevatorModelById(id);
 		}
 		if("add".equals(request.getParameter("oper"))){
-			ElevatorModel elevatorModel=new ElevatorModel(request.getParameter("elevatorModel"));
+			ElevatorModel elevatorModel=new ElevatorModel();
+			elevatorModel.setElevatorModel(request.getParameter("elevatorModel"));
 			basicInfoService.saveElevatorModel(elevatorModel);
 		}
 		List<ElevatorModel> elevatorModelList=basicInfoService.findAllElevatorModel();

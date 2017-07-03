@@ -580,7 +580,7 @@
 						</ul>
 					</li>
 
-					<li class="">
+					<!--li class="">
 						<a href="calendar.html">
 							<i class="menu-icon fa fa-calendar"></i>
 
@@ -595,7 +595,7 @@
 
 						<b class="arrow"></b>
 						
-					</li>
+					</li-->
 
 					<li class="">
 						<a href="#" class="dropdown-toggle">
@@ -603,8 +603,6 @@
 
 							<span class="menu-text">
 								Other Pages
-
-								<span class="badge badge-primary">5</span>
 							</span>
 
 							<b class="arrow fa fa-angle-down"></b>
@@ -741,7 +739,7 @@
 								<div class="row">
 									<div class="col-xs-12">
 										<div class="clearfix">
-											<div class="pull-right tableTools-container"></div>
+											<a href="/newDevice">Add New Device</a><div class="pull-right tableTools-container"></div>
 										</div>
 										<div class="table-header">
 											Results for "Latest Registered Domains"
@@ -762,13 +760,13 @@
 														</th>
 														<th>Device ID</th>
 														<th>Device Name</th>
-														<th class="hidden-480">Clicks</th>
+														<th class="hidden-480">Elevator Type</th>
 
 														<th>
 															<i class="ace-icon fa fa-clock-o bigger-110 hidden-480"></i>
-															Update
+															Elevator Model
 														</th>
-														<th class="hidden-480">Status</th>
+														<th class="hidden-480">Manufacturers</th>
 
 														<th></th>
 													</tr>
@@ -787,15 +785,13 @@
 															<a th:href="@{'/deviceStatus'(id=${device.id})}" th:text="${device.id}"></a>
 														</td>
 														<td  th:text="${device.deviceName}"></td>
-														<td class="hidden-480">3,330</td>
-														<td>Feb 12</td>
+														<td th:text="${device.elevatorType.elevatorTypeName}"></td>
+														<td th:text="${device.elevatorModel.elevatorModel}"></td>
 
-														<td class="hidden-480">
-															<span class="label label-sm label-warning">Expiring</span>
-														</td>
+														<td th:text="${device.manufacturer.manufacturerName}"></td>
 
 														<td>
-															<div class="hidden-sm hidden-xs action-buttons">
+															<!-- div class="hidden-sm hidden-xs action-buttons">
 																<a class="blue" href="#">
 																	<i class="ace-icon fa fa-search-plus bigger-130"></i>
 																</a>
@@ -807,7 +803,7 @@
 																<a class="red" href="#">
 																	<i class="ace-icon fa fa-trash-o bigger-130"></i>
 																</a>
-															</div>
+															</div-->
 
 															<div class="hidden-md hidden-lg">
 																<div class="inline pos-rel">
