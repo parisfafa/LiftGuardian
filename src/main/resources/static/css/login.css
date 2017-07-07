@@ -1,0 +1,26 @@
+.light-login {
+	background-color: #253247;
+}
+
+.main-content {
+	position: relative;
+	margin-top: 10%;
+}
+
+.login-form-header {
+	font-family: ArialMT;
+	font-size: 24px;
+	color: #36C6D3;
+	letter-spacing: 0;
+	text-align: center
+}
+
+input[type="text"], input[type="password"] {
+	background: #DDE3EC;
+}
+
+.btn-primary {
+	background-color: #36C6D3!important;
+	border:0;
+}
+

@@ -4,7 +4,7 @@
 	<head>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 		<meta charset="utf-8" />
-		<title>Lift Guardian - Login</title>
+		<title>Login Page - Ace Admin</title>
 
 		<meta name="description" content="User login page" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
@@ -33,7 +33,6 @@
 		<script src="assets/js/html5shiv.min.js"></script>
 		<script src="assets/js/respond.min.js"></script>
 		<![endif]-->
-		<link rel="stylesheet" href="/css/login.css"/>
 	</head>
 
 	<body class="login-layout light-login">
@@ -43,8 +42,12 @@
 					<div class="col-sm-10 col-sm-offset-1">
 						<div class="login-container">
 							<div class="center">
-								<img src="/logos/logo1.jpg" alt="company logo"/>
-								<h4 class="blue" id="id-company-text">&copy; SoftGrid Inc.</h4>
+								<h1>
+									<i class="ace-icon fa fa-leaf green"></i>
+									<span class="red">Demo</span>
+									<span class="white" id="id-text2">Application</span>
+								</h1>
+								<h4 class="blue" id="id-company-text">&copy; Company Name</h4>
 							</div>
 
 							<div class="space-6"></div>
@@ -53,20 +56,29 @@
 								<div id="login-box" class="login-box visible widget-box no-border">
 									<div class="widget-body">
 										<div class="widget-main">
-											<h4 class="login-form-header">
-												Login Form
+											<h4 class="header blue lighter bigger">
+												<i class="ace-icon fa fa-coffee green"></i>
+												Please Enter Your Information
 											</h4>
 
 											<div class="space-6"></div>
 
-											<form th:action="@{/login}" method="post" class="form-signin">
+											<form th:action="@{/login}" method="POST" class="form-signin">
 												<fieldset>
 													<label class="block clearfix">
-														<input type="text" id="email" name="email"  th:placeholder="Email" class="form-control" />
+														<span class="block input-icon input-icon-right">
+															<input type="text" id="email" name="email"  th:placeholder="Email"
+				class="form-control" />
+															<i class="ace-icon fa fa-user"></i>
+														</span>
 													</label>
 
 													<label class="block clearfix">
-														<input type="password"  th:placeholder="Password" id="password" name="password" class="form-control" />
+														<span class="block input-icon input-icon-right">
+															<input type="password"  th:placeholder="Password"
+				id="password" name="password" class="form-control" />
+															<i class="ace-icon fa fa-lock"></i>
+														</span>
 													</label>
 													<div align="center" th:if="${param.error}">
 														<p style="font-size: 20; color: #FF1C19;">Email or Password invalid, please verify</p>
@@ -245,6 +257,21 @@
 									</div><!-- /.widget-body -->
 								</div><!-- /.signup-box -->
 							</div><!-- /.position-relative -->
+
+							<div class="navbar-fixed-top align-right">
+								<br />
+								&nbsp;
+								<a id="btn-login-dark" href="#">Dark</a>
+								&nbsp;
+								<span class="blue">/</span>
+								&nbsp;
+								<a id="btn-login-blur" href="#">Blur</a>
+								&nbsp;
+								<span class="blue">/</span>
+								&nbsp;
+								<a id="btn-login-light" href="#">Light</a>
+								&nbsp; &nbsp; &nbsp;
+							</div>
 						</div>
 					</div><!-- /.col -->
 				</div><!-- /.row -->
