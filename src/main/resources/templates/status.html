@@ -2,7 +2,8 @@
 <html amp lang="en" xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org">
 	<head>
-		<meta http-equiv="refresh" content="2;" /> 
+		<!--去掉刷新标签，改全页刷新为局部ajax刷新-->
+		<!--<meta http-equiv="refresh" content="2;" /> -->
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 		<meta charset="utf-8" />
 		<title>Blank Page - Ace Admin</title>
@@ -982,13 +983,121 @@
 						</div><!-- /.ace-settings-container -->
 
 						<div class="row">
-							<div class="col-xs-12">
+							<div class="col-xs-12" id="paramContainer">
 								<!-- PAGE CONTENT BEGINS -->
-									<p>Floor:</p><p th:text="${record.elevatorStatus.floor}"/>
-									<p>Door Status:</p><p th:text="${record.elevatorStatus.doorstatus}"/>
-									<p>Speed:</p><p th:text="${record.elevatorStatus.elevatorspeed}"/>
-									<p>Direction:</p><p th:text="${record.elevatorStatus.rundirection}"/>
-									<p>Body Status:</p><p th:text="${record.elevatorStatus.bodystatus}"/> 
+								<div class="col-xs-12 col-sm-6 widget-container-col ui-sortable" id="widget-container-col-2">
+									<div class="widget-box widget-color-green" id="widget-box-2">
+										<div class="widget-header">
+											<h5 class="widget-title bigger lighter">
+												<i class="ace-icon fa fa-table"></i>
+												Devices &amp; Status
+											</h5>
+
+											<div class="widget-toolbar widget-toolbar-light no-border">
+												<select id="simple-colorpicker-1" class="hide">
+													<option selected="" data-class="blue" value="#307ECC">#307ECC</option>
+													<option data-class="blue2" value="#5090C1">#5090C1</option>
+													<option data-class="blue3" value="#6379AA">#6379AA</option>
+													<option data-class="green" value="#82AF6F">#82AF6F</option>
+													<option data-class="green2" value="#2E8965">#2E8965</option>
+													<option data-class="green3" value="#5FBC47">#5FBC47</option>
+													<option data-class="red" value="#E2755F">#E2755F</option>
+													<option data-class="red2" value="#E04141">#E04141</option>
+													<option data-class="red3" value="#D15B47">#D15B47</option>
+													<option data-class="orange" value="#FFC657">#FFC657</option>
+													<option data-class="purple" value="#7E6EB0">#7E6EB0</option>
+													<option data-class="pink" value="#CE6F9E">#CE6F9E</option>
+													<option data-class="dark" value="#404040">#404040</option>
+													<option data-class="grey" value="#848484">#848484</option>
+													<option data-class="default" value="#EEE">#EEE</option>
+												</select><div class="dropdown dropdown-colorpicker">		<a data-toggle="dropdown" class="dropdown-toggle" data-position="auto" aria-expanded="false"><span class="btn-colorpicker" style="background-color: rgb(130, 175, 111);"></span></a><ul class="dropdown-menu dropdown-caret dropdown-menu-right"><li><a class="colorpick-btn" style="background-color:#307ECC;" data-color="#307ECC"></a></li><li><a class="colorpick-btn" style="background-color:#5090C1;" data-color="#5090C1"></a></li><li><a class="colorpick-btn" style="background-color:#6379AA;" data-color="#6379AA"></a></li><li><a class="colorpick-btn selected" style="background-color:#82AF6F;" data-color="#82AF6F"></a></li><li><a class="colorpick-btn" style="background-color:#2E8965;" data-color="#2E8965"></a></li><li><a class="colorpick-btn" style="background-color:#5FBC47;" data-color="#5FBC47"></a></li><li><a class="colorpick-btn" style="background-color:#E2755F;" data-color="#E2755F"></a></li><li><a class="colorpick-btn" style="background-color:#E04141;" data-color="#E04141"></a></li><li><a class="colorpick-btn" style="background-color:#D15B47;" data-color="#D15B47"></a></li><li><a class="colorpick-btn" style="background-color:#FFC657;" data-color="#FFC657"></a></li><li><a class="colorpick-btn" style="background-color:#7E6EB0;" data-color="#7E6EB0"></a></li><li><a class="colorpick-btn" style="background-color:#CE6F9E;" data-color="#CE6F9E"></a></li><li><a class="colorpick-btn" style="background-color:#404040;" data-color="#404040"></a></li><li><a class="colorpick-btn" style="background-color:#848484;" data-color="#848484"></a></li><li><a class="colorpick-btn" style="background-color:#EEE;" data-color="#EEE"></a></li></ul></div>
+											</div>
+										</div>
+
+										<div class="widget-body">
+											<div class="widget-main no-padding">
+												<table class="table table-striped table-bordered table-hover" id="deviceStatusTable">
+													<thead class="thin-border-bottom">
+													<tr>
+														<th>
+															<i class="ace-icon fa fa-user"></i>
+															Item
+														</th>
+
+														<th>
+															<i>@</i>
+															Value
+														</th>
+														<th class="hidden-480">Status</th>
+													</tr>
+													</thead>
+
+													<tbody>
+													<tr>
+														<td class="">Floor</td>
+
+														<td>
+															<a href="#"></a>
+														</td>
+
+														<td class="hidden-480">
+															<span class="label label-warning">Pending</span>
+														</td>
+													</tr>
+
+													<tr>
+														<td class="">Door</td>
+
+														<td>
+															<a href="#"></a>
+														</td>
+
+														<td class="hidden-480">
+															<span class="label label-success arrowed-in arrowed-in-right">Approved</span>
+														</td>
+													</tr>
+
+													<tr>
+														<td class="">Speed</td>
+
+														<td>
+															<a href="#"></a>
+														</td>
+
+														<td class="hidden-480">
+															<span class="label label-warning">Pending</span>
+														</td>
+													</tr>
+
+													<tr>
+														<td class="">Direction</td>
+
+														<td>
+															<a href="#"></a>
+														</td>
+
+														<td class="hidden-480">
+															<span class="label label-inverse arrowed">Blocked</span>
+														</td>
+													</tr>
+
+													<tr>
+														<td class="">Body Status</td>
+
+														<td>
+															<a href="#"></a>
+														</td>
+
+														<td class="hidden-480">
+															<span class="label label-info arrowed-in arrowed-in-right">Online</span>
+														</td>
+													</tr>
+													</tbody>
+												</table>
+											</div>
+										</div>
+									</div>
+								</div>
 								<!-- PAGE CONTENT ENDS -->
 							</div><!-- /.col -->
 						</div><!-- /.row -->
@@ -1049,5 +1158,47 @@
 		<script src="/js/ace.min.js"></script>
 
 		<!-- inline scripts related to this page -->
+		<script>
+			$(function(){
+				function refreshDeviceStatus() {//异步刷新
+					var url = "/refreshDeviceStatus";
+					var id=getQueryString("id");
+					var data = {id: id};
+					$.ajax({
+						type: "get",
+						async: true,//异步请求
+						url: url,
+						data: data,
+						timeout: 1000,
+						success: function (datas) {
+							var record = JSON.parse(datas);
+							$("#deviceStatusTable").find("tbody").find("tr")
+									.eq(0).find("td").eq(1).find("a").html(record.elevatorStatus.floor);
+							$("#deviceStatusTable").find("tbody").find("tr")
+									.eq(1).find("td").eq(1).find("a").html(record.elevatorStatus.doorstatus);
+							$("#deviceStatusTable").find("tbody").find("tr")
+									.eq(2).find("td").eq(1).find("a").html(record.elevatorStatus.elevatorspeed);
+							$("#deviceStatusTable").find("tbody").find("tr")
+									.eq(3).find("td").eq(1).find("a").html(record.elevatorStatus.rundirection);
+							$("#deviceStatusTable").find("tbody").find("tr")
+									.eq(4).find("td").eq(1).find("a").html(record.elevatorStatus.bodystatus);
+						},
+						error: function () {
+//							alert("失败，请稍后再试！");
+						}
+					});
+				}
+				setInterval(refreshDeviceStatus,1000);//定时刷新
+			})
+//			获取url中指定的参数值
+			function getQueryString(name) {
+				var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+				var r = window.location.search.substr(1).match(reg);
+				if (r != null) {
+					return unescape(r[2]);
+				}
+				return null;
+			}
+		</script>
 	</body>
 </html>

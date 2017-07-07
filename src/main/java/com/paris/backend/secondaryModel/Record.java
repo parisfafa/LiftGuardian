@@ -1,16 +1,8 @@
-package com.paris.backend.model;
+package com.paris.backend.secondaryModel;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import com.google.gson.annotations.Expose;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name = "tb_record")
@@ -23,7 +15,8 @@ public class Record {
 	private String deviceid;
 	@Column(name="createtime")
 	private String createtime;
-	
+
+	@Expose
 	@OneToOne(cascade = CascadeType.ALL,orphanRemoval=true,fetch = FetchType.EAGER)
 	@JoinColumn(name = "recordid")
 	private ElevatorStatus elevatorStatus;
