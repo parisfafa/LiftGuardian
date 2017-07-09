@@ -8,6 +8,7 @@ import com.paris.backend.secondaryModel.Record;
 public interface DeviceMonitoringService {
 
 	public List<Device> findAllDevices();
+	public List<Device> findDeviceById(Long id);
 	
 	public List<Record> findRecordById(String id);
 	

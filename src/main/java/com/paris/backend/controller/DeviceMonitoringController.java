@@ -77,8 +77,12 @@ public class DeviceMonitoringController {
 	public ModelAndView getDeviceStatus(WebRequest request){
 		ModelAndView modelAndView = new ModelAndView();
 		String id=request.getParameter("id");
+
+		List<Device> device=deviceMonitoringService.findDeviceById(Long.parseLong(id));
 		List<Record> record=deviceMonitoringService.findRecordById(id);
-		modelAndView.addObject("record", record==null?null:record.get(0));
+		System.out.println("dada"+id+Long.valueOf(id)+device.size()+device.get(0).getCountry());
+		modelAndView.addObject("record", record.isEmpty()?null:record.get(0));
+		modelAndView.addObject("device",device.get(0));
 		modelAndView.setViewName("status");
 		return modelAndView;
 	}

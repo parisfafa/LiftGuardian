@@ -35,4 +35,9 @@ public class DeviceMonitoringServiceImpl implements DeviceMonitoringService{
 		
 	}
 
+	@Override
+	public List<Device> findDeviceById(Long id) {
+		return deviceRepository.findDeviceById(id);
+	}
+
 }
