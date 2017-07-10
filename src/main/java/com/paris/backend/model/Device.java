@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
@@ -18,6 +20,8 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Table(name = "device")
 public class Device {
 	@Id
+	@Digits(integer=10, fraction=0) 
+	@Min(value = 1) 
 	@Column(name="deviceid")
 	private Long id;
 	

@@ -11,5 +11,4 @@ import com.paris.backend.model.Device;
 @Repository("deviceRepository")
 public interface DeviceRepository extends JpaRepository<Device, Integer>{
 	List<Device> findDeviceById(Long id);
-
 }

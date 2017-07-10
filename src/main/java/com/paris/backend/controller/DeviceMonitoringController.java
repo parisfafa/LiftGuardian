@@ -57,6 +57,26 @@ public class DeviceMonitoringController {
 		modelAndView.setViewName("newDevice");
 		return modelAndView;
 	}
+	
+	@RequestMapping(value="/editDevice", method = RequestMethod.GET)
+	public ModelAndView editDevice(WebRequest request){
+		ModelAndView modelAndView = new ModelAndView();
+		List<ElevatorType> elevatorTypes = basicInfoService.findAllElevatorType();
+		modelAndView.addObject("elevatorTypes", elevatorTypes);
+		List<ElevatorModel> elevatorModels=basicInfoService.findAllElevatorModel();
+		modelAndView.addObject("elevatorModels", elevatorModels);
+		List<Manufacturer> manufacturers=basicInfoService.findAllManufacturer();
+		modelAndView.addObject("manufacturers", manufacturers);	
+		List<Organization> organizations=basicInfoService.findAllOrganization();
+		modelAndView.addObject("organizations", organizations);	
+		String id=request.getParameter("id");
+
+		List<Device> device=deviceMonitoringService.findDeviceById(Long.parseLong(id));
+		modelAndView.addObject("device", device.get(0));
+		modelAndView.setViewName("editDevice");
+		return modelAndView;
+	}
+	
 	@RequestMapping(value = "/newDevice", method = RequestMethod.POST)
 	public ModelAndView newDevice(@Valid Device device, BindingResult bindingResult) {
 		ModelAndView modelAndView = new ModelAndView();
@@ -73,6 +93,23 @@ public class DeviceMonitoringController {
 		}
 		return modelAndView;
 	}
+	@RequestMapping(value = "/editDevice", method = RequestMethod.POST)
+	public ModelAndView editDevice(@Valid Device device, BindingResult bindingResult) {
+		ModelAndView modelAndView = new ModelAndView();
+		if (bindingResult.hasErrors()) {
+			modelAndView.setViewName("editDevice");
+		} else {
+			deviceMonitoringService.saveDevice(device);
+			modelAndView.addObject("successMessage", "Device has been added successfully");
+			List<Device> devices=deviceMonitoringService.findAllDevices();
+			modelAndView.addObject("devices", devices);
+			modelAndView.setViewName("devices");
+			return modelAndView;
+			
+		}
+		return modelAndView;
+	}
+	
 	@RequestMapping(value="/deviceStatus", method = RequestMethod.GET)
 	public ModelAndView getDeviceStatus(WebRequest request){
 		ModelAndView modelAndView = new ModelAndView();
