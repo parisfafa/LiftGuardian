@@ -11,13 +11,13 @@ import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
 @Entity
 @Table(name = "device")
 public class Device {
 	@Id
-	@NotEmpty(message = "*Please provide an device id")
 	@Column(name="deviceid")
 	private Long id;
 	
