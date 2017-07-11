@@ -129,6 +129,14 @@ public class DeviceMonitoringController {
 	public String refreshDeviceStatus(WebRequest request)
 	{
 		String id = request.getParameter("id");
+		if(id.length()<8)
+		{
+			int appendLen=8-id.length();
+			for(int i=0; i<appendLen;i++)
+			{
+				id=0+id;
+			}
+		}
 		List<Record> record = deviceMonitoringService.findRecordById(id);
 		GsonBuilder gsonBuilder= new GsonBuilder();
 		gsonBuilder.excludeFieldsWithoutExposeAnnotation();  //使用@Expose 忽略字段
