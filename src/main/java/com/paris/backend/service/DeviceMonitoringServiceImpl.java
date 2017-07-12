@@ -2,6 +2,7 @@ package com.paris.backend.service;
 
 import java.util.List;
 
+import com.paris.backend.secondaryModel.ElevatorStatus;
 import com.paris.backend.secondaryModel.Record;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,7 +25,7 @@ public class DeviceMonitoringServiceImpl implements DeviceMonitoringService{
 	}
 
 	@Override
-	public List<Record> findRecordById(String id) {
+	public List<ElevatorStatus> findRecordById(String id) {
 		return recordRepository.findAllByDeviceid(id);
 
 	}
@@ -33,6 +34,11 @@ public class DeviceMonitoringServiceImpl implements DeviceMonitoringService{
 	public void saveDevice(Device device) {
 		deviceRepository.save(device);
 		
+	}
+
+	@Override
+	public List<Device> findDeviceById(Long id) {
+		return deviceRepository.findDeviceById(id);
 	}
 
 }

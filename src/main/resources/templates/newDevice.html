@@ -791,6 +791,17 @@
 																<div class="help-block col-xs-12 col-sm-reset inline "><label th:if="${#fields.hasErrors('address')}" th:errors="*{address}" style="color:#D16E6C" class="help-inline"></label></div>
 															</div>
 															<div class="form-group">
+																<label for="inputError2" class="col-xs-12 col-sm-3 control-label no-padding-right">Post Code</label>
+
+																<div class="col-xs-12 col-sm-5">
+																	<span class="input-icon block">
+																		<input type="text" th:field="*{postcode}" placeholder="" class="width-100" />
+																		<!--i class="ace-icon fa fa-times-circle red"></i-->
+																	</span>
+																</div>
+																<div class="help-block col-xs-12 col-sm-reset inline "><label th:if="${#fields.hasErrors('postcode')}" th:errors="*{postcode}" style="color:#D16E6C" class="help-inline"></label></div>
+															</div>
+															<div class="form-group">
 																<label for="inputError2" class="col-xs-12 col-sm-3 control-label no-padding-right">Elevator Type</label>
 
 																<div class="col-xs-12 col-sm-5">
