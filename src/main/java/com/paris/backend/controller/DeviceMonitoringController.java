@@ -76,7 +76,16 @@ public class DeviceMonitoringController {
 		modelAndView.setViewName("editDevice");
 		return modelAndView;
 	}
-	
+	@RequestMapping(value="/deleteDevice", method = RequestMethod.POST)
+	public ModelAndView deleteDevice(WebRequest request){
+		ModelAndView modelAndView = new ModelAndView();
+		String id=request.getParameter("id");
+
+		deviceMonitoringService.deleteDeviceById(Integer.parseInt(id));
+		List<Device> devices=deviceMonitoringService.findAllDevices();
+		modelAndView.addObject("devices", devices);
+		return modelAndView;
+	}
 	@RequestMapping(value = "/newDevice", method = RequestMethod.POST)
 	public ModelAndView newDevice(@Valid Device device, BindingResult bindingResult) {
 		ModelAndView modelAndView = new ModelAndView();

@@ -13,5 +13,6 @@ public interface DeviceMonitoringService {
 	public List<Record> findRecordById(String id);
 	
 	public void saveDevice(Device device);
+	public void deleteDeviceById(int id);
 
 }

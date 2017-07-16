@@ -674,13 +674,13 @@
 						<div class="row">
 							<div class="col-xs-12">
 								<!-- PAGE CONTENT BEGINS -->
-								<div class="alert alert-info">
+								<div th:if="${successMessage}!=null" class="alert alert-success">
 									<button class="close" data-dismiss="alert">
 										<i class="ace-icon fa fa-times"></i>
 									</button>
 
 									<i class="ace-icon fa fa-hand-o-right"></i>
-									Please note that demo server is not configured to save the changes, therefore you may see an error message.
+									<span th:utext="${successMessage}"></span>
 								</div>
 
 								<table id="grid-table"></table>
@@ -754,19 +754,10 @@
 		<script th:inline="javascript">
 
 			var grid_data = [[${organizations}]];
-
+console.log(grid_data);
 			console.log("fafa"+grid_data);
 			var subgrid_data = 
-			[
-			 {id:"1", name:"sub grid item 1", qty: 11},
-			 {id:"2", name:"sub grid item 2", qty: 3},
-			 {id:"3", name:"sub grid item 3", qty: 12},
-			 {id:"4", name:"sub grid item 4", qty: 5},
-			 {id:"5", name:"sub grid item 5", qty: 2},
-			 {id:"6", name:"sub grid item 6", qty: 9},
-			 {id:"7", name:"sub grid item 7", qty: 3},
-			 {id:"8", name:"sub grid item 8", qty: 8}
-			];
+			[];
 			
 			jQuery(function($) {
 				var grid_selector = "#grid-table";
@@ -812,7 +803,7 @@
 					//direction: "rtl",
 			
 					//subgrid options
-					subGrid : true,
+					subGrid : false,
 					//subGridModel: [{ name : ['No','Item Name','Qty'], width : [55,200,80] }],
 					//datatype: "xml",
 					subGridOptions : {
@@ -930,17 +921,17 @@
 				//navButtons
 				jQuery(grid_selector).jqGrid('navGrid',pager_selector,
 					{ 	//navbar options
-						edit: true,
+						edit: false,
 						editicon : 'ace-icon fa fa-pencil blue',
-						add: true,
+						add: false,
 						addicon : 'ace-icon fa fa-plus-circle purple',
-						del: true,
+						del: false,
 						delicon : 'ace-icon fa fa-trash-o red',
 						search: true,
 						searchicon : 'ace-icon fa fa-search orange',
 						refresh: true,
 						refreshicon : 'ace-icon fa fa-refresh green',
-						view: true,
+						view: false,
 						viewicon : 'ace-icon fa fa-search-plus grey',
 					},
 					{

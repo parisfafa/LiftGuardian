@@ -40,4 +40,10 @@ public class DeviceMonitoringServiceImpl implements DeviceMonitoringService{
 		return deviceRepository.findDeviceById(id);
 	}
 
+	@Override
+	public void deleteDeviceById(int id) {
+		deviceRepository.removeById(id);
+		
+	}
+
 }

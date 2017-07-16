@@ -73,7 +73,7 @@ public class BasicInfoController {
 		}
 		if("add".equals(request.getParameter("oper"))){
 			ElevatorType elevatorType=new ElevatorType();
-			elevatorType.setElevatorTypeName(request.getParameter("elevatorType"));
+			elevatorType.setElevatorType(request.getParameter("elevatorType"));
 			basicInfoService.saveElevatorType(elevatorType);
 		}
 		List<ElevatorType> elevatorTypeList=basicInfoService.findAllElevatorType();
