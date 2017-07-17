@@ -132,7 +132,8 @@ public class DeviceMonitoringController {
 
 		List<Device> device=deviceMonitoringService.findDeviceById(Long.parseLong(id));
 
-		List<Record> record=deviceMonitoringService.findRecordById(id);
+		//List<Record> record=deviceMonitoringService.findRecordById(id);
+		List<ElevatorStatus> record = deviceMonitoringService.findRecordById(id);
 		System.out.println("dada"+id+Long.valueOf(id)+device.size()+device.get(0).getCountry());
 		modelAndView.addObject("record", record.isEmpty()?null:record.get(0));
 
