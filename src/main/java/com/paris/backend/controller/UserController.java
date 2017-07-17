@@ -120,6 +120,7 @@ public class UserController {
 		if (bindingResult.hasErrors()) {
 			modelAndView.setViewName("registration");
 		} else {
+
 			userService.saveUser(user);
 			modelAndView.addObject("successMessage", "User has been registered successfully");
 			List<User> userList=userService.findAllUsers();

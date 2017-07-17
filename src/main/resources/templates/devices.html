@@ -760,14 +760,14 @@
 														</th>
 														<th>Device ID</th>
 														<th>Device Name</th>
-														<th class="hidden-480">Elevator Type</th>
+														<!--<th class="hidden-480">Elevator Type</th>-->
 
-														<th>
-															<i class="ace-icon fa fa-clock-o bigger-110 hidden-480"></i>
-															Elevator Model
-														</th>
+														<!--<th>-->
+															<!--<i class="ace-icon fa fa-clock-o bigger-110 hidden-480"></i>-->
+															<!--Elevator Model-->
+														<!--</th>-->
 														<th class="hidden-480">Manufacturers</th>
-
+														<th class="hidden-480">Camera Url</th>
 														<th></th>
 													</tr>
 												</thead>
@@ -785,14 +785,18 @@
 															<a th:href="@{'/deviceStatus'(id=${device.id})}" th:text="${device.id}"></a>
 														</td>
 														<td  th:text="${device.deviceName}"></td>
-														<td th:text="${device.elevatorType.elevatorType}"></td>
-														<td th:text="${device.elevatorModel.elevatorModel}"></td>
+
+														<!--<td th:text="${device.elevatorType.elevatorTypeName}"></td>-->
+														<!--<td th:text="${device.elevatorModel.elevatorModel}"></td>-->
+
 
 														<td th:text="${device.manufacturer.manufacturerName}"></td>
-
+														<td th:text="${device.camera}"></td>
 														<td>
 														<a th:href="@{'/editDevice'(id=${device.id})}" th:text="Edit"></a>
+
 														<!--a th:href="@{'/deleteDevice'(id=${device.id})}" th:text="Delete"></a-->
+
 															<!-- div class="hidden-sm hidden-xs action-buttons">
 																<a class="blue" href="#">
 																	<i class="ace-icon fa fa-search-plus bigger-130"></i>

@@ -2,6 +2,9 @@ package com.paris.backend.service;
 
 import java.util.List;
 
+import com.paris.backend.model.Camera;
+import com.paris.backend.repository.CameraRepository;
+import com.paris.backend.secondaryModel.ElevatorStatus;
 import com.paris.backend.secondaryModel.Record;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,13 +21,15 @@ public class DeviceMonitoringServiceImpl implements DeviceMonitoringService{
 	@Autowired
 	private RecordRepository recordRepository;
 
+	@Autowired
+	private CameraRepository cameraRepository;
 	@Override
 	public List<Device> findAllDevices() {
 		return deviceRepository.findAll();
 	}
 
 	@Override
-	public List<Record> findRecordById(String id) {
+	public List<ElevatorStatus> findRecordById(String id) {
 		return recordRepository.findAllByDeviceid(id);
 
 	}
@@ -40,10 +45,29 @@ public class DeviceMonitoringServiceImpl implements DeviceMonitoringService{
 		return deviceRepository.findDeviceById(id);
 	}
 
+
+
+	@Override
+	public List<Camera> findAllCameras() {
+		return cameraRepository.findAll();
+	}
+
+
+	@Override
+	public void saveCamera(Camera camera) {
+		cameraRepository.save(camera);
+
+	}
+
+	@Override
+	public List<Camera> findCameraById(Long id) {
+		return cameraRepository.findCameraById(id);
+
 	@Override
 	public void deleteDeviceById(int id) {
 		deviceRepository.removeById(id);
 		
+
 	}
 
 }

@@ -46,7 +46,7 @@
 		<![endif]-->
 	</head>
 
-	<body class="no-skin">
+	<body class="no-skin" >
 		<div id="navbar" class="navbar navbar-default          ace-save-state">
 			<div class="navbar-container ace-save-state" id="navbar-container">
 				<button type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler" data-target="#sidebar">
@@ -666,6 +666,8 @@
 						<div class="row">
 							<div class="col-xs-12" id="paramContainer">
 								<!-- PAGE CONTENT BEGINS -->
+
+								<!--TABLE BEGINS-->
 								<div class="col-xs-12 col-sm-6 widget-container-col ui-sortable" id="widget-container-col-2">
 									<div class="widget-box widget-color-green" id="widget-box-2">
 										<div class="widget-header">
@@ -675,23 +677,12 @@
 											</h5>
 
 											<div class="widget-toolbar widget-toolbar-light no-border">
-												<select id="simple-colorpicker-1" class="hide">
-													<option selected="" data-class="blue" value="#307ECC">#307ECC</option>
-													<option data-class="blue2" value="#5090C1">#5090C1</option>
-													<option data-class="blue3" value="#6379AA">#6379AA</option>
-													<option data-class="green" value="#82AF6F">#82AF6F</option>
-													<option data-class="green2" value="#2E8965">#2E8965</option>
-													<option data-class="green3" value="#5FBC47">#5FBC47</option>
-													<option data-class="red" value="#E2755F">#E2755F</option>
-													<option data-class="red2" value="#E04141">#E04141</option>
-													<option data-class="red3" value="#D15B47">#D15B47</option>
-													<option data-class="orange" value="#FFC657">#FFC657</option>
-													<option data-class="purple" value="#7E6EB0">#7E6EB0</option>
-													<option data-class="pink" value="#CE6F9E">#CE6F9E</option>
-													<option data-class="dark" value="#404040">#404040</option>
-													<option data-class="grey" value="#848484">#848484</option>
-													<option data-class="default" value="#EEE">#EEE</option>
-												</select><div class="dropdown dropdown-colorpicker">		<a data-toggle="dropdown" class="dropdown-toggle" data-position="auto" aria-expanded="false"><span class="btn-colorpicker" style="background-color: rgb(130, 175, 111);"></span></a><ul class="dropdown-menu dropdown-caret dropdown-menu-right"><li><a class="colorpick-btn" style="background-color:#307ECC;" data-color="#307ECC"></a></li><li><a class="colorpick-btn" style="background-color:#5090C1;" data-color="#5090C1"></a></li><li><a class="colorpick-btn" style="background-color:#6379AA;" data-color="#6379AA"></a></li><li><a class="colorpick-btn selected" style="background-color:#82AF6F;" data-color="#82AF6F"></a></li><li><a class="colorpick-btn" style="background-color:#2E8965;" data-color="#2E8965"></a></li><li><a class="colorpick-btn" style="background-color:#5FBC47;" data-color="#5FBC47"></a></li><li><a class="colorpick-btn" style="background-color:#E2755F;" data-color="#E2755F"></a></li><li><a class="colorpick-btn" style="background-color:#E04141;" data-color="#E04141"></a></li><li><a class="colorpick-btn" style="background-color:#D15B47;" data-color="#D15B47"></a></li><li><a class="colorpick-btn" style="background-color:#FFC657;" data-color="#FFC657"></a></li><li><a class="colorpick-btn" style="background-color:#7E6EB0;" data-color="#7E6EB0"></a></li><li><a class="colorpick-btn" style="background-color:#CE6F9E;" data-color="#CE6F9E"></a></li><li><a class="colorpick-btn" style="background-color:#404040;" data-color="#404040"></a></li><li><a class="colorpick-btn" style="background-color:#848484;" data-color="#848484"></a></li><li><a class="colorpick-btn" style="background-color:#EEE;" data-color="#EEE"></a></li></ul></div>
+												<div class="dropdown dropdown-colorpicker">
+												<a data-toggle="dropdown" class="dropdown-toggle" data-position="auto" aria-expanded="false">
+													<span class="btn-colorpicker" style="background-color: rgb(130, 175, 111);"></span>
+												</a>
+
+											</div>
 											</div>
 										</div>
 
@@ -709,7 +700,7 @@
 															<i>@</i>
 															Value
 														</th>
-														<th class="hidden-480">Status</th>
+
 													</tr>
 													</thead>
 
@@ -721,9 +712,7 @@
 															<a href="#"></a>
 														</td>
 
-														<td class="hidden-480">
-															<span class="label label-warning">Pending</span>
-														</td>
+
 													</tr>
 
 													<tr>
@@ -733,9 +722,7 @@
 															<a href="#"></a>
 														</td>
 
-														<td class="hidden-480">
-															<span class="label label-success arrowed-in arrowed-in-right">Approved</span>
-														</td>
+
 													</tr>
 
 													<tr>
@@ -745,9 +732,7 @@
 															<a href="#"></a>
 														</td>
 
-														<td class="hidden-480">
-															<span class="label label-warning">Pending</span>
-														</td>
+
 													</tr>
 
 													<tr>
@@ -757,65 +742,264 @@
 															<a href="#"></a>
 														</td>
 
-														<td class="hidden-480">
-															<span class="label label-inverse arrowed">Blocked</span>
-														</td>
+
 													</tr>
 
 													<tr>
-														<td class="">Body Status</td>
+														<td class="">passenger inside or not</td>
 
 														<td>
 															<a href="#"></a>
 														</td>
 
-														<td class="hidden-480">
-															<span class="label label-info arrowed-in arrowed-in-right">Online</span>
+
+													</tr>
+													<tr>
+														<td class="">Data Time</td>
+
+														<td>
+															<a href="#"></a>
 														</td>
+
+
 													</tr>
 													</tbody>
 												</table>
 											</div>
 										</div>
 									</div>
-								</div>
-								<div class="col-xs-12 col-sm-6 widget-container-col ui-sortable" id="map"  style="height:260px;"/>
-								<script  th:inline="javascript">
 
-								function myMap() {
-									var geocoder = new google.maps.Geocoder();
-									geocoder.geocode({
-									  componentRestrictions: {
-									    country: [[${device.country}]],
-									    postalCode: [[${device.postcode}]]
-									  }
-									}, function(results, status) {
-									  if (status == 'OK') {
-										  var map = new google.maps.Map(document.getElementById('map'), {
-									          zoom: 15,
-									          center: results[0].geometry.location
-									        });
-									        var marker = new google.maps.Marker({
-									          position: results[0].geometry.location,
-									          map: map
-									        });
-									  } else {
-									    console.log('Geocode was not successful for the following reason: ' + status);
-									  }
-									});
-									}
-								
-								</script>
-								
-								<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA47baYqARS1Co2j1_coi9C2tsohUI-fAQ&callback=myMap"></script>
-								
-								<!-- PAGE CONTENT ENDS -->
-							</div><!-- /.col -->
+
+								</div>
+
+								<!--TABLE END-->
+
+								<!--TABLE2 BEGINS-->
+								<div class="col-xs-12 col-sm-6 widget-container-col ui-sortable" id="widget-container-col-2">
+									<div class="widget-box widget-color-green" id="widget-box-2">
+										<div class="widget-header">
+											<h5 class="widget-title bigger lighter">
+												<i class="ace-icon fa fa-table"></i>
+												Elevator &amp; Info
+											</h5>
+
+											<div class="widget-toolbar widget-toolbar-light no-border">
+												<div class="dropdown dropdown-colorpicker">
+													<a data-toggle="dropdown" class="dropdown-toggle" data-position="auto" aria-expanded="false">
+														<span class="btn-colorpicker" style="background-color: rgb(130, 175, 111);"></span>
+													</a>
+
+												</div>
+											</div>
+										</div>
+
+										<div class="widget-body">
+											<div class="widget-main no-padding">
+												<table class="table table-striped table-bordered table-hover" id="elevatortable">
+													<thead class="thin-border-bottom">
+													<tr>
+														<th>
+															<i class="ace-icon fa fa-user"></i>
+															Item
+														</th>
+
+														<th>
+															<i>@</i>
+															Value
+														</th>
+
+													</tr>
+													</thead>
+
+													<tbody>
+													<tr>
+														<td class="">elevator_model</td>
+
+														<td th:text="${device.elevatorModel.elevatorModel}">
+															<a href="#" ></a>
+														</td>
+
+
+													</tr>
+
+													<tr>
+														<td class="">elevatorTypeName</td>
+
+														<td th:text="${device.elevatorType.elevatorTypeName}">
+															<a href="#" ></a>
+														</td>
+
+
+													</tr>
+
+													<tr>
+														<td class="">maintenanceType</td>
+
+														<td th:text="${device.elevatorType.elevatorTypeName}">
+															<a href="#" ></a>
+														</td>
+
+
+													</tr>
+
+													<tr>
+														<td class="">organization</td>
+
+														<td th:text="${device.organization.organizationName}">
+															<a href="#" ></a>
+														</td>
+
+
+													</tr>
+
+													<tr>
+														<td class="">Manufacturer</td>
+
+														<td th:text="${device.manufacturer.manufacturerName}">
+															<a href="#" ></a>
+														</td>
+
+
+													</tr>
+
+													<tr>
+														<td class="">Time</td>
+
+														<td>
+															<a href="#"></a>
+														</td>
+
+
+													</tr>
+													</tbody>
+												</table>
+											</div>
+										</div>
+									</div>
+
+
+								</div>
+								<!--TABLE2 END-->
+
+									<!--MAP BEGINS-->
+								<div class="col-xs-12 col-sm-6 widget-container-col ui-sortable" id="map"  >
+									<div class="widget-box widget-color-green" id="widget-box-2">
+										<div style="padding-right: 0px; width: 650px;height: 373px; padding-top: 4px">
+
+
+									<script  th:inline="javascript">
+
+										function myMap() {
+										var geocoder = new google.maps.Geocoder();
+										geocoder.geocode({
+										  componentRestrictions: {
+											country: [[${device.country}]],
+											postalCode: [[${device.postcode}]]
+										  }
+										}, function(results, status) {
+										  if (status == 'OK') {
+											  var map = new google.maps.Map(document.getElementById('map'), {
+												  zoom: 15,
+												  center: results[0].geometry.location
+												});
+												var marker = new google.maps.Marker({
+												  position: results[0].geometry.location,
+												  map: map
+												});
+										  } else {
+											console.log('Geocode was not successful for the following reason: ' + status);
+										  }
+										});
+										}
+
+									</script>
+									<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA47baYqARS1Co2j1_coi9C2tsohUI-fAQ&callback=myMap">
+
+									</script>
+										</div>
+										</div>
+								</div>
+								<!-- MAP END -->
+
+								<!--VIDEO BEGIN-->
+								<div class="col-xs-12 col-sm-6 widget-container-col ui-sortable" id="video" >
+									<div class="widget-box widget-color-green" id="widget-box-2">
+									<object events="false" id="vlc" pluginspage="http://www.videolan.org/" type="application/x-vlc-plugin" style="padding-right: 0px; width: 640px;height: 373px; padding-top: 4px" >
+										<param name="mrl" value="">
+										<param name="volume" value="50">
+										<param name="autoplay" value="true">
+										<param name="loop" value="false">
+										<param name="fullscreen" value="false">
+										<param name="controls" value="false">
+									</object>
+									<script th:inline="javascript">
+										<!-- 屏蔽右键
+										// document.oncontextmenu=function(e){return false;}
+										//-->
+										var vlc; // VLC对象
+										var itemId;  // 播放列表中播放节目的id
+										var vlcSound; // vlc音量大小（初始化默认为50）
+										var videoLength; // 视频总时长
+										var then_time; // 播放开始时间(播放开始的日期，看下面实现代码，它是毫秒哦)
+										var isPlaying=0; // 是否播放状态 （0 未播放 1 播放）
+										// 初始化 === 很重要哦，控制程序的入口
+										function initPlayUrl(){
+											vlc=document.getElementById("vlc");
+											//alert(vlc);
+											// 添加播放地址
+											//vlc.playlist.add(window.opener.vdUrl);
+											// 播放
+											// vlc.playlist.play();
+											// 添加播放地址方式2 -- 推荐用下面的方法控制播放列表
+											//vedio_url =""; // 播放路径
+											var url=[[${device.camera.url}]];
+											//alert(url);
+											$.ajax({
+												type: "get",
+												async: true,//异步请求
+												url: url,
+												dataType : 'jsonp',
+												jsonp:"jsoncallback",
+												success  : function(data) {
+
+													//alert(data);
+													var elevatorStatus = JSON.parse(datas);
+													//alert(elevatorStatus);
+												},
+												error : function() {
+													//alert('fail');
+												}
+											});
+											var vedio_url = "rtsp://118.200.131.22";
+											//var vedio_url=window.opener.vdUrl;
+											itemId= vlc.playlist.add(vedio_url);
+											vlc.playlist.playItem(itemId);
+
+											// 获取VLC当前音量
+											vlcSound=vlc.audio.volume;
+											// 设置VLC音量值
+											document.getElementById("vlc_sound").value=vlcSound;
+											// 播放按钮不可用
+											document.getElementById("play_button").disabled=true;
+
+											// 检查播放节目的状态 -- 注意这个是延时操作哦（setTimeout以毫秒为单位，这里延时0.5秒）
+											setTimeout(checkVedioStatus,500);
+										}
+									</script>
+									</div>
+								</div>
+								<!--VIDEO END-->
+
+							</div>
+							<!-- PAGE CONTENT ENDS -->
+
+							
+							
 						</div><!-- /.row -->
 					</div><!-- /.page-content -->
-				</div>
-			</div><!-- /.main-content -->
 
+				</div><!-- /.main-content inner-->
+			</div><!-- /.main-container -->
 			<div class="footer">
 				<div class="footer-inner">
 					<div class="footer-content">
@@ -845,8 +1029,9 @@
 			<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
 				<i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
 			</a>
-		</div><!-- /.main-container -->
 
+		</div>
+		<!--main-container ace-save-state-->
 		<!-- basic scripts -->
 
 		<!--[if !IE]> -->
@@ -882,17 +1067,19 @@
 						data: data,
 						timeout: 1000,
 						success: function (datas) {
-							var record = JSON.parse(datas);
+							var elevatorStatus = JSON.parse(datas);
 							$("#deviceStatusTable").find("tbody").find("tr")
-									.eq(0).find("td").eq(1).find("a").html(record.elevatorStatus.floor);
+									.eq(0).find("td").eq(1).find("a").html(elevatorStatus.floor);
 							$("#deviceStatusTable").find("tbody").find("tr")
-									.eq(1).find("td").eq(1).find("a").html(record.elevatorStatus.doorstatus);
+									.eq(1).find("td").eq(1).find("a").html(elevatorStatus.doorstatus);
 							$("#deviceStatusTable").find("tbody").find("tr")
-									.eq(2).find("td").eq(1).find("a").html(record.elevatorStatus.elevatorspeed);
+									.eq(2).find("td").eq(1).find("a").html(elevatorStatus.elevatorspeed);
 							$("#deviceStatusTable").find("tbody").find("tr")
-									.eq(3).find("td").eq(1).find("a").html(record.elevatorStatus.rundirection);
+									.eq(3).find("td").eq(1).find("a").html(elevatorStatus.rundirection);
 							$("#deviceStatusTable").find("tbody").find("tr")
-									.eq(4).find("td").eq(1).find("a").html(record.elevatorStatus.bodystatus);
+									.eq(4).find("td").eq(1).find("a").html(elevatorStatus.bodystatus);
+							$("#deviceStatusTable").find("tbody").find("tr")
+									.eq(5).find("td").eq(1).find("a").html(elevatorStatus.datatime);
 						},
 						error: function () {
 //							alert("失败，请稍后再试！");
@@ -900,6 +1087,7 @@
 					});
 				}
 				setInterval(refreshDeviceStatus,1000);//定时刷新
+				initPlayUrl();
 			})
 //			获取url中指定的参数值
 			function getQueryString(name) {
@@ -912,5 +1100,6 @@
 			}
 		
 		</script>
+
 	</body>
 </html>
