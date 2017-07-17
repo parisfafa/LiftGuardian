@@ -63,6 +63,7 @@ public class DeviceMonitoringServiceImpl implements DeviceMonitoringService{
 	public List<Camera> findCameraById(Long id) {
 		return cameraRepository.findCameraById(id);
 
+	}
 	@Override
 	public void deleteDeviceById(int id) {
 		deviceRepository.removeById(id);
