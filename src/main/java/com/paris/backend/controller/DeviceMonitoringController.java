@@ -71,8 +71,9 @@ public class DeviceMonitoringController {
 
 		modelAndView.addObject("organizations", organizations);
 		List<Camera> cameras=deviceMonitoringService.findAllCameras();
+		System.out.println(cameras.size());
 		modelAndView.addObject("cameras", cameras);
-
+		System.out.println(cameras.size());
 		String id=request.getParameter("id");
 
 		List<Device> device=deviceMonitoringService.findDeviceById(Long.parseLong(id));
@@ -200,7 +201,7 @@ public class DeviceMonitoringController {
 		ModelAndView modelAndView = new ModelAndView();
 		String id=request.getParameter("id");
 		System.out.println(id);
-		List<Camera> cameras=deviceMonitoringService.findCameraById(Long.parseLong(id));
+		List<Camera> cameras=deviceMonitoringService.findCameraById(Integer.parseInt(id));
 		modelAndView.addObject("camera", cameras.get(0));
 		modelAndView.setViewName("editCamera");
 		return modelAndView;

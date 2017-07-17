@@ -12,5 +12,5 @@ import java.util.List;
  */
 @Repository("cameraRepository")
 public interface CameraRepository extends JpaRepository<Camera, Integer> {
-    List<Camera> findCameraById(Long id);
+    List<Camera> findCameraById(int id);
 }
