@@ -15,6 +15,7 @@ public interface DeviceMonitoringService {
 	public List<ElevatorStatus> findRecordById(String id);
 	
 	public void saveDevice(Device device);
+	public void deleteDeviceById(int id);
 
 	public List<Camera> findAllCameras();
 	public void saveCamera(Camera camera);

@@ -46,6 +46,7 @@ public class DeviceMonitoringServiceImpl implements DeviceMonitoringService{
 	}
 
 
+
 	@Override
 	public List<Camera> findAllCameras() {
 		return cameraRepository.findAll();
@@ -61,6 +62,12 @@ public class DeviceMonitoringServiceImpl implements DeviceMonitoringService{
 	@Override
 	public List<Camera> findCameraById(Long id) {
 		return cameraRepository.findCameraById(id);
+
+	@Override
+	public void deleteDeviceById(int id) {
+		deviceRepository.removeById(id);
+		
+
 	}
 
 }

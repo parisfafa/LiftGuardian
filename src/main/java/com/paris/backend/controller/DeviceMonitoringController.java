@@ -68,9 +68,11 @@ public class DeviceMonitoringController {
 		List<Manufacturer> manufacturers=basicInfoService.findAllManufacturer();
 		modelAndView.addObject("manufacturers", manufacturers);	
 		List<Organization> organizations=basicInfoService.findAllOrganization();
+
 		modelAndView.addObject("organizations", organizations);
 		List<Camera> cameras=deviceMonitoringService.findAllCameras();
 		modelAndView.addObject("cameras", cameras);
+
 		String id=request.getParameter("id");
 
 		List<Device> device=deviceMonitoringService.findDeviceById(Long.parseLong(id));
@@ -78,7 +80,18 @@ public class DeviceMonitoringController {
 		modelAndView.setViewName("editDevice");
 		return modelAndView;
 	}
-	
+
+	@RequestMapping(value="/deleteDevice", method = RequestMethod.POST)
+	public ModelAndView deleteDevice(WebRequest request){
+		ModelAndView modelAndView = new ModelAndView();
+		String id=request.getParameter("id");
+
+		deviceMonitoringService.deleteDeviceById(Integer.parseInt(id));
+		List<Device> devices=deviceMonitoringService.findAllDevices();
+		modelAndView.addObject("devices", devices);
+		return modelAndView;
+	}
+
 	@RequestMapping(value = "/newDevice", method = RequestMethod.POST)
 	public ModelAndView newDevice(@Valid Device device, BindingResult bindingResult) {
 		ModelAndView modelAndView = new ModelAndView();
@@ -118,9 +131,11 @@ public class DeviceMonitoringController {
 		String id=request.getParameter("id");
 
 		List<Device> device=deviceMonitoringService.findDeviceById(Long.parseLong(id));
-		//List<ElevatorStatus> record=deviceMonitoringService.findRecordById(id);
+
+		List<Record> record=deviceMonitoringService.findRecordById(id);
 		System.out.println("dada"+id+Long.valueOf(id)+device.size()+device.get(0).getCountry());
-		//modelAndView.addObject("record", record.isEmpty()?null:record.get(0));
+		modelAndView.addObject("record", record.isEmpty()?null:record.get(0));
+
 		modelAndView.addObject("device",device.get(0));
 		modelAndView.setViewName("status");
 		return modelAndView;

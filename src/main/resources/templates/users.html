@@ -765,16 +765,7 @@
 			var grid_data = [[${users}]];
 
 			var subgrid_data = 
-			[
-			 {id:"1", name:"sub grid item 1", qty: 11},
-			 {id:"2", name:"sub grid item 2", qty: 3},
-			 {id:"3", name:"sub grid item 3", qty: 12},
-			 {id:"4", name:"sub grid item 4", qty: 5},
-			 {id:"5", name:"sub grid item 5", qty: 2},
-			 {id:"6", name:"sub grid item 6", qty: 9},
-			 {id:"7", name:"sub grid item 7", qty: 3},
-			 {id:"8", name:"sub grid item 8", qty: 8}
-			];
+			[];
 			
 			jQuery(function($) {
 				var grid_selector = "#grid-table";
@@ -820,7 +811,7 @@
 					//direction: "rtl",
 			
 					//subgrid options
-					subGrid : true,
+					subGrid : false,
 					//subGridModel: [{ name : ['No','Item Name','Qty'], width : [55,200,80] }],
 					//datatype: "xml",
 					subGridOptions : {
@@ -863,8 +854,8 @@
 						},
 						{name:'id',index:'id', width:60, sorttype:"int", editable: false},
 						{name:'active',index:'active', width:70, editable: true,edittype:"checkbox",editoptions: {value:"Yes:No"},unformat: aceSwitch},
-						{name:'lastName',index:'lastName', width:100,editable: true,editoptions:{size:"20",maxlength:"30"}},
 						{name:'name',index:'name', width:100,editable: true,editoptions:{size:"20",maxlength:"30"}},		
+						{name:'lastName',index:'lastName', width:100,editable: true,editoptions:{size:"20",maxlength:"30"}},
 						{name:'email',index:'email', width:150,editable: true,editoptions:{size:"20",maxlength:"30"}},	
 						{name:'phone',index:'phone', width:150, sortable:false,editable: true,edittype:"textarea", editoptions:{rows:"2",cols:"10"}},
 						{name:'role.role',index:'role.role', width:90, editable: true,edittype:"select",editoptions:{value:"FE:FedEx;IN:InTime;TN:TNT;AR:ARAMEX"}}
@@ -940,17 +931,17 @@
 				//navButtons
 				jQuery(grid_selector).jqGrid('navGrid',pager_selector,
 					{ 	//navbar options
-						edit: true,
+						edit: false,
 						editicon : 'ace-icon fa fa-pencil blue',
-						add: true,
+						add: false,
 						addicon : 'ace-icon fa fa-plus-circle purple',
-						del: true,
+						del: false,
 						delicon : 'ace-icon fa fa-trash-o red',
 						search: true,
 						searchicon : 'ace-icon fa fa-search orange',
 						refresh: true,
 						refreshicon : 'ace-icon fa fa-refresh green',
-						view: true,
+						view: false,
 						viewicon : 'ace-icon fa fa-search-plus grey',
 					},
 					{
