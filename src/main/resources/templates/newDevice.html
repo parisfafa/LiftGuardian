@@ -651,7 +651,7 @@
 							<li>
 								<a href="#">Forms</a>
 							</li>
-							<li class="active">Form Elements</li>
+							<li class="active">Devices</li>
 						</ul><!-- /.breadcrumb -->
 
 						<div class="nav-search" id="nav-search">
@@ -734,10 +734,10 @@
 
 						<div class="page-header">
 							<h1>
-								Form Elements
+								Devices
 								<small>
 									<i class="ace-icon fa fa-angle-double-right"></i>
-									Common form elements and layouts
+									Edit Device
 								</small>
 							</h1>
 						</div><!-- /.page-header -->
@@ -808,7 +808,7 @@
 																	<span class="input-icon block">
 																		<select class="chosen-select form-control" th:field="*{elevatorType}" id="elevatorType" data-placeholder="Choose a Role...">
 																		
-																		<option th:each="r : ${elevatorTypes}" th:value="${{r}}" th:text="${r.elevatorTypeName}"></option>
+																		<option th:each="r : ${elevatorTypes}" th:value="${{r}}" th:text="${r.elevatorType}"></option>
 																		</select>
 																		<!--i class="ace-icon fa fa-times-circle red"></i-->
 																	</span>
@@ -873,6 +873,10 @@
 															<div class="help-block col-xs-12 col-sm-reset inline "><label th:if="${#fields.hasErrors('organization')}" th:errors="*{organization}" class="validation-message inline"></label></div>
 														</div>
 														<div class="form-actions center">
+															<a href="/devices" data-target="#forgot-box" class="forgot-password-link">
+																<i class="ace-icon fa fa-arrow-left"></i>
+																Back
+															</a>
 															<button type="submit" class="btn btn-sm btn-success">
 																Submit
 																<i class="ace-icon fa fa-arrow-right icon-on-right bigger-110"></i>
