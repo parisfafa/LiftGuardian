@@ -945,31 +945,6 @@
 										// 初始化 === 很重要哦，控制程序的入口
 										function initPlayUrl(){
 											vlc=document.getElementById("vlc");
-											//alert(vlc);
-											// 添加播放地址
-											//vlc.playlist.add(window.opener.vdUrl);
-											// 播放
-											// vlc.playlist.play();
-											// 添加播放地址方式2 -- 推荐用下面的方法控制播放列表
-											//vedio_url =""; // 播放路径
-											var url=[[${device.camera.url}]];
-											//alert(url);
-											$.ajax({
-												type: "get",
-												async: true,//异步请求
-												url: url,
-												dataType : 'jsonp',
-												jsonp:"jsoncallback",
-												success  : function(data) {
-
-													//alert(data);
-													var elevatorStatus = JSON.parse(datas);
-													//alert(elevatorStatus);
-												},
-												error : function() {
-													//alert('fail');
-												}
-											});
 											var vedio_url = "rtsp://118.200.131.22";
 											//var vedio_url=window.opener.vdUrl;
 											itemId= vlc.playlist.add(vedio_url);
