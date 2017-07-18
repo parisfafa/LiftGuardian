@@ -882,46 +882,41 @@
 								<!--TABLE2 END-->
 
 									<!--MAP BEGINS-->
-								<div class="col-xs-12 col-sm-6 widget-container-col ui-sortable" id="map"  >
-									<div class="widget-box widget-color-green" id="widget-box-2">
-										<div style="padding-right: 0px; width: 650px;height: 373px; padding-top: 4px">
-
-
-									<script  th:inline="javascript">
-
-										function myMap() {
-										var geocoder = new google.maps.Geocoder();
-										geocoder.geocode({
-										  componentRestrictions: {
-											country: [[${device.country}]],
-											postalCode: [[${device.postcode}]]
-										  }
-										}, function(results, status) {
-										  if (status == 'OK') {
-											  var map = new google.maps.Map(document.getElementById('map'), {
-												  zoom: 15,
-												  center: results[0].geometry.location
-												});
-												var marker = new google.maps.Marker({
-												  position: results[0].geometry.location,
-												  map: map
-												});
-										  } else {
-											console.log('Geocode was not successful for the following reason: ' + status);
-										  }
-										});
-										}
-
-									</script>
-									<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA47baYqARS1Co2j1_coi9C2tsohUI-fAQ&callback=myMap">
-
-									</script>
-										</div>
-										</div>
+								<div class="col-xs-12 col-sm-6 widget-container-col ui-sortable" id="map"  style="height:373px;"/>
+								 <script  th:inline="javascript">
+								
+								function myMap() {
+									var geocoder = new google.maps.Geocoder();
+									geocoder.geocode({
+									  componentRestrictions: {
+									    country: [[${device.country}]],
+									    postalCode: [[${device.postcode}]]
+									  }
+									}, function(results, status) {
+									  if (status == 'OK') {
+										  var map = new google.maps.Map(document.getElementById('map'), {
+									          zoom: 15,
+									          center: results[0].geometry.location
+									        });
+									        var marker = new google.maps.Marker({
+									          position: results[0].geometry.location,
+									          map: map
+									        });
+									  } else {
+									    console.log('Geocode was not successful for the following reason: ' + status);
+									  }
+									});
+									}
+								
+								</script>
+								<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA47baYqARS1Co2j1_coi9C2tsohUI-fAQ&callback=myMap"></script> 
+									
+										
 								</div>
 								<!-- MAP END -->
 
 								<!--VIDEO BEGIN-->
+
 								<div class="col-xs-12 col-sm-6 widget-container-col ui-sortable" id="video" >
 									<div class="widget-box widget-color-green" id="widget-box-2">
 									<object events="false" id="vlc" pluginspage="http://www.videolan.org/" type="application/x-vlc-plugin" style="padding-right: 0px; width: 640px;height: 373px; padding-top: 4px" >
@@ -932,6 +927,7 @@
 										<param name="fullscreen" value="false">
 										<param name="controls" value="false">
 									</object>
+									<!--<![endif]-->
 									<script th:inline="javascript">
 										<!-- 屏蔽右键
 										// document.oncontextmenu=function(e){return false;}
