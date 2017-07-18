@@ -30,12 +30,8 @@ public class DeviceMonitoringController {
 	public ModelAndView getDevices(){
 		ModelAndView modelAndView = new ModelAndView();
 		List<Device> devices=deviceMonitoringService.findAllDevices();
-
-		modelAndView.addObject("devices", devices);
-
-		System.out.println(devices.get(0).getCamera().getUrl()+"url");
+		modelAndView.addObject("devices", devices);		
 		modelAndView.setViewName("devices");
-
 		return modelAndView;
 	}
 	
