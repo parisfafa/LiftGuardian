@@ -768,7 +768,8 @@
 																</div>
 																<div class="help-block col-xs-12 col-sm-reset inline "><label th:if="${#fields.hasErrors('id')}" th:errors="*{id}" class="validation-message inline"></label></div>
 															</div>
-															<div class="form-group">
+
+																<div class="form-group">
 																<label for="inputError2" class="col-xs-12 col-sm-3 control-label no-padding-right">Device Name</label>
 
 																<div class="col-xs-12 col-sm-5">
@@ -779,7 +780,8 @@
 																</div>
 																<div class="help-block col-xs-12 col-sm-reset inline "><label th:if="${#fields.hasErrors('deviceName')}" th:errors="*{deviceName}" style="color:#D16E6C" class="help-inline"></label></div>
 															</div>
-															<div class="form-group">
+
+																		<div class="form-group">
 																<label for="inputError2" class="col-xs-12 col-sm-3 control-label no-padding-right">Address</label>
 
 																<div class="col-xs-12 col-sm-5">
@@ -790,7 +792,8 @@
 																</div>
 																<div class="help-block col-xs-12 col-sm-reset inline "><label th:if="${#fields.hasErrors('address')}" th:errors="*{address}" style="color:#D16E6C" class="help-inline"></label></div>
 															</div>
-															<div class="form-group">
+
+																		<div class="form-group">
 																<label for="inputError2" class="col-xs-12 col-sm-3 control-label no-padding-right">Post Code</label>
 
 																<div class="col-xs-12 col-sm-5">
@@ -801,21 +804,25 @@
 																</div>
 																<div class="help-block col-xs-12 col-sm-reset inline "><label th:if="${#fields.hasErrors('postcode')}" th:errors="*{postcode}" style="color:#D16E6C" class="help-inline"></label></div>
 															</div>
-															<div class="form-group">
+
+																			<div class="form-group">
 																<label for="inputError2" class="col-xs-12 col-sm-3 control-label no-padding-right">Elevator Type</label>
 
 																<div class="col-xs-12 col-sm-5">
 																	<span class="input-icon block">
+
 																		<select class="chosen-select form-control" th:field="*{elevatorType}" id="elevatorType" data-placeholder="Choose a Role...">
 																		
 																		<option th:each="r : ${elevatorTypes}" th:value="${{r}}" th:text="${r.elevatorType}"></option>
 																		</select>
+
 																		<!--i class="ace-icon fa fa-times-circle red"></i-->
 																	</span>
 																</div>
 																<div class="help-block col-xs-12 col-sm-reset inline "><label th:if="${#fields.hasErrors('elevatorType')}" th:errors="*{elevatorType}" class="validation-message inline"></label></div>
 															</div>
-															<div class="form-group">
+
+																							<div class="form-group">
 																<label for="inputError2" class="col-xs-12 col-sm-3 control-label no-padding-right">Elevator Model</label>
 
 																<div class="col-xs-12 col-sm-5">
@@ -830,7 +837,8 @@
 																<div class="help-block col-xs-12 col-sm-reset inline "><label th:if="${#fields.hasErrors('elevatorType')}" th:errors="*{elevatorType}" class="validation-message inline"></label></div>
 															</div>
 
-															<div class="form-group">
+
+																				<div class="form-group">
 																<label for="inputError2" class="col-xs-12 col-sm-3 control-label no-padding-right">Manufacturer</label>
 
 																<div class="col-xs-12 col-sm-5">
@@ -844,7 +852,8 @@
 																</div>
 																<div class="help-block col-xs-12 col-sm-reset inline "><label th:if="${#fields.hasErrors('manufacturer')}" th:errors="*{manufacturer}" class="validation-message inline"></label></div>
 															</div>
-															<div class="form-group">
+
+																					<div class="form-group">
 																<label for="inputError2" class="col-xs-12 col-sm-3 control-label no-padding-right">Organization</label>
 
 																<div class="col-xs-12 col-sm-5">
@@ -1479,7 +1488,7 @@
 				}
 				
 				
-				/////////
+				
 				$('#modal-form input[type=file]').ace_file_input({
 					style:'well',
 					btn_choose:'Drop files here or click to choose',
