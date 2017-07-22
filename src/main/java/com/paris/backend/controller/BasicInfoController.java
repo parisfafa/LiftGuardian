@@ -14,8 +14,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.paris.backend.constants.OrganizationType;
 import com.paris.backend.model.AlarmType;
-import com.paris.backend.model.Camera;
-import com.paris.backend.model.Device;
 import com.paris.backend.model.ElevatorModel;
 import com.paris.backend.model.ElevatorType;
 import com.paris.backend.model.MaintenanceType;
@@ -43,9 +41,9 @@ public class BasicInfoController {
 	public ModelAndView getOrganizations(){
 		ModelAndView modelAndView = new ModelAndView();
 		List<Organization> organizations=basicInfoService.findAllOrganization();
-		List<OrganizationType> organizationTypes = Arrays.asList(OrganizationType.values());
+		//List<OrganizationType> organizationTypes = Arrays.asList(OrganizationType.values());
 		modelAndView.addObject("organizations", organizations);
-		modelAndView.addObject("organizationTypes", organizationTypes);
+		//modelAndView.addObject("organizationTypes", organizationTypes);
 		modelAndView.setViewName("organizations");
 		return modelAndView;
 	}

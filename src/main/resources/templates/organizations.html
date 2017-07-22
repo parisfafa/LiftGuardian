@@ -675,6 +675,7 @@
 								
 								<div class="row">
 									<div class="col-xs-12">
+									
 										<!-- PAGE CONTENT BEGINS -->
 										<div th:if="${successMessage}!=null" class="alert alert-success">
 											<button class="close" data-dismiss="alert">
@@ -683,6 +684,9 @@
 		
 											<i class="ace-icon fa fa-hand-o-right"></i>
 											<span th:utext="${successMessage}"></span>
+										</div>
+										<div class="clearfix">
+											<div class="pull-right tableTools-container"></div>
 										</div>
 										<div class="table-header">
 										Organization List
