@@ -550,7 +550,7 @@
 							<li class="">
 								<a href="/devices">
 									<i class="menu-icon fa fa-caret-right"></i>
-									Device List
+									Lift List
 								</a>
 
 								<b class="arrow"></b>
@@ -737,10 +737,11 @@
 
 																<div class="col-xs-12 col-sm-5">
 																	<span class="input-icon block">
-																		<select class="chosen-select form-control" th:field="*{organizationType}" data-placeholder="Choose a Role...">
+																	<input type="text" th:field="*{organizationType}" placeholder="" class="width-100" />
+																		<!-- select class="chosen-select form-control" th:field="*{organizationType}" data-placeholder="Choose a Role...">
 																		
 																		<option th:each="r : ${organizationTypes}" th:value="${{r}}" th:text="${r}"></option>
-																		</select>
+																		</select-->
 																		<!--i class="ace-icon fa fa-times-circle red"></i-->
 																	</span>
 																</div>

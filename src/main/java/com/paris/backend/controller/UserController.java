@@ -21,6 +21,12 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
+	@RequestMapping(value="/deny", method = RequestMethod.GET)
+	public ModelAndView getAccessDeniedPage(){
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("deny");
+		return modelAndView;
+	}
 	
 	@RequestMapping(value="/about", method = RequestMethod.GET)
 	public ModelAndView getAbout(){
