@@ -132,4 +132,8 @@ public class BasicInfoServiceImpl implements BasicInfoService{
 		maintenanceTypeRepository.save(maintenanceType);
 		
 	}
+	@Override
+	public List<Organization> findOrganizationById(int id) {
+		return organizationRepository.findOrganizationById(id);
+	}
 }

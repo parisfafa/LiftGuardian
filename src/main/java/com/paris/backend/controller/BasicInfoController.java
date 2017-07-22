@@ -14,6 +14,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.paris.backend.constants.OrganizationType;
 import com.paris.backend.model.AlarmType;
+import com.paris.backend.model.Camera;
+import com.paris.backend.model.Device;
 import com.paris.backend.model.ElevatorModel;
 import com.paris.backend.model.ElevatorType;
 import com.paris.backend.model.MaintenanceType;
@@ -97,22 +99,35 @@ public class BasicInfoController {
 		modelAndView.setViewName("alarmTypes");
 		return modelAndView;
 	}
-	@RequestMapping(value="/editOrganization", method = RequestMethod.POST)
+	@RequestMapping(value="/editOrg", method = RequestMethod.GET)
 	public ModelAndView editOrganization(WebRequest request){
 		ModelAndView modelAndView = new ModelAndView();
-		if("del".equals(request.getParameter("oper"))){
-			int id=Integer.parseInt(request.getParameter("id"));
-			basicInfoService.deleteOrganizationById(id);
-		}
-		if("add".equals(request.getParameter("oper"))){
-			Organization organization=new Organization();
-			basicInfoService.saveOrganization(organization);
-		}
-		List<Organization> Organizations=basicInfoService.findAllOrganization();
-		modelAndView.addObject("organizations", Organizations);
-		modelAndView.setViewName("organizations");
+	
+		String id=request.getParameter("id");
+
+		List<Organization> device=basicInfoService.findOrganizationById(Integer.parseInt(id));
+		modelAndView.addObject("organization", device.get(0));
+		modelAndView.setViewName("editOrg");
 		return modelAndView;
 	}
+	@RequestMapping(value = "/editOrg", method = RequestMethod.POST)
+	public ModelAndView editOrg(@Valid Organization organization, BindingResult bindingResult) {
+		ModelAndView modelAndView = new ModelAndView();
+		if (bindingResult.hasErrors()) {
+			modelAndView.setViewName("editOrg");
+		} else {
+
+			basicInfoService.saveOrganization(organization);
+			modelAndView.addObject("successMessage", "Organization has been updated successfully");
+			List<Organization> Organizations=basicInfoService.findAllOrganization();
+			modelAndView.addObject("organizations", Organizations);
+			modelAndView.setViewName("organizations");
+			return modelAndView;
+			
+		}
+		return modelAndView;
+	}
+	
 	@RequestMapping(value="/editElevatorModel", method = RequestMethod.POST)
 	public ModelAndView editElevatorModels(WebRequest request){
 		ModelAndView modelAndView = new ModelAndView();
