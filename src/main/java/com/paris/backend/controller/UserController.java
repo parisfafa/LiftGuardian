@@ -76,7 +76,7 @@ public class UserController {
 			modelAndView.setViewName("editUser");
 		} else {
 
-			userService.saveUser(user);
+			userService.updateUser(user);
 			modelAndView.addObject("successMessage", "User has been updated successfully");
 			List<User> userList=userService.findAllUsers();
 			modelAndView.addObject("users", userList);
@@ -135,6 +135,7 @@ public class UserController {
 		modelAndView.addObject("organizations",organizations);
 		String email=request.getParameter("email");
 		User user = userService.findUserByEmail(email);
+		
 		modelAndView.addObject("user", user);
 		modelAndView.setViewName("editUser");
 		return modelAndView;
