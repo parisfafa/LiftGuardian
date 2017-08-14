@@ -3,11 +3,13 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import com.paris.backend.util.GsonHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -98,7 +100,7 @@ public class UserController {
 	@RequestMapping(value="/registration", method = RequestMethod.GET)
 	public ModelAndView registration(){
 		ModelAndView modelAndView = new ModelAndView();
-		List<Role> roles=userService.findAllRoles();;
+		List<Role> roles=userService.findAllRoles();
 		modelAndView.addObject("roles",roles);
 		User user = new User();
 		modelAndView.addObject("user", user);
@@ -129,5 +131,29 @@ public class UserController {
 			
 		}
 		return modelAndView;
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/h5plus/registration", method = RequestMethod.GET)
+	public String appRegistration(@Valid User user, BindingResult bindingResult) {
+		System.out.println(user);
+		User userExists = userService.findUserByEmail(user.getEmail());
+		if (userExists != null) {
+			return "0";
+		}
+		else {
+			userService.saveUser(user);
+			//modelAndView.addObject("successMessage", "User has been registered successfully");
+			//List<User> userList=userService.findAllUsers();
+			return "1";
+		}
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/h5plus/findAllRole", method = RequestMethod.GET)
+	public String findAllRole() {
+		//System.out.println(user);
+		List<Role> roles=userService.findAllRoles();
+		return GsonHelper.modelToJson(roles);
 	}
 }

@@ -12,6 +12,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.google.gson.annotations.Expose;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -21,30 +22,37 @@ import org.springframework.data.annotation.Transient;
 @Table(name = "user")
 public class User {
 
+	@Expose
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "user_id")
 	private int id;
+	@Expose
 	@Column(name = "active")
 	private int active;
+	@Expose
 	@Column(name = "email")
 	@Email(message = "*Please provide a valid email")
 	@NotEmpty(message = "*Please provide an email")
-	private String email;	
+	private String email;
+	@Expose
 	@Column(name = "name")
 	@NotEmpty(message = "*Please provide your name")
 	private String name;
+	@Expose
 	@Column(name = "last_name")
 	@NotEmpty(message = "*Please provide your last name")
 	private String lastName;
+	@Expose
 	@Column(name = "phone")
 	@NotEmpty(message = "*Please provide your contact number")
 	private String phone;
+	@Expose
 	@Column(name = "password")
 	@Length(min = 5, message = "*Your password must have at least 5 characters")
 	@Transient
 	private String password;
-	
+	@Expose
 	@OneToOne(cascade = CascadeType.ALL,orphanRemoval=true,fetch = FetchType.EAGER)
 	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Role role;
@@ -113,4 +121,18 @@ public class User {
 		this.phone = phone;
 	}
 
+	@Override
+	public String toString() {
+		final StringBuffer sb = new StringBuffer("User{");
+		sb.append("id=").append(id);
+		sb.append(", active=").append(active);
+		sb.append(", email='").append(email).append('\'');
+		sb.append(", name='").append(name).append('\'');
+		sb.append(", lastName='").append(lastName).append('\'');
+		sb.append(", phone='").append(phone).append('\'');
+		sb.append(", password='").append(password).append('\'');
+		sb.append(", role=").append(role);
+		sb.append('}');
+		return sb.toString();
+	}
 }
