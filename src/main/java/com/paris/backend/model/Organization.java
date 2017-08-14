@@ -22,8 +22,7 @@ public class Organization{
 	private int id;
 	
 	@Column(name="organization_type")
-	@Enumerated(EnumType.STRING)
-	private OrganizationType organizationType;
+	private String organizationType;
 	
 	@NotEmpty(message = "*Please provide an organization name")
 	@Column(name="organization_name")
@@ -47,10 +46,11 @@ public class Organization{
 	public void setId(int id) {
 		this.id = id;
 	}
-	public OrganizationType getOrganizationType() {
+
+	public String getOrganizationType() {
 		return organizationType;
 	}
-	public void setOrganizationType(OrganizationType organizationType) {
+	public void setOrganizationType(String organizationType) {
 		this.organizationType = organizationType;
 	}
 	public String getOrganizationName() {

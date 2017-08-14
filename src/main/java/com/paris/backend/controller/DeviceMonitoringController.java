@@ -1,4 +1,5 @@
 package com.paris.backend.controller;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -9,6 +10,9 @@ import com.paris.backend.model.*;
 import com.paris.backend.secondaryModel.ElevatorStatus;
 import com.paris.backend.secondaryModel.Record;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.paris.backend.service.BasicInfoService;
 import com.paris.backend.service.DeviceMonitoringService;
+import com.paris.backend.service.UserService;
 
 @Controller
 public class DeviceMonitoringController {
@@ -25,17 +30,27 @@ public class DeviceMonitoringController {
 	private DeviceMonitoringService deviceMonitoringService;
 	@Autowired
 	private BasicInfoService basicInfoService;
+	@Autowired
+	private UserService userService;
 	
 	@RequestMapping(value="/devices", method = RequestMethod.GET)
 	public ModelAndView getDevices(){
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+		System.out.println("username"+userDetails.getUsername());
+		User user=userService.findUserByEmail(userDetails.getUsername());
+		System.out.println("org"+user.getOrganization());
 		ModelAndView modelAndView = new ModelAndView();
 		List<Device> devices=deviceMonitoringService.findAllDevices();
-
-		modelAndView.addObject("devices", devices);
-
-		System.out.println(devices.get(0).getCamera().getUrl()+"url");
+		List<Device> filter=new ArrayList<Device>();
+		for(Device dev:devices){
+			if(user.getOrganization().getId()==dev.getOrganization().getId()){
+				filter.add(dev);
+			}
+		}
+		
+		modelAndView.addObject("devices", filter);		
 		modelAndView.setViewName("devices");
-
 		return modelAndView;
 	}
 	
@@ -71,8 +86,9 @@ public class DeviceMonitoringController {
 
 		modelAndView.addObject("organizations", organizations);
 		List<Camera> cameras=deviceMonitoringService.findAllCameras();
+		System.out.println(cameras.size());
 		modelAndView.addObject("cameras", cameras);
-
+		System.out.println(cameras.size());
 		String id=request.getParameter("id");
 
 		List<Device> device=deviceMonitoringService.findDeviceById(Long.parseLong(id));
@@ -200,7 +216,7 @@ public class DeviceMonitoringController {
 		ModelAndView modelAndView = new ModelAndView();
 		String id=request.getParameter("id");
 		System.out.println(id);
-		List<Camera> cameras=deviceMonitoringService.findCameraById(Long.parseLong(id));
+		List<Camera> cameras=deviceMonitoringService.findCameraById(Integer.parseInt(id));
 		modelAndView.addObject("camera", cameras.get(0));
 		modelAndView.setViewName("editCamera");
 		return modelAndView;

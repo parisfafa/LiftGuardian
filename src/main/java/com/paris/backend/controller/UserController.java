@@ -11,8 +11,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.paris.backend.model.Device;
+import com.paris.backend.model.Organization;
 import com.paris.backend.model.Role;
 import com.paris.backend.model.User;
+import com.paris.backend.service.BasicInfoService;
 import com.paris.backend.service.UserService;
 
 @Controller
@@ -21,6 +24,15 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
+	@Autowired
+	private BasicInfoService basicInfoService;
+	
+	@RequestMapping(value="/deny", method = RequestMethod.GET)
+	public ModelAndView getAccessDeniedPage(){
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("deny");
+		return modelAndView;
+	}
 	
 	@RequestMapping(value="/about", method = RequestMethod.GET)
 	public ModelAndView getAbout(){
@@ -52,18 +64,25 @@ public class UserController {
 		return modelAndView;
 	}
 	@RequestMapping(value="/editUser", method = RequestMethod.POST)
-	public ModelAndView delete(WebRequest request){
+	public ModelAndView editUserSubmit(@Valid User user, BindingResult bindingResult){
 		
-		System.out.println("fafa"+request.getParameter("id")+request.getParameter("oper"));
-		if("del".equals(request.getParameter("oper"))){
-			int id=Integer.parseInt(request.getParameter("id"));
-			userService.deleteUserById(id);
-		}
-
 		ModelAndView modelAndView = new ModelAndView();
-		List<User> userList=userService.findAllUsers();
-		modelAndView.addObject("users", userList);
-		modelAndView.setViewName("users");
+		List<Role> roles=userService.findAllRoles();
+		List<Organization> organizations=basicInfoService.findAllOrganization();
+		modelAndView.addObject("roles",roles);
+		modelAndView.addObject("organizations",organizations);
+		
+		if (bindingResult.hasErrors()) {
+			modelAndView.setViewName("editUser");
+		} else {
+
+			userService.updateUser(user);
+			modelAndView.addObject("successMessage", "User has been updated successfully");
+			List<User> userList=userService.findAllUsers();
+			modelAndView.addObject("users", userList);
+			modelAndView.setViewName("users");
+			
+		}
 		return modelAndView;
 	}
 	
@@ -98,20 +117,39 @@ public class UserController {
 	@RequestMapping(value="/registration", method = RequestMethod.GET)
 	public ModelAndView registration(){
 		ModelAndView modelAndView = new ModelAndView();
-		List<Role> roles=userService.findAllRoles();;
+		List<Role> roles=userService.findAllRoles();
+		List<Organization> organizations=basicInfoService.findAllOrganization();
 		modelAndView.addObject("roles",roles);
+		modelAndView.addObject("organizations",organizations);
 		User user = new User();
 		modelAndView.addObject("user", user);
 		modelAndView.setViewName("registration");
 		return modelAndView;
 	}
-	
+	@RequestMapping(value="/editUser", method = RequestMethod.GET)
+	public ModelAndView editUser(WebRequest request){
+		ModelAndView modelAndView = new ModelAndView();
+		List<Role> roles=userService.findAllRoles();
+		List<Organization> organizations=basicInfoService.findAllOrganization();
+		modelAndView.addObject("roles",roles);
+		modelAndView.addObject("organizations",organizations);
+		String email=request.getParameter("email");
+		User user = userService.findUserByEmail(email);
+		
+		modelAndView.addObject("user", user);
+		modelAndView.setViewName("editUser");
+		return modelAndView;
+	}
 	@RequestMapping(value = "/registration", method = RequestMethod.POST)
 	public ModelAndView createNewUser(@Valid User user, BindingResult bindingResult) {
 		ModelAndView modelAndView = new ModelAndView();
 		List<Role> roles=userService.findAllRoles();
 		modelAndView.addObject("roles",roles);
+		List<Organization> organizations=basicInfoService.findAllOrganization();
+
+		modelAndView.addObject("organizations",organizations);
 		User userExists = userService.findUserByEmail(user.getEmail());
+		
 		if (userExists != null) {
 			bindingResult
 					.rejectValue("email", "error.user",

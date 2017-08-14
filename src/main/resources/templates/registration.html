@@ -552,7 +552,7 @@
 							<li class="">
 								<a href="/devices">
 									<i class="menu-icon fa fa-caret-right"></i>
-									Device List
+									Lift List
 								</a>
 
 								<b class="arrow"></b>
@@ -809,6 +809,20 @@
 																		<select class="chosen-select form-control" th:field="*{role}" id="role" data-placeholder="Choose a Role...">
 																		
 																		<option th:each="r : ${roles}" th:value="${{r}}" th:text="${r.role}"></option>
+																		</select>
+																		<!--i class="ace-icon fa fa-times-circle red"></i-->
+																	</span>
+																</div>
+																<div class="help-block col-xs-12 col-sm-reset inline "><label th:if="${#fields.hasErrors('role')}" th:errors="*{role}" class="validation-message inline"></label></div>
+															</div>
+															<div class="form-group">
+																<label for="inputError2" class="col-xs-12 col-sm-3 control-label no-padding-right">Organization</label>
+
+																<div class="col-xs-12 col-sm-5">
+																	<span class="input-icon block">
+																		<select class="chosen-select form-control" th:field="*{organization}" data-placeholder="Choose a Role...">
+																		
+																		<option th:each="r : ${organizations}" th:value="${{r}}" th:text="${r.organizationName}"></option>
 																		</select>
 																		<!--i class="ace-icon fa fa-times-circle red"></i-->
 																	</span>

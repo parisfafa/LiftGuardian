@@ -19,6 +19,6 @@ public interface DeviceMonitoringService {
 
 	public List<Camera> findAllCameras();
 	public void saveCamera(Camera camera);
-	public List<Camera> findCameraById(Long id);
+	public List<Camera> findCameraById(int id);
 
 }

@@ -27,7 +27,7 @@ public class Camera {
     @Digits(integer=10, fraction=0)
 
     @Column(name="cameraid")
-    private Long id;
+    private int id;
 
     @NotEmpty(message = "*Please provide an camera name")
     @Column(name="cameraName")
@@ -50,11 +50,11 @@ public class Camera {
     private String manufacturer;
 
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

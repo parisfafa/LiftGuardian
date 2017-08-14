@@ -13,4 +13,5 @@ public interface UserService {
 	public List<Role> findAllRoles();
 	public void saveRole(Role role);
 	public void deleteRoleById(int id);
+	void updateUser(User user);
 }

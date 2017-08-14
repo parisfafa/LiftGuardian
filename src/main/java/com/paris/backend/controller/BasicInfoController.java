@@ -41,9 +41,9 @@ public class BasicInfoController {
 	public ModelAndView getOrganizations(){
 		ModelAndView modelAndView = new ModelAndView();
 		List<Organization> organizations=basicInfoService.findAllOrganization();
-		List<OrganizationType> organizationTypes = Arrays.asList(OrganizationType.values());
+		//List<OrganizationType> organizationTypes = Arrays.asList(OrganizationType.values());
 		modelAndView.addObject("organizations", organizations);
-		modelAndView.addObject("organizationTypes", organizationTypes);
+		//modelAndView.addObject("organizationTypes", organizationTypes);
 		modelAndView.setViewName("organizations");
 		return modelAndView;
 	}
@@ -97,22 +97,35 @@ public class BasicInfoController {
 		modelAndView.setViewName("alarmTypes");
 		return modelAndView;
 	}
-	@RequestMapping(value="/editOrganization", method = RequestMethod.POST)
+	@RequestMapping(value="/editOrg", method = RequestMethod.GET)
 	public ModelAndView editOrganization(WebRequest request){
 		ModelAndView modelAndView = new ModelAndView();
-		if("del".equals(request.getParameter("oper"))){
-			int id=Integer.parseInt(request.getParameter("id"));
-			basicInfoService.deleteOrganizationById(id);
-		}
-		if("add".equals(request.getParameter("oper"))){
-			Organization organization=new Organization();
-			basicInfoService.saveOrganization(organization);
-		}
-		List<Organization> Organizations=basicInfoService.findAllOrganization();
-		modelAndView.addObject("organizations", Organizations);
-		modelAndView.setViewName("organizations");
+	
+		String id=request.getParameter("id");
+
+		List<Organization> device=basicInfoService.findOrganizationById(Integer.parseInt(id));
+		modelAndView.addObject("organization", device.get(0));
+		modelAndView.setViewName("editOrg");
 		return modelAndView;
 	}
+	@RequestMapping(value = "/editOrg", method = RequestMethod.POST)
+	public ModelAndView editOrg(@Valid Organization organization, BindingResult bindingResult) {
+		ModelAndView modelAndView = new ModelAndView();
+		if (bindingResult.hasErrors()) {
+			modelAndView.setViewName("editOrg");
+		} else {
+
+			basicInfoService.saveOrganization(organization);
+			modelAndView.addObject("successMessage", "Organization has been updated successfully");
+			List<Organization> Organizations=basicInfoService.findAllOrganization();
+			modelAndView.addObject("organizations", Organizations);
+			modelAndView.setViewName("organizations");
+			return modelAndView;
+			
+		}
+		return modelAndView;
+	}
+	
 	@RequestMapping(value="/editElevatorModel", method = RequestMethod.POST)
 	public ModelAndView editElevatorModels(WebRequest request){
 		ModelAndView modelAndView = new ModelAndView();
