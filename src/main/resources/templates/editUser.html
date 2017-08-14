@@ -2,6 +2,7 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org">
 	<head>
+		
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 		<meta charset="utf-8" />
 		<title>Form Elements - Ace Admin</title>
@@ -49,6 +50,7 @@
 		<script src="/js/html5shiv.min.js"></script>
 		<script src="/js/respond.min.js"></script>
 		<![endif]-->
+		
 	</head>
 
 	<body class="no-skin">
@@ -663,6 +665,73 @@
 					</div>
 
 					<div class="page-content">
+						<div class="ace-settings-container" id="ace-settings-container">
+							<div class="btn btn-app btn-xs btn-warning ace-settings-btn" id="ace-settings-btn">
+								<i class="ace-icon fa fa-cog bigger-130"></i>
+							</div>
+
+							<div class="ace-settings-box clearfix" id="ace-settings-box">
+								<div class="pull-left width-50">
+									<div class="ace-settings-item">
+										<div class="pull-left">
+											<select id="skin-colorpicker" class="hide">
+												<option data-skin="no-skin" value="#438EB9">#438EB9</option>
+												<option data-skin="skin-1" value="#222A2D">#222A2D</option>
+												<option data-skin="skin-2" value="#C6487E">#C6487E</option>
+												<option data-skin="skin-3" value="#D0D0D0">#D0D0D0</option>
+											</select>
+										</div>
+										<span>&nbsp; Choose Skin</span>
+									</div>
+
+									<div class="ace-settings-item">
+										<input type="checkbox" class="ace ace-checkbox-2 ace-save-state" id="ace-settings-navbar" autocomplete="off" />
+										<label class="lbl" for="ace-settings-navbar"> Fixed Navbar</label>
+									</div>
+
+									<div class="ace-settings-item">
+										<input type="checkbox" class="ace ace-checkbox-2 ace-save-state" id="ace-settings-sidebar" autocomplete="off" />
+										<label class="lbl" for="ace-settings-sidebar"> Fixed Sidebar</label>
+									</div>
+
+									<div class="ace-settings-item">
+										<input type="checkbox" class="ace ace-checkbox-2 ace-save-state" id="ace-settings-breadcrumbs" autocomplete="off" />
+										<label class="lbl" for="ace-settings-breadcrumbs"> Fixed Breadcrumbs</label>
+									</div>
+
+									<div class="ace-settings-item">
+										<input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-rtl" autocomplete="off" />
+										<label class="lbl" for="ace-settings-rtl"> Right To Left (rtl)</label>
+									</div>
+
+									<div class="ace-settings-item">
+										<input type="checkbox" class="ace ace-checkbox-2 ace-save-state" id="ace-settings-add-container" autocomplete="off" />
+										<label class="lbl" for="ace-settings-add-container">
+											Inside
+											<b>.container</b>
+										</label>
+									</div>
+								</div><!-- /.pull-left -->
+
+								<div class="pull-left width-50">
+									<div class="ace-settings-item">
+										<input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-hover" autocomplete="off" />
+										<label class="lbl" for="ace-settings-hover"> Submenu on Hover</label>
+									</div>
+
+									<div class="ace-settings-item">
+										<input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-compact" autocomplete="off" />
+										<label class="lbl" for="ace-settings-compact"> Compact Sidebar</label>
+									</div>
+
+									<div class="ace-settings-item">
+										<input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-highlight" autocomplete="off" />
+										<label class="lbl" for="ace-settings-highlight"> Alt. Active Item</label>
+									</div>
+								</div><!-- /.pull-left -->
+							</div><!-- /.ace-settings-box -->
+						</div><!-- /.ace-settings-container -->
+
 						<div class="page-header">
 							<h1>
 								Form Elements
@@ -685,19 +754,32 @@
 
 											<div class="widget-body">
 												<div class="widget-main no-padding">
-													<form autocomplete="off" action="#" th:action="@{/newOrganization}"
-					th:object="${organization}" method="post" class="form-horizontal"
+													<form autocomplete="off" action="#" th:action="@{/editUser}"
+					th:object="${user}" method="post" class="form-horizontal"
 					role="form">
 															<div class="form-group">
-																<label for="inputError2" class="col-xs-12 col-sm-3 control-label no-padding-right">Organization Name</label>
+																<label for="inputError2" class="col-xs-12 col-sm-3 control-label no-padding-right">First Name</label>
 
 																<div class="col-xs-12 col-sm-5">
 																	<span class="input-icon block">
-																		<input type="text" th:field="*{organizationName}" placeholder="" class="width-100" />
+																	<input  type="hidden" th:field="*{id}"/>
+																	<input  type="hidden" th:field="*{password}"/>
+																		<input type="text" th:field="*{name}" placeholder="" class="width-100" />
 																		<!--i class="ace-icon fa fa-times-circle red"></i-->
 																	</span>
 																</div>
-																<div class="help-block col-xs-12 col-sm-reset inline "><label th:if="${#fields.hasErrors('organizationName')}" th:errors="*{organizationName}" class="validation-message inline"></label></div>
+																<div class="help-block col-xs-12 col-sm-reset inline "><label th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="validation-message inline"></label></div>
+															</div>
+															<div class="form-group">
+																<label for="inputError2" class="col-xs-12 col-sm-3 control-label no-padding-right">Last Name</label>
+
+																<div class="col-xs-12 col-sm-5">
+																	<span class="input-icon block">
+																		<input type="text" th:field="*{lastName}" placeholder="" class="width-100" />
+																		<!--i class="ace-icon fa fa-times-circle red"></i-->
+																	</span>
+																</div>
+																<div class="help-block col-xs-12 col-sm-reset inline "><label th:if="${#fields.hasErrors('lastName')}" th:errors="*{name}" style="color:#D16E6C" class="help-inline"></label></div>
 															</div>
 															<div class="form-group">
 																<label for="inputError2" class="col-xs-12 col-sm-3 control-label no-padding-right">Email</label>
@@ -722,31 +804,34 @@
 																<div class="help-block col-xs-12 col-sm-reset inline "><label th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}" class="validation-message inline"></label></div>
 															</div>
 															<div class="form-group">
-																<label for="inputError2" class="col-xs-12 col-sm-3 control-label no-padding-right">Address</label>
+																<label for="inputError2" class="col-xs-12 col-sm-3 control-label no-padding-right">Role</label>
 
 																<div class="col-xs-12 col-sm-5">
 																	<span class="input-icon block">
-																		<input type="text" th:field="*{address}" placeholder="" class="width-100" />
+																		<select class="chosen-select form-control" th:field="*{role}" id="role" data-placeholder="Choose a Role...">
+																		
+																		<option th:each="r : ${roles}" th:value="${{r}}" th:text="${r.role}"></option>
+																		</select>
 																		<!--i class="ace-icon fa fa-times-circle red"></i-->
 																	</span>
 																</div>
-																<div class="help-block col-xs-12 col-sm-reset inline "><label th:if="${#fields.hasErrors('address')}" th:errors="*{address}" class="validation-message inline"></label></div>
+																<div class="help-block col-xs-12 col-sm-reset inline "><label th:if="${#fields.hasErrors('role')}" th:errors="*{role}" class="validation-message inline"></label></div>
 															</div>
 															<div class="form-group">
-																<label for="inputError2" class="col-xs-12 col-sm-3 control-label no-padding-right">Organization Type</label>
+																<label for="inputError2" class="col-xs-12 col-sm-3 control-label no-padding-right">Organization</label>
 
 																<div class="col-xs-12 col-sm-5">
 																	<span class="input-icon block">
-																	<input type="text" th:field="*{organizationType}" placeholder="" class="width-100" />
-																		<!-- select class="chosen-select form-control" th:field="*{organizationType}" data-placeholder="Choose a Role...">
+																		<select class="chosen-select form-control" th:field="*{organization}" data-placeholder="Choose a Role...">
 																		
-																		<option th:each="r : ${organizationTypes}" th:value="${{r}}" th:text="${r}"></option>
-																		</select-->
+																		<option th:each="r : ${organizations}" th:value="${{r}}" th:text="${r.organizationName}"></option>
+																		</select>
 																		<!--i class="ace-icon fa fa-times-circle red"></i-->
 																	</span>
 																</div>
-																<div class="help-block col-xs-12 col-sm-reset inline "><label th:if="${#fields.hasErrors('organizationType')}" th:errors="*{organizationType}" class="validation-message inline"></label></div>
-															</div>																																																				
+																<div class="help-block col-xs-12 col-sm-reset inline "><label th:if="${#fields.hasErrors('role')}" th:errors="*{role}" class="validation-message inline"></label></div>
+															</div>
+																																																																			
 														<div class="form-actions center">
 															<button type="submit" class="btn btn-sm btn-success">
 																Submit

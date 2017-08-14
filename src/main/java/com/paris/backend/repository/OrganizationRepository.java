@@ -13,5 +13,7 @@ public interface OrganizationRepository extends JpaRepository<Organization, Inte
 
 	@Transactional
 	List<Organization> removeById(int id);
+	
+	List<Organization> findOrganizationById(int id);
 
 }

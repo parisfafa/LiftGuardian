@@ -12,6 +12,7 @@ import com.paris.backend.model.Organization;
 public interface BasicInfoService {
 	public List<ElevatorModel> findAllElevatorModel();
 	public List<Organization> findAllOrganization();
+	public List<Organization> findOrganizationById(int id);
 	public List<ElevatorType> findAllElevatorType();
 	public List<AlarmType> findAllAlarmType();
 	public List<Manufacturer> findAllManufacturer();
