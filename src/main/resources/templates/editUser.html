@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org">
@@ -362,7 +361,7 @@
 								<li class="divider"></li>
 
 								<li>
-									<a href="/logout">
+									<a href="#">
 										<i class="ace-icon fa fa-power-off"></i>
 										Logout
 									</a>
@@ -755,124 +754,84 @@
 
 											<div class="widget-body">
 												<div class="widget-main no-padding">
-													<form autocomplete="off" action="#" th:action="@{/newDevice}"
-					th:object="${device}" method="post" class="form-horizontal"
+													<form autocomplete="off" action="#" th:action="@{/editUser}"
+					th:object="${user}" method="post" class="form-horizontal"
 					role="form">
 															<div class="form-group">
-																<label for="inputError2" class="col-xs-12 col-sm-3 control-label no-padding-right">Device ID</label>
+																<label for="inputError2" class="col-xs-12 col-sm-3 control-label no-padding-right">First Name</label>
 
 																<div class="col-xs-12 col-sm-5">
 																	<span class="input-icon block">
-																		<input type="text" th:field="*{id}" placeholder="" class="width-100" />
+																	<input  type="hidden" th:field="*{id}"/>
+																	<input  type="hidden" th:field="*{password}"/>
+																		<input type="text" th:field="*{name}" placeholder="" class="width-100" />
 																		<!--i class="ace-icon fa fa-times-circle red"></i-->
 																	</span>
 																</div>
-																<div class="help-block col-xs-12 col-sm-reset inline "><label th:if="${#fields.hasErrors('id')}" th:errors="*{id}" class="validation-message inline"></label></div>
+																<div class="help-block col-xs-12 col-sm-reset inline "><label th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="validation-message inline"></label></div>
 															</div>
 															<div class="form-group">
-																<label for="inputError2" class="col-xs-12 col-sm-3 control-label no-padding-right">Device Name</label>
+																<label for="inputError2" class="col-xs-12 col-sm-3 control-label no-padding-right">Last Name</label>
 
 																<div class="col-xs-12 col-sm-5">
 																	<span class="input-icon block">
-																		<input type="text" th:field="*{deviceName}" placeholder="" class="width-100" />
+																		<input type="text" th:field="*{lastName}" placeholder="" class="width-100" />
 																		<!--i class="ace-icon fa fa-times-circle red"></i-->
 																	</span>
 																</div>
-																<div class="help-block col-xs-12 col-sm-reset inline "><label th:if="${#fields.hasErrors('deviceName')}" th:errors="*{deviceName}" style="color:#D16E6C" class="help-inline"></label></div>
+																<div class="help-block col-xs-12 col-sm-reset inline "><label th:if="${#fields.hasErrors('lastName')}" th:errors="*{name}" style="color:#D16E6C" class="help-inline"></label></div>
 															</div>
 															<div class="form-group">
-																<label for="inputError2" class="col-xs-12 col-sm-3 control-label no-padding-right">Address</label>
+																<label for="inputError2" class="col-xs-12 col-sm-3 control-label no-padding-right">Email</label>
 
 																<div class="col-xs-12 col-sm-5">
 																	<span class="input-icon block">
-																		<input type="text" th:field="*{address}" placeholder="" class="width-100" />
+																		<input type="text" th:field="*{email}" placeholder="" class="width-100" />
 																		<!--i class="ace-icon fa fa-times-circle red"></i-->
 																	</span>
 																</div>
-																<div class="help-block col-xs-12 col-sm-reset inline "><label th:if="${#fields.hasErrors('address')}" th:errors="*{address}" style="color:#D16E6C" class="help-inline"></label></div>
+																<div class="help-block col-xs-12 col-sm-reset inline "><label th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="validation-message inline"></label></div>
 															</div>
 															<div class="form-group">
-																<label for="inputError2" class="col-xs-12 col-sm-3 control-label no-padding-right">Post Code</label>
+																<label for="inputError2" class="col-xs-12 col-sm-3 control-label no-padding-right">Contact Number</label>
 
 																<div class="col-xs-12 col-sm-5">
 																	<span class="input-icon block">
-																		<input type="text" th:field="*{postcode}" placeholder="" class="width-100" />
+																		<input type="text" th:field="*{phone}" placeholder="" class="width-100" />
 																		<!--i class="ace-icon fa fa-times-circle red"></i-->
 																	</span>
 																</div>
-																<div class="help-block col-xs-12 col-sm-reset inline "><label th:if="${#fields.hasErrors('postcode')}" th:errors="*{postcode}" style="color:#D16E6C" class="help-inline"></label></div>
+																<div class="help-block col-xs-12 col-sm-reset inline "><label th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}" class="validation-message inline"></label></div>
 															</div>
 															<div class="form-group">
-																<label for="inputError2" class="col-xs-12 col-sm-3 control-label no-padding-right">Elevator Type</label>
+																<label for="inputError2" class="col-xs-12 col-sm-3 control-label no-padding-right">Role</label>
 
 																<div class="col-xs-12 col-sm-5">
 																	<span class="input-icon block">
-																		<select class="chosen-select form-control" th:field="*{elevatorType}" id="elevatorType" data-placeholder="Choose a Role...">
+																		<select class="chosen-select form-control" th:field="*{role}" id="role" data-placeholder="Choose a Role...">
 																		
-																		<option th:each="r : ${elevatorTypes}" th:value="${{r}}" th:text="${r.elevatorType}"></option>
+																		<option th:each="r : ${roles}" th:value="${{r}}" th:text="${r.role}"></option>
 																		</select>
 																		<!--i class="ace-icon fa fa-times-circle red"></i-->
 																	</span>
 																</div>
-																<div class="help-block col-xs-12 col-sm-reset inline "><label th:if="${#fields.hasErrors('elevatorType')}" th:errors="*{elevatorType}" class="validation-message inline"></label></div>
-															</div>
-															<div class="form-group">
-																<label for="inputError2" class="col-xs-12 col-sm-3 control-label no-padding-right">Elevator Model</label>
-
-																<div class="col-xs-12 col-sm-5">
-																	<span class="input-icon block">
-																		<select class="chosen-select form-control" th:field="*{elevatorModel}" id="elevatorModel" data-placeholder="Choose a Role...">
-																		
-																		<option th:each="r : ${elevatorModels}" th:value="${{r}}" th:text="${r.elevatorModel}"></option>
-																		</select>
-																		<!--i class="ace-icon fa fa-times-circle red"></i-->
-																	</span>
-																</div>
-																<div class="help-block col-xs-12 col-sm-reset inline "><label th:if="${#fields.hasErrors('elevatorType')}" th:errors="*{elevatorType}" class="validation-message inline"></label></div>
-															</div>
-
-															<div class="form-group">
-																<label for="inputError2" class="col-xs-12 col-sm-3 control-label no-padding-right">Manufacturer</label>
-
-																<div class="col-xs-12 col-sm-5">
-																	<span class="input-icon block">
-																		<select class="chosen-select form-control" th:field="*{manufacturer}" id="manufacturer" data-placeholder="Choose a Role...">
-																		
-																		<option th:each="r : ${manufacturers}" th:value="${{r}}" th:text="${r.manufacturerName}"></option>
-																		</select>
-																		<!--i class="ace-icon fa fa-times-circle red"></i-->
-																	</span>
-																</div>
-																<div class="help-block col-xs-12 col-sm-reset inline "><label th:if="${#fields.hasErrors('manufacturer')}" th:errors="*{manufacturer}" class="validation-message inline"></label></div>
+																<div class="help-block col-xs-12 col-sm-reset inline "><label th:if="${#fields.hasErrors('role')}" th:errors="*{role}" class="validation-message inline"></label></div>
 															</div>
 															<div class="form-group">
 																<label for="inputError2" class="col-xs-12 col-sm-3 control-label no-padding-right">Organization</label>
 
 																<div class="col-xs-12 col-sm-5">
 																	<span class="input-icon block">
-																		<select class="chosen-select form-control" th:field="*{organization}" id="organization" data-placeholder="Choose a Role...">
+																		<select class="chosen-select form-control" th:field="*{organization}" data-placeholder="Choose a Role...">
 																		
 																		<option th:each="r : ${organizations}" th:value="${{r}}" th:text="${r.organizationName}"></option>
 																		</select>
 																		<!--i class="ace-icon fa fa-times-circle red"></i-->
 																	</span>
 																</div>
-																<div class="help-block col-xs-12 col-sm-reset inline "><label th:if="${#fields.hasErrors('organization')}" th:errors="*{organization}" class="validation-message inline"></label></div>
+																<div class="help-block col-xs-12 col-sm-reset inline "><label th:if="${#fields.hasErrors('role')}" th:errors="*{role}" class="validation-message inline"></label></div>
 															</div>
-														<div class="form-group">
-															<label for="inputError2" class="col-xs-12 col-sm-3 control-label no-padding-right">Url</label>
-
-															<div class="col-xs-12 col-sm-5">
-																	<span class="input-icon block">
-																		<select class="chosen-select form-control" th:field="*{camera}" id="organization" data-placeholder="Choose a Role...">
-
-																			<option th:each="r : ${cameras}" th:value="${{r}}" th:text="${r.url}"></option>
-																		</select>
-																		<!--i class="ace-icon fa fa-times-circle red"></i-->
-																	</span>
-															</div>
-															<div class="help-block col-xs-12 col-sm-reset inline "><label th:if="${#fields.hasErrors('organization')}" th:errors="*{organization}" class="validation-message inline"></label></div>
-														</div>
+																																																																			
 														<div class="form-actions center">
 															<button type="submit" class="btn btn-sm btn-success">
 																Submit

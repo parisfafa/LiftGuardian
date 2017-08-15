@@ -353,7 +353,7 @@
 								<li class="divider"></li>
 
 								<li>
-									<a href="#">
+									<a href="/logout">
 										<i class="ace-icon fa fa-power-off"></i>
 										Logout
 									</a>
@@ -544,7 +544,7 @@
 							<li class="">
 								<a href="/devices">
 									<i class="menu-icon fa fa-caret-right"></i>
-									Device List
+									Lift List
 								</a>
 
 								<b class="arrow"></b>
@@ -656,79 +656,13 @@
 					</div>
 
 					<div class="page-content">
-						<div class="ace-settings-container" id="ace-settings-container">
-							<div class="btn btn-app btn-xs btn-warning ace-settings-btn" id="ace-settings-btn">
-								<i class="ace-icon fa fa-cog bigger-130"></i>
-							</div>
-
-							<div class="ace-settings-box clearfix" id="ace-settings-box">
-								<div class="pull-left width-50">
-									<div class="ace-settings-item">
-										<div class="pull-left">
-											<select id="skin-colorpicker" class="hide">
-												<option data-skin="no-skin" value="#438EB9">#438EB9</option>
-												<option data-skin="skin-1" value="#222A2D">#222A2D</option>
-												<option data-skin="skin-2" value="#C6487E">#C6487E</option>
-												<option data-skin="skin-3" value="#D0D0D0">#D0D0D0</option>
-											</select>
-										</div>
-										<span>&nbsp; Choose Skin</span>
-									</div>
-
-									<div class="ace-settings-item">
-										<input type="checkbox" class="ace ace-checkbox-2 ace-save-state" id="ace-settings-navbar" autocomplete="off" />
-										<label class="lbl" for="ace-settings-navbar"> Fixed Navbar</label>
-									</div>
-
-									<div class="ace-settings-item">
-										<input type="checkbox" class="ace ace-checkbox-2 ace-save-state" id="ace-settings-sidebar" autocomplete="off" />
-										<label class="lbl" for="ace-settings-sidebar"> Fixed Sidebar</label>
-									</div>
-
-									<div class="ace-settings-item">
-										<input type="checkbox" class="ace ace-checkbox-2 ace-save-state" id="ace-settings-breadcrumbs" autocomplete="off" />
-										<label class="lbl" for="ace-settings-breadcrumbs"> Fixed Breadcrumbs</label>
-									</div>
-
-									<div class="ace-settings-item">
-										<input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-rtl" autocomplete="off" />
-										<label class="lbl" for="ace-settings-rtl"> Right To Left (rtl)</label>
-									</div>
-
-									<div class="ace-settings-item">
-										<input type="checkbox" class="ace ace-checkbox-2 ace-save-state" id="ace-settings-add-container" autocomplete="off" />
-										<label class="lbl" for="ace-settings-add-container">
-											Inside
-											<b>.container</b>
-										</label>
-									</div>
-								</div><!-- /.pull-left -->
-
-								<div class="pull-left width-50">
-									<div class="ace-settings-item">
-										<input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-hover" autocomplete="off" />
-										<label class="lbl" for="ace-settings-hover"> Submenu on Hover</label>
-									</div>
-
-									<div class="ace-settings-item">
-										<input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-compact" autocomplete="off" />
-										<label class="lbl" for="ace-settings-compact"> Compact Sidebar</label>
-									</div>
-
-									<div class="ace-settings-item">
-										<input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-highlight" autocomplete="off" />
-										<label class="lbl" for="ace-settings-highlight"> Alt. Active Item</label>
-									</div>
-								</div><!-- /.pull-left -->
-							</div><!-- /.ace-settings-box -->
-						</div><!-- /.ace-settings-container -->
-
+						
 						<div class="page-header">
 							<h1>
 								Equipment
 								<small>
 									<i class="ace-icon fa fa-angle-double-right"></i>
-									Device List
+									Lift List
 								</small>
 							</h1>
 						</div><!-- /.page-header -->
@@ -742,7 +676,7 @@
 											<a href="/newDevice">Add New Device</a><div class="pull-right tableTools-container"></div>
 										</div>
 										<div class="table-header">
-											Results for "Latest Registered Domains"
+											Results for Lift List
 										</div>
 
 										<!-- div.table-responsive -->
@@ -760,14 +694,14 @@
 														</th>
 														<th>Device ID</th>
 														<th>Device Name</th>
-														<!--<th class="hidden-480">Elevator Type</th>-->
+														<th class="hidden-480">Elevator Type</th>
 
-														<!--<th>-->
-															<!--<i class="ace-icon fa fa-clock-o bigger-110 hidden-480"></i>-->
-															<!--Elevator Model-->
-														<!--</th>-->
+														<th>
+															<i class="ace-icon fa fa-clock-o bigger-110 hidden-480"></i>
+															Elevator Model
+														</th>
 														<th class="hidden-480">Manufacturers</th>
-														<th class="hidden-480">Camera Url</th>
+
 														<th></th>
 													</tr>
 												</thead>
@@ -785,18 +719,13 @@
 															<a th:href="@{'/deviceStatus'(id=${device.id})}" th:text="${device.id}"></a>
 														</td>
 														<td  th:text="${device.deviceName}"></td>
-
-														<!--<td th:text="${device.elevatorType.elevatorTypeName}"></td>-->
-														<!--<td th:text="${device.elevatorModel.elevatorModel}"></td>-->
-
+														<td th:text="${device.elevatorType.elevatorType}"></td>
+														<td th:text="${device.elevatorModel.elevatorModel}"></td>
 
 														<td th:text="${device.manufacturer.manufacturerName}"></td>
-														<td th:text="${device.camera}"></td>
+
 														<td>
 														<a th:href="@{'/editDevice'(id=${device.id})}" th:text="Edit"></a>
-
-														<!--a th:href="@{'/deleteDevice'(id=${device.id})}" th:text="Delete"></a-->
-
 															<!-- div class="hidden-sm hidden-xs action-buttons">
 																<a class="blue" href="#">
 																	<i class="ace-icon fa fa-search-plus bigger-130"></i>

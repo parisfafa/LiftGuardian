@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.paris.backend.model.Device;
 
@@ -15,6 +16,6 @@ public interface DeviceRepository extends JpaRepository<Device, Integer>{
 
 	
 	@Transactional
-	List<Organization> removeById(int id);
+	List<Device> removeById(int id);
 
 }

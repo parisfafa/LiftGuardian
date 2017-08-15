@@ -60,7 +60,7 @@ public class DeviceMonitoringServiceImpl implements DeviceMonitoringService{
 	}
 
 	@Override
-	public List<Camera> findCameraById(Long id) {
+	public List<Camera> findCameraById(int id) {
 		return cameraRepository.findCameraById(id);
 
 	}

@@ -52,11 +52,18 @@ public class User {
 	@Length(min = 5, message = "*Your password must have at least 5 characters")
 	@Transient
 	private String password;
+<<<<<<< HEAD
 	@Expose
 	@OneToOne(cascade = CascadeType.ALL,orphanRemoval=true,fetch = FetchType.EAGER)
+=======
+	
+	@OneToOne(cascade = CascadeType.MERGE,orphanRemoval=true,fetch = FetchType.EAGER)
+>>>>>>> 39108731ec69f6d01513f634b733677194f0355d
 	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Role role;
-
+	@OneToOne(cascade = CascadeType.MERGE,orphanRemoval=true,fetch = FetchType.EAGER)
+	@JoinTable(name = "user_organization", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "organization_id"))
+	private Organization organization;
 	public int getId() {
 		return id;
 	}
@@ -121,6 +128,7 @@ public class User {
 		this.phone = phone;
 	}
 
+<<<<<<< HEAD
 	@Override
 	public String toString() {
 		final StringBuffer sb = new StringBuffer("User{");
@@ -135,4 +143,14 @@ public class User {
 		sb.append('}');
 		return sb.toString();
 	}
+=======
+	public Organization getOrganization() {
+		return organization;
+	}
+
+	public void setOrganization(Organization organization) {
+		this.organization = organization;
+	}
+
+>>>>>>> 39108731ec69f6d01513f634b733677194f0355d
 }

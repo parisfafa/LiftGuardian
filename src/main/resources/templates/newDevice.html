@@ -552,7 +552,7 @@
 							<li class="">
 								<a href="/devices">
 									<i class="menu-icon fa fa-caret-right"></i>
-									Device List
+									Lift List
 								</a>
 
 								<b class="arrow"></b>
@@ -651,7 +651,7 @@
 							<li>
 								<a href="#">Forms</a>
 							</li>
-							<li class="active">Form Elements</li>
+							<li class="active">Devices</li>
 						</ul><!-- /.breadcrumb -->
 
 						<div class="nav-search" id="nav-search">
@@ -734,10 +734,10 @@
 
 						<div class="page-header">
 							<h1>
-								Form Elements
+								Devices
 								<small>
 									<i class="ace-icon fa fa-angle-double-right"></i>
-									Common form elements and layouts
+									Edit Device
 								</small>
 							</h1>
 						</div><!-- /.page-header -->
@@ -768,7 +768,8 @@
 																</div>
 																<div class="help-block col-xs-12 col-sm-reset inline "><label th:if="${#fields.hasErrors('id')}" th:errors="*{id}" class="validation-message inline"></label></div>
 															</div>
-															<div class="form-group">
+
+																<div class="form-group">
 																<label for="inputError2" class="col-xs-12 col-sm-3 control-label no-padding-right">Device Name</label>
 
 																<div class="col-xs-12 col-sm-5">
@@ -779,7 +780,8 @@
 																</div>
 																<div class="help-block col-xs-12 col-sm-reset inline "><label th:if="${#fields.hasErrors('deviceName')}" th:errors="*{deviceName}" style="color:#D16E6C" class="help-inline"></label></div>
 															</div>
-															<div class="form-group">
+
+																		<div class="form-group">
 																<label for="inputError2" class="col-xs-12 col-sm-3 control-label no-padding-right">Address</label>
 
 																<div class="col-xs-12 col-sm-5">
@@ -790,7 +792,8 @@
 																</div>
 																<div class="help-block col-xs-12 col-sm-reset inline "><label th:if="${#fields.hasErrors('address')}" th:errors="*{address}" style="color:#D16E6C" class="help-inline"></label></div>
 															</div>
-															<div class="form-group">
+
+																		<div class="form-group">
 																<label for="inputError2" class="col-xs-12 col-sm-3 control-label no-padding-right">Post Code</label>
 
 																<div class="col-xs-12 col-sm-5">
@@ -801,21 +804,25 @@
 																</div>
 																<div class="help-block col-xs-12 col-sm-reset inline "><label th:if="${#fields.hasErrors('postcode')}" th:errors="*{postcode}" style="color:#D16E6C" class="help-inline"></label></div>
 															</div>
-															<div class="form-group">
+
+																			<div class="form-group">
 																<label for="inputError2" class="col-xs-12 col-sm-3 control-label no-padding-right">Elevator Type</label>
 
 																<div class="col-xs-12 col-sm-5">
 																	<span class="input-icon block">
+
 																		<select class="chosen-select form-control" th:field="*{elevatorType}" id="elevatorType" data-placeholder="Choose a Role...">
 																		
-																		<option th:each="r : ${elevatorTypes}" th:value="${{r}}" th:text="${r.elevatorTypeName}"></option>
+																		<option th:each="r : ${elevatorTypes}" th:value="${{r}}" th:text="${r.elevatorType}"></option>
 																		</select>
+
 																		<!--i class="ace-icon fa fa-times-circle red"></i-->
 																	</span>
 																</div>
 																<div class="help-block col-xs-12 col-sm-reset inline "><label th:if="${#fields.hasErrors('elevatorType')}" th:errors="*{elevatorType}" class="validation-message inline"></label></div>
 															</div>
-															<div class="form-group">
+
+																							<div class="form-group">
 																<label for="inputError2" class="col-xs-12 col-sm-3 control-label no-padding-right">Elevator Model</label>
 
 																<div class="col-xs-12 col-sm-5">
@@ -830,7 +837,8 @@
 																<div class="help-block col-xs-12 col-sm-reset inline "><label th:if="${#fields.hasErrors('elevatorType')}" th:errors="*{elevatorType}" class="validation-message inline"></label></div>
 															</div>
 
-															<div class="form-group">
+
+																				<div class="form-group">
 																<label for="inputError2" class="col-xs-12 col-sm-3 control-label no-padding-right">Manufacturer</label>
 
 																<div class="col-xs-12 col-sm-5">
@@ -844,7 +852,8 @@
 																</div>
 																<div class="help-block col-xs-12 col-sm-reset inline "><label th:if="${#fields.hasErrors('manufacturer')}" th:errors="*{manufacturer}" class="validation-message inline"></label></div>
 															</div>
-															<div class="form-group">
+
+																					<div class="form-group">
 																<label for="inputError2" class="col-xs-12 col-sm-3 control-label no-padding-right">Organization</label>
 
 																<div class="col-xs-12 col-sm-5">
@@ -873,6 +882,10 @@
 															<div class="help-block col-xs-12 col-sm-reset inline "><label th:if="${#fields.hasErrors('organization')}" th:errors="*{organization}" class="validation-message inline"></label></div>
 														</div>
 														<div class="form-actions center">
+															<a href="/devices" data-target="#forgot-box" class="forgot-password-link">
+																<i class="ace-icon fa fa-arrow-left"></i>
+																Back
+															</a>
 															<button type="submit" class="btn btn-sm btn-success">
 																Submit
 																<i class="ace-icon fa fa-arrow-right icon-on-right bigger-110"></i>
@@ -1475,7 +1488,7 @@
 				}
 				
 				
-				/////////
+				
 				$('#modal-form input[type=file]').ace_file_input({
 					style:'well',
 					btn_choose:'Drop files here or click to choose',

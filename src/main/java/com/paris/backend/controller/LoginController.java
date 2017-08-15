@@ -2,6 +2,7 @@ package com.paris.backend.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +42,7 @@ public class LoginController {
 		return userService.validate(userName,password);
 	}
 	@RequestMapping(value="/index", method = RequestMethod.GET)
-	public ModelAndView home(){
+	public ModelAndView home(HttpSession session){
 		ModelAndView modelAndView = new ModelAndView();
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		User user = userService.findUserByEmail(auth.getName());
