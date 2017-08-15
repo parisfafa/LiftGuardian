@@ -120,10 +120,7 @@ public class UserController {
 	public ModelAndView registration(){
 		ModelAndView modelAndView = new ModelAndView();
 		List<Role> roles=userService.findAllRoles();
-<<<<<<< HEAD
-=======
 		List<Organization> organizations=basicInfoService.findAllOrganization();
->>>>>>> 39108731ec69f6d01513f634b733677194f0355d
 		modelAndView.addObject("roles",roles);
 		modelAndView.addObject("organizations",organizations);
 		User user = new User();
