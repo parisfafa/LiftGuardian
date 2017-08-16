@@ -57,6 +57,9 @@ public class ElevatorStatus {
 	
 	@Column(name="elevatorOverup")
 	private String elevatorOverup;
+
+	@Column(name="elevatorOverdown")
+	private String elevatorOverdown;
 	
 	@Column(name="mp")
 	private String mp;
@@ -70,6 +73,14 @@ public class ElevatorStatus {
 	private Record record;
 
 	public ElevatorStatus() {
+	}
+
+	public String getElevatorOverdown() {
+		return elevatorOverdown;
+	}
+
+	public void setElevatorOverdown(String elevatorOverdown) {
+		this.elevatorOverdown = elevatorOverdown;
 	}
 
 	public int getId() {
