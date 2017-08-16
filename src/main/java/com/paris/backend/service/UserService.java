@@ -13,10 +13,7 @@ public interface UserService {
 	public List<Role> findAllRoles();
 	public void saveRole(Role role);
 	public void deleteRoleById(int id);
-<<<<<<< HEAD
 	public String validate(String username,String password);
-
-=======
 	void updateUser(User user);
->>>>>>> 39108731ec69f6d01513f634b733677194f0355d
+
 }

@@ -77,13 +77,11 @@ public class UserController {
 		if (bindingResult.hasErrors()) {
 			modelAndView.setViewName("editUser");
 		} else {
-
 			userService.updateUser(user);
 			modelAndView.addObject("successMessage", "User has been updated successfully");
 			List<User> userList=userService.findAllUsers();
 			modelAndView.addObject("users", userList);
 			modelAndView.setViewName("users");
-			
 		}
 		return modelAndView;
 	}

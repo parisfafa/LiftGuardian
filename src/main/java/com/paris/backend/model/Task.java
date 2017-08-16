@@ -12,35 +12,32 @@ public class Task {
 
     @Expose
     @Id
-    @Digits(integer=10, fraction=0)
-    @Min(value = 1)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="taskid")
-    private Long taskid;
+    private int taskid;
 
     @Expose
     @Column(name="task_type")
-    private String task_type;
+    private int task_type;
 
     @Expose
     @Column(name="time")
     private String time;
 
     @Expose
-    @Column(name="deviceid")
-    private String postcode;
-
-    @Expose
     @Column(name="status")
-    private String status;
+    private int status;
+
 
     @Expose
-    @OneToOne(cascade = CascadeType.MERGE,orphanRemoval=true,fetch = FetchType.EAGER)
+    @OneToOne(cascade = CascadeType.MERGE,fetch = FetchType.EAGER)
     @JoinTable(name = "device_task", joinColumns = @JoinColumn(name = "taskid"), inverseJoinColumns = @JoinColumn(name = "deviceid"))
     private Device device;
 
     @Expose
-    @OneToOne(cascade = CascadeType.MERGE,orphanRemoval=true,fetch = FetchType.EAGER)
+    @OneToOne(cascade = CascadeType.MERGE,fetch = FetchType.EAGER)
     @JoinTable(name = "task_user", joinColumns = @JoinColumn(name = "taskid"), inverseJoinColumns = @JoinColumn(name = "userid"))
+
     private User user;
 
     @Expose
@@ -48,11 +45,11 @@ public class Task {
     @JoinTable(name = "task_job", joinColumns = @JoinColumn(name = "taskid"), inverseJoinColumns = @JoinColumn(name = "jobid"))
     private Job job;
 
-    public Long getTaskid() {
+    public int getTaskid() {
         return taskid;
     }
 
-    public String getTask_type() {
+    public int getTask_type() {
         return task_type;
     }
 
@@ -60,13 +57,6 @@ public class Task {
         return time;
     }
 
-    public String getPostcode() {
-        return postcode;
-    }
-
-    public String getStatus() {
-        return status;
-    }
 
     public Device getDevice() {
         return device;
@@ -80,11 +70,11 @@ public class Task {
         return job;
     }
 
-    public void setTaskid(Long taskid) {
+    public void setTaskid(int taskid) {
         this.taskid = taskid;
     }
 
-    public void setTask_type(String task_type) {
+    public void setTask_type(int task_type) {
         this.task_type = task_type;
     }
 
@@ -92,13 +82,6 @@ public class Task {
         this.time = time;
     }
 
-    public void setPostcode(String postcode) {
-        this.postcode = postcode;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
 
     public void setDevice(Device device) {
         this.device = device;
@@ -110,5 +93,13 @@ public class Task {
 
     public void setJob(Job job) {
         this.job = job;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 }

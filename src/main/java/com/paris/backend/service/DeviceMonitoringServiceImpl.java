@@ -16,6 +16,7 @@ import com.paris.backend.SecondaryRepository.RecordRepository;
 @Service("deviceMonitoringService")
 public class DeviceMonitoringServiceImpl implements DeviceMonitoringService{
 
+
 	@Autowired
 	private DeviceRepository deviceRepository;
 	@Autowired

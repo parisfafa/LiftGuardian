@@ -9,80 +9,86 @@ import javax.persistence.*;
 public class Job {
 
 
+    @Expose
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="jobid")
     private int id;
 
-
+    @Expose
     @Column(name="hoistway1_comment")
     private String hoistway1_comment;
-    @Column(name="hoistway2_comment")
+    @Expose @Column(name="hoistway2_comment")
     private String hoistway2_comment;
-    @Column(name="hoistway3_comment")
+    @Expose @Column(name="hoistway3_comment")
     private String hoistway3_comment;
-    @Column(name="hoistway4_comment")
+    @Expose @Column(name="hoistway4_comment")
     private String hoistway4_comment;
-    @Column(name="hoistway5_comment")
+    @Expose @Column(name="hoistway5_comment")
     private String hoistway5_comment;
-    @Column(name="hoistway6_comment")
+    @Expose @Column(name="hoistway6_comment")
     private String hoistway6_comment;
 
-    @Column(name="liftcar1_comment")
+    @Expose @Column(name="liftcar1_comment")
     private String liftcar1_comment;
-    @Column(name="liftcar2_comment")
+    @Expose @Column(name="liftcar2_comment")
     private String liftcar2_comment;
-    @Column(name="liftcar3_comment")
+    @Expose @Column(name="liftcar3_comment")
     private String liftcar3_comment;
 
-    @Column(name="entrance1_comment")
+    @Expose @Column(name="entrance1_comment")
     private String entrance1_comment;
-    @Column(name="entrance2_comment")
+    @Expose @Column(name="entrance2_comment")
     private String entrance2_comment;
-    @Column(name="entrance3_comment")
+    @Expose @Column(name="entrance3_comment")
     private String entrance3_comment;
 
-    @Column(name="liftpit1_comment")
+    @Expose @Column(name="liftpit1_comment")
     private String liftpit1_comment;
-    @Column(name="liftpit2_comment")
+    @Expose @Column(name="liftpit2_comment")
     private String liftpit2_comment;
-    @Column(name="liftpit3_comment")
+    @Expose @Column(name="liftpit3_comment")
     private String liftpit3_comment;
 
-    @Column(name="hoistway1_img_url")
+    @Expose @Column(name="hoistway1_img_url")
     private String hoistway1_img_url;
-    @Column(name="hoistway2_img_url")
+    @Expose @Column(name="hoistway2_img_url")
     private String hoistway2_img_url;
-    @Column(name="hoistway3_img_url")
+    @Expose @Column(name="hoistway3_img_url")
     private String hoistway3_img_url;
-    @Column(name="hoistway4_img_url")
+    @Expose @Column(name="hoistway4_img_url")
     private String hoistway4_img_url;
-    @Column(name="hoistway5_img_url")
+    @Expose @Column(name="hoistway5_img_url")
     private String hoistway5_img_url;
-    @Column(name="hoistway6_img_url")
+    @Expose @Column(name="hoistway6_img_url")
     private String hoistway6_img_url;
 
-    @Column(name="liftcar1_img_url")
+    @Expose @Column(name="liftcar1_img_url")
     private String liftcar1_img_url;
-    @Column(name="liftcar2_img_url")
+    @Expose @Column(name="liftcar2_img_url")
     private String liftcar2_img_url;
-    @Column(name="liftcar3_img_url")
+    @Expose @Column(name="liftcar3_img_url")
     private String liftcar3_img_url;
 
-    @Column(name="entrance1_img_url")
+    @Expose @Column(name="entrance1_img_url")
     private String entrance1_img_url;
-    @Column(name="entrance2_img_url")
+    @Expose @Column(name="entrance2_img_url")
     private String entrance2_img_url;
-    @Column(name="entrance3_img_url")
+    @Expose @Column(name="entrance3_img_url")
     private String entrance3_img_url;
 
-    @Column(name="liftpit1_img_url")
+    @Expose @Column(name="liftpit1_img_url")
     private String liftpit1_img_url;
-    @Column(name="liftpit2_img_url")
+    @Expose @Column(name="liftpit2_img_url")
     private String liftpit2_img_url;
-    @Column(name="liftpit3_img_url")
+    @Expose @Column(name="liftpit3_img_url")
     private String liftpit3_img_url;
 
+
+    @OneToOne(cascade = CascadeType.MERGE,orphanRemoval=true,fetch = FetchType.EAGER)
+    @JoinTable(name = "task_job", joinColumns = @JoinColumn(name = "jobid"), inverseJoinColumns = @JoinColumn(name = "taskid"))
+    private Task task;
+    
     public int getId() {
         return id;
     }

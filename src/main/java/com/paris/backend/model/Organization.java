@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.google.gson.annotations.Expose;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -16,26 +17,32 @@ import com.paris.backend.constants.OrganizationType;
 @Entity
 @Table(name = "orgnization")
 public class Organization{
+	@Expose
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="organization_id")
 	private int id;
-	
+
+	@Expose
 	@Column(name="organization_type")
 	private String organizationType;
-	
+
+	@Expose
 	@NotEmpty(message = "*Please provide an organization name")
 	@Column(name="organization_name")
 	private String organizationName;
-	
+
+	@Expose
 	@NotEmpty(message = "*Please provide phone")
 	@Column(name="phone")
 	private String phone;
-	
+
+	@Expose
 	@NotEmpty(message = "*Please provide an address")
 	@Column(name="address")
 	private String address;
-	
+
+	@Expose
 	@Column(name = "email")
 	@Email(message = "*Please provide a valid email")
 	private String email;

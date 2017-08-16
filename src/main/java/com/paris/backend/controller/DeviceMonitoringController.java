@@ -9,6 +9,7 @@ import com.google.gson.GsonBuilder;
 import com.paris.backend.model.*;
 import com.paris.backend.secondaryModel.ElevatorStatus;
 import com.paris.backend.secondaryModel.Record;
+import com.paris.backend.util.GsonHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -48,12 +49,46 @@ public class DeviceMonitoringController {
 				filter.add(dev);
 			}
 		}
-		
 		modelAndView.addObject("devices", filter);		
 		modelAndView.setViewName("devices");
 		return modelAndView;
 	}
-	
+
+	@ResponseBody
+	@RequestMapping(value="/h5plus/devices", method = RequestMethod.GET)
+	public String getDevicesByUserid(WebRequest request){
+		String userid=request.getParameter("userid");
+		User user=userService.findUserByEmail(userid);
+		System.out.println("org"+user.getOrganization());
+		List<Device> devices=deviceMonitoringService.findAllDevices();
+		List<Device> filter=new ArrayList<Device>();
+		for(Device dev:devices){
+			if(user.getOrganization().getId()==dev.getOrganization().getId()){
+				filter.add(dev);
+			}
+		}
+		return GsonHelper.modelToJson(filter);
+	}
+
+	@ResponseBody
+	@RequestMapping(value="/h5plus/findDevicesByStatus", method = RequestMethod.GET)
+	public String findDevicesByStatus(WebRequest request){
+		String userid = request.getParameter("userid");
+		int status = Integer.parseInt(request.getParameter("status"));
+		User user = userService.findUserByEmail(userid);
+		System.out.println("org"+user.getOrganization());
+		List<Device> devices=deviceMonitoringService.findAllDevices();
+		List<Device> filter=new ArrayList<Device>();
+		for(Device dev:devices){
+			if(user.getOrganization().getId()==dev.getOrganization().getId()){
+				if(dev.getStatus()==status)
+				{
+					filter.add(dev);
+				}
+			}
+		}
+		return GsonHelper.modelToJson(filter);
+	}
 	@RequestMapping(value="/newDevice", method = RequestMethod.GET)
 	public ModelAndView newDevice(){
 		ModelAndView modelAndView = new ModelAndView();
@@ -156,6 +191,21 @@ public class DeviceMonitoringController {
 		modelAndView.addObject("device",device.get(0));
 		modelAndView.setViewName("status");
 		return modelAndView;
+	}
+
+	@RequestMapping(value="/h5plus/deviceStatus", method = RequestMethod.GET)
+	public String getDeviceStatusByDeviceid(WebRequest request){
+		ModelAndView modelAndView = new ModelAndView();
+		String id=request.getParameter("deviceid");
+		List<ElevatorStatus> record = deviceMonitoringService.findRecordById(id);
+		if(record.isEmpty())
+		{
+			return "0";
+		}
+		else
+		{
+			return GsonHelper.modelToJson(record.get(0));
+		}
 	}
 
 	@ResponseBody
