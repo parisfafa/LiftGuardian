@@ -50,7 +50,7 @@ public class TaskController {
          */
         String userid=request.getParameter("userid");
         int status=Integer.parseInt(request.getParameter("status"));
-        taskService.createTask(userid);
+        //taskService.createTask(userid);
         List<Task> tasks=taskService.findByStatus(status);
         return GsonHelper.modelToJson(tasks);
     }

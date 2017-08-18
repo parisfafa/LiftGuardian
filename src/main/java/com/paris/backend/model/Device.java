@@ -79,19 +79,12 @@ public class Device {
 
 
 	@Expose
-	@Column(name="time")
-	private String time;
+	@OneToOne(cascade = CascadeType.MERGE,orphanRemoval=true,fetch = FetchType.EAGER)
+	@JoinTable(name = "device_mtc_ipt_status", joinColumns = @JoinColumn(name = "deviceid"), inverseJoinColumns = @JoinColumn(name = "mtc_ipt_statusid"))
+	private MtcIptStatus mtcIptStatus;
 
 	public Camera getCamera() {
 		return camera;
-	}
-
-	public String getTime() {
-		return time;
-	}
-
-	public void setTime(String time) {
-		this.time = time;
 	}
 
 	public void setCamera(Camera camera) {
