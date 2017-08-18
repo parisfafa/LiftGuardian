@@ -48,15 +48,11 @@ public class DeviceMonitoringController {
 				filter.add(dev);
 			}
 		}
-<<<<<<< 8956c6235b95447d5861994d1ab1b9c81841f780
-		modelAndView.addObject("devices", filter);		
-=======
 		if("softgrid".equalsIgnoreCase(user.getOrganization().getOrganizationName())){
 			modelAndView.addObject("devices", devices);
 		}else{
 			modelAndView.addObject("devices", filter);	
 		}
->>>>>>> softgrid org hack
 		modelAndView.setViewName("devices");
 		return modelAndView;
 	}
