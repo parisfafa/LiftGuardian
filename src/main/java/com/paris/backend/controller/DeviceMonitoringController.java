@@ -48,7 +48,6 @@ public class DeviceMonitoringController {
 				filter.add(dev);
 			}
 		}
-		
 		modelAndView.addObject("devices", filter);		
 		modelAndView.setViewName("devices");
 		return modelAndView;
@@ -189,8 +188,9 @@ public class DeviceMonitoringController {
 				 if(elevatorStatus.getMidstop().equals("yes")
 						 ||elevatorStatus.getTrap().equals("yes")
 						 || elevatorStatus.getIllegalopen().equals("yes")
-						 ||elevatorStatus.getElevatorOverup().equals("yes")
-						 ||elevatorStatus.getElevatorOverdown().equals("yes"))
+						// ||elevatorStatus.getElevatorOverup().equals("yes")
+						// ||elevatorStatus.getElevatorOverdown().equals("yes")
+				)
 				 {
 				 	elevatorStatus.setElevatorspeed("yes");
 				 }
