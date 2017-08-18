@@ -1035,7 +1035,7 @@
 						async: true,//异步请求
 						url: url,
 						data: data,
-						timeout: 1000,
+						timeout: 5000,
 						success: function (datas) {
 							var elevatorStatus = JSON.parse(datas);
 							$("#deviceStatusTable").find("tbody").find("tr")
@@ -1067,7 +1067,7 @@
 						}
 					});
 				}
-				setInterval(refreshDeviceStatus,1000);//定时刷新
+				setInterval(refreshDeviceStatus,5000);//定时刷新
 				initPlayUrl();
 			})
 //			获取url中指定的参数值
