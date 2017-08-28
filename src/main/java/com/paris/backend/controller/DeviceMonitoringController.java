@@ -1,9 +1,13 @@
 package com.paris.backend.controller;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.validation.Valid;
 
+import com.alibaba.fastjson.JSONObject;
+import com.dahua.openapi.business.impl.UserManagerImpl;
+import com.dahua.openapi.util.CONST;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.paris.backend.model.*;
@@ -189,6 +193,15 @@ public class DeviceMonitoringController {
 		modelAndView.addObject("record", record.isEmpty()?null:record.get(0));
 
 		modelAndView.addObject("device",device.get(0));
+		UserManagerImpl userManager = new UserManagerImpl();
+		HashMap<String, Object> paramsMap = new HashMap<String, Object>();
+		paramsMap.put("phone", CONST.PHONE);// 管理员账号
+		JSONObject json = userManager.accessToken(paramsMap);
+		JSONObject jsonResult = json.getJSONObject("result");
+		JSONObject jsonData = jsonResult.getJSONObject("data");
+		String token = jsonData.getString("accessToken");
+		System.out.println(token);
+		modelAndView.addObject("token",token);
 		modelAndView.setViewName("status");
 		return modelAndView;
 	}
