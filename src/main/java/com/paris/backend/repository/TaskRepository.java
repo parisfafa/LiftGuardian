@@ -13,8 +13,8 @@ public interface TaskRepository extends JpaRepository<Task, Integer> {
    @Query(value="SELECT  *  FROM  task  WHERE userid=?1 ",nativeQuery = true)
    List<Task> findByUserid(String userid);
 
-   @Query(value="SELECT  *  FROM  task  WHERE device=?1 ",nativeQuery = true)
-   List<Task> findByDeviceid(String deviceid);
+   @Query(value="SELECT t.`taskid` FROM task AS t,device AS d,device_task AS dt  WHERE d.deviceid=?1 AND dt.deviceid=d.deviceid AND t.taskid=dt.taskid",nativeQuery = true)
+   List<Integer> findByDeviceid(int deviceid);
 
    List<Task> findByStatus(int status);
 

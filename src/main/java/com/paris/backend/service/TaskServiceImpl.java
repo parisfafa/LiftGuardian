@@ -1,10 +1,8 @@
 package com.paris.backend.service;
 
-import com.paris.backend.model.Device;
-import com.paris.backend.model.Job;
-import com.paris.backend.model.Task;
-import com.paris.backend.model.User;
+import com.paris.backend.model.*;
 import com.paris.backend.repository.JobRepository;
+import com.paris.backend.repository.ScheduleRepository;
 import com.paris.backend.repository.TaskRepository;
 import com.paris.backend.util.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +28,9 @@ public class TaskServiceImpl implements TaskService{
     @Autowired
     private JobRepository jobRepository;
 
+    @Autowired
+    private ScheduleRepository scheduleRepository;
+
     public Task findTaskByTaskid(int taskid)
     {
         return taskRepository.findOne(taskid);
@@ -54,67 +55,86 @@ public class TaskServiceImpl implements TaskService{
     {
        return taskRepository.findByUserid(userid);
     }
-
+    public List<Schedule> findScheduleByDeviceidAndType(int deviceid,int scheduleType)
+    {
+        return scheduleRepository.findScheduleByDeviceAndSchedule_typeOrderByIdDesc(deviceid,scheduleType);
+    }
+    public void saveSchedule(Schedule schedule)
+    {
+        scheduleRepository.save(schedule);
+    }
+    public List<Schedule> findAllSchedule()
+    {
+        return scheduleRepository.findAll();
+    }
+    public Schedule findScheduleById(int id)
+    {
+        return scheduleRepository.findOne(id);
+    }
+    public List<Integer> findTasksByDeviceidAndType(int deviceid,int type)
+    {
+        return taskRepository.findByDeviceid(deviceid);
+    }
     /***
      * 创建维保任务
      * @param userid
      * @throws Exception
      */
-    public void createTask(String userid) throws Exception
-    {
-        User user=userService.findUserByEmail(userid);
-        List<Device> devices=deviceMonitoringService.findAllDevices();
-        for(Device dev:devices){
-            if(user.getOrganization().getId()==dev.getOrganization().getId()){
-                Date lastMaintenanTime= DateUtil.stringToDate(dev.getTime());
-                int subday=DateUtil.daysBetween(lastMaintenanTime,new Date());//间隔天数
-                if(subday>=4)
-                {
-                    Task task=new Task();
-                    dev.setStatus(subday>7?0:1);
-                    task.setDevice(dev);
-                    task.setUser(user);
-                    task.setStatus(subday>7?0:1);  //0超期 1 request
-                    Job job=new Job();
-                    jobRepository.save(job);
-                    task.setJob(job);
-                    task.setTask_type(1); //1 ma 2in
-                    saveTask(task);
-                }
-
-            }
-        }
-    }
+//    public void createTask(String userid) throws Exception
+//    {
+//        User user=userService.findUserByEmail(userid);
+//        List<Device> devices=deviceMonitoringService.findAllDevices();
+//        for(Device dev:devices){
+//            if(user.getOrganization().getId()==dev.getOrganization().getId()){
+////                Date lastMaintenanTime= DateUtil.stringToDate(dev.getTime());
+////                int subday=DateUtil.daysBetween(lastMaintenanTime,new Date());//间隔天数
+////                if(subday>=4)
+////                {
+////                    Task task=new Task();
+////                    dev.setStatus(subday>7?0:1);
+////                    task.setDevice(dev);
+////                    task.setUser(user);
+////                    task.setStatus(subday>7?0:1);  //0超期 1 request
+////                    Job job=new Job();
+////                    jobRepository.save(job);
+////                    task.setJob(job);
+////                    task.setTask_type(1); //1 ma 2in
+////                    saveTask(task);
+////                }
+//
+//            }
+//        }
+//    }
 
     /***
      * 创建年检
      * @param userid
      * @throws Exceptionins
      */
-    public void createTaskins(String userid) throws Exception
-    {
-        User user=userService.findUserByEmail(userid);
-        List<Device> devices=deviceMonitoringService.findAllDevices();
-        for(Device dev:devices){
-            if(user.getOrganization().getId()==dev.getOrganization().getId()){
-                Date lastMaintenanTime= DateUtil.stringToDate(dev.getTime());
-                int subday=DateUtil.daysBetween(lastMaintenanTime,new Date());//间隔天数
-                if(subday>=365)
-                {
-                    Task task=new Task();
-                    task.setDevice(dev);
-                    task.setUser(user);
-                    task.setStatus(subday>400?0:1);  //0超期 1 request
-                    Job job=new Job();
-                    jobRepository.save(job);
-                    task.setJob(job);
-                    task.setTask_type(2); //1 ma 2in
-                    saveTask(task);
-                }
-
-            }
-        }
-    }
+//    public void createTaskins(String userid) throws Exception
+//    {
+//        User user=userService.findUserByEmail(userid);
+//        List<Device> devices=deviceMonitoringService.findAllDevices();
+//        for(Device dev:devices){
+//            if(user.getOrganization().getId()==dev.getOrganization().getId()){
+////                Date lastMaintenanTime= DateUtil.stringToDate(dev.getTime());
+////                int subday=DateUtil.daysBetween(lastMaintenanTime,new Date());//间隔天数
+////                if(subday>=365)
+////                {
+////                    Task task=new Task();
+////                    task.setDevice(dev);
+////                    task.setUser(user);
+////                    task.setStatus(subday>400?0:1);  //0超期 1 request
+////                    Job job=new Job();
+////                    jobRepository.save(job);
+////                    task.setJob(job);
+////                    task.setTask_type(2); //1 ma 2in
+////                    saveTask(task);
+////                }
+//
+//            }
+//        }
+//    }
 
 
 

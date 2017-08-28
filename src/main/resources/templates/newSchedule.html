@@ -361,7 +361,7 @@
                         <li class="divider"></li>
 
                         <li>
-                            <a href="/logout">
+                            <a href="#">
                                 <i class="ace-icon fa fa-power-off"></i>
                                 Logout
                             </a>
@@ -588,32 +588,22 @@
                 </ul>
             </li>
 
-            <li class="">
-                <a href="#" class="dropdown-toggle">
-                    <i class="menu-icon fa fa-file-o"></i>
+            <!-- li class="">
+                <a href="calendar.html">
+                    <i class="menu-icon fa fa-calendar"></i>
 
                     <span class="menu-text">
-								 maintenance/inspection management
-							</span>
+                        Elevator Profile
 
-                    <b class="arrow fa fa-angle-down"></b>
+                        <span class="badge badge-transparent tooltip-error" title="2 Important Events">
+                            <i class="ace-icon fa fa-exclamation-triangle red bigger-130"></i>
+                        </span>
+                    </span>
                 </a>
 
                 <b class="arrow"></b>
 
-                <ul class="submenu">
-                    <li class="">
-                        <a href="/mgtdevices">
-                            <i class="menu-icon fa fa-caret-right"></i>
-                            lift list
-                        </a>
-
-                        <b class="arrow"></b>
-                    </li>
-
-
-                </ul>
-            </li>
+            </li-->
 
             <li class="">
                 <a href="#" class="dropdown-toggle">
@@ -764,77 +754,91 @@
 
                                     <div class="widget-body">
                                         <div class="widget-main no-padding">
-                                            <form autocomplete="off" action="#" th:action="@{/newCamera}"
-                                                  th:object="${camera}" method="post" class="form-horizontal"
+                                            <form autocomplete="off" action="#" th:action="@{/newSchedule}"
+                                                  th:object="${schedule}" method="post" class="form-horizontal"
                                                   role="form">
                                                 <div class="form-group">
-                                                    <label for="inputError2" class="col-xs-12 col-sm-3 control-label no-padding-right">Camera ID</label>
+                                                    <label for="inputError1" class="col-xs-12 col-sm-3 control-label no-padding-right">Schedule ID</label>
 
                                                     <div class="col-xs-12 col-sm-5">
 																	<span class="input-icon block">
-																		<input type="text" th:field="*{id}" placeholder="" class="width-100" />
+																		<input id="inputError1" type="number" th:field="*{id}" placeholder="" class="width-100" />
                                                                         <!--i class="ace-icon fa fa-times-circle red"></i-->
 																	</span>
                                                     </div>
                                                     <div class="help-block col-xs-12 col-sm-reset inline "><label th:if="${#fields.hasErrors('id')}" th:errors="*{id}" class="validation-message inline"></label></div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="inputError2" class="col-xs-12 col-sm-3 control-label no-padding-right">Camera Name</label>
+                                                    <label for="inputError2" class="col-xs-12 col-sm-3 control-label no-padding-right">schedule_period</label>
 
                                                     <div class="col-xs-12 col-sm-5">
 																	<span class="input-icon block">
-																		<input type="text" th:field="*{cameraName}" placeholder="" class="width-100" />
+																		<input id="inputError2" type="number" th:field="*{schedule_period}" placeholder="" class="width-100" />
                                                                         <!--i class="ace-icon fa fa-times-circle red"></i-->
 																	</span>
                                                     </div>
-                                                    <div class="help-block col-xs-12 col-sm-reset inline "><label th:if="${#fields.hasErrors('cameraName')}" th:errors="*{cameraName}" style="color:#D16E6C" class="help-inline"></label></div>
+                                                    <div class="help-block col-xs-12 col-sm-reset inline "><label th:if="${#fields.hasErrors('schedule_period')}" th:errors="*{schedule_period}" style="color:#D16E6C" class="help-inline"></label></div>
+                                                </div>
+                                                <!--<div class="form-group">-->
+                                                    <!--<label for="inputError3" class="col-xs-12 col-sm-3 control-label no-padding-right">overdue</label>-->
+
+                                                    <!--<div class="col-xs-12 col-sm-5">-->
+																	<!--<span class="input-icon block">-->
+																		<!--<input id="inputError3" type="number" th:field="*{overdue}" placeholder="" class="width-100" />-->
+                                                                        <!--&lt;!&ndash;i class="ace-icon fa fa-times-circle red"></i&ndash;&gt;-->
+																	<!--</span>-->
+                                                    <!--</div>-->
+                                                    <!--<div class="help-block col-xs-12 col-sm-reset inline "><label th:if="${#fields.hasErrors('overdue')}" th:errors="*{overdue}" style="color:#D16E6C" class="help-inline"></label></div>-->
+                                                <!--</div>-->
+                                                <div class="form-group">
+                                                    <label for="inputError4" class="col-xs-12 col-sm-3 control-label no-padding-right">schedule_type</label>
+
+                                                    <div class="col-xs-12 col-sm-5">
+																	<span class="input-icon block">
+																		<input id="inputError4" type="number" th:field="*{schedule_type}" placeholder="" class="width-100" />
+                                                                        <!--i class="ace-icon fa fa-times-circle red"></i-->
+																	</span>
+                                                    </div>
+                                                    <div class="help-block col-xs-12 col-sm-reset inline "><label th:if="${#fields.hasErrors('schedule_type')}" th:errors="*{schedule_type}" style="color:#D16E6C" class="help-inline"></label></div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="inputError2" class="col-xs-12 col-sm-3 control-label no-padding-right">Url</label>
+                                                    <label for="inputError5" class="col-xs-12 col-sm-3 control-label no-padding-right">notice_period</label>
 
                                                     <div class="col-xs-12 col-sm-5">
 																	<span class="input-icon block">
-																		<input type="text" th:field="*{url}" placeholder="" class="width-100" />
+																			<input id="inputError5" type="number" th:field="*{notice_period}" placeholder="" class="width-100" />
                                                                         <!--i class="ace-icon fa fa-times-circle red"></i-->
 																	</span>
                                                     </div>
-                                                    <div class="help-block col-xs-12 col-sm-reset inline "><label th:if="${#fields.hasErrors('url')}" th:errors="*{url}" style="color:#D16E6C" class="help-inline"></label></div>
+                                                    <div class="help-block col-xs-12 col-sm-reset inline "><label th:if="${#fields.hasErrors('notice_period')}" th:errors="*{notice_period}" class="validation-message inline"></label></div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="inputError2" class="col-xs-12 col-sm-3 control-label no-padding-right">SerialNumber</label>
+                                                    <label for="inputError5" class="col-xs-12 col-sm-3 control-label no-padding-right">last_mtc_ipt_time</label>
 
                                                     <div class="col-xs-12 col-sm-5">
 																	<span class="input-icon block">
-																		<input type="text" th:field="*{serialNumber}" placeholder="" class="width-100" />
+																			<input id="inputError5" type="text" th:field="*{last_mtc_ipt_time}" placeholder="" class="width-100" />
                                                                         <!--i class="ace-icon fa fa-times-circle red"></i-->
 																	</span>
                                                     </div>
-                                                    <div class="help-block col-xs-12 col-sm-reset inline "><label th:if="${#fields.hasErrors('serialNumber')}" th:errors="*{serialNumber}" style="color:#D16E6C" class="help-inline"></label></div>
+                                                    <div class="help-block col-xs-12 col-sm-reset inline "><label th:if="${#fields.hasErrors('last_mtc_ipt_time')}" th:errors="*{last_mtc_ipt_time}" class="validation-message inline"></label></div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="inputError2" class="col-xs-12 col-sm-3 control-label no-padding-right">Model</label>
+                                                    <label for="inputError2" class="col-xs-12 col-sm-3 control-label no-padding-right">Device</label>
 
                                                     <div class="col-xs-12 col-sm-5">
 																	<span class="input-icon block">
-																			<input type="text" th:field="*{model}" placeholder="" class="width-100" />
+																		<select class="chosen-select form-control" th:field="*{device}" id="deviceid" data-placeholder="Choose a Role...">
+
+																			<option th:each="r : ${devices}" th:value="${{r.id}}" th:text="${r.deviceName}"></option>
+																		</select>
                                                                         <!--i class="ace-icon fa fa-times-circle red"></i-->
 																	</span>
                                                     </div>
-                                                    <div class="help-block col-xs-12 col-sm-reset inline "><label th:if="${#fields.hasErrors('model')}" th:errors="*{model}" class="validation-message inline"></label></div>
+                                                    <div class="help-block col-xs-12 col-sm-reset inline "><label th:if="${#fields.hasErrors('device')}" th:errors="*{device}" class="validation-message inline"></label></div>
                                                 </div>
-                                                <div class="form-group">
-                                                    <label for="inputError2" class="col-xs-12 col-sm-3 control-label no-padding-right">Manufacturer</label>
-
-                                                    <div class="col-xs-12 col-sm-5">
-																	<span class="input-icon block">
-																			<input type="text" th:field="*{manufacturer}" placeholder="" class="width-100" />
-                                                                        <!--i class="ace-icon fa fa-times-circle red"></i-->
-																	</span>
-                                                    </div>
-                                                    <div class="help-block col-xs-12 col-sm-reset inline "><label th:if="${#fields.hasErrors('manufacturer')}" th:errors="*{manufacturer}" class="validation-message inline"></label></div>
-                                                </div>
-
-                                                <div class="form-actions center">
+                                              <span th:text="${status}"></span>
+                                                                 <div class="form-actions center">
                                                     <button type="submit" class="btn btn-sm btn-success">
                                                         Submit
                                                         <i class="ace-icon fa fa-arrow-right icon-on-right bigger-110"></i>

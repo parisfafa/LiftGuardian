@@ -79,14 +79,14 @@ public class DeviceMonitoringController {
 		System.out.println("org"+user.getOrganization());
 		List<Device> devices=deviceMonitoringService.findAllDevices();
 		List<Device> filter=new ArrayList<Device>();
-		for(Device dev:devices){
-			if(user.getOrganization().getId()==dev.getOrganization().getId()){
-				if(dev.getStatus()==status)
-				{
-					filter.add(dev);
-				}
-			}
-		}
+//		for(Device dev:devices){
+//			if(user.getOrganization().getId()==dev.getOrganization().getId()){
+//				if(dev.getStatus()==status)
+//				{
+//					filter.add(dev);
+//				}
+//			}
+//		}
 		return GsonHelper.modelToJson(filter);
 	}
 	@RequestMapping(value="/newDevice", method = RequestMethod.GET)

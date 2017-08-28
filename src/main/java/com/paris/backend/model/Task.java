@@ -37,7 +37,6 @@ public class Task {
     @Expose
     @OneToOne(cascade = CascadeType.MERGE,fetch = FetchType.EAGER)
     @JoinTable(name = "task_user", joinColumns = @JoinColumn(name = "taskid"), inverseJoinColumns = @JoinColumn(name = "userid"))
-
     private User user;
 
     @Expose
@@ -63,7 +62,7 @@ public class Task {
     }
 
     public User getUser() {
-        return user;
+       return user;
     }
 
     public Job getJob() {
@@ -101,5 +100,20 @@ public class Task {
 
     public void setStatus(int status) {
         this.status = status;
+    }
+
+
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("Task{");
+        sb.append("taskid=").append(taskid);
+        sb.append(", task_type=").append(task_type);
+        sb.append(", time='").append(time).append('\'');
+        sb.append(", status=").append(status);
+        sb.append(", device=").append(device);
+        //sb.append(", user=").append(user);
+        sb.append(", job=").append(job);
+        sb.append('}');
+        return sb.toString();
     }
 }

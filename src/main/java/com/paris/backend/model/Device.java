@@ -49,10 +49,6 @@ public class Device {
 
 
 	@Expose
-	@Column(name="status")
-	private int status;
-
-	@Expose
 	@OneToOne(cascade = CascadeType.MERGE,orphanRemoval=true,fetch = FetchType.EAGER)
 	@JoinTable(name = "device_type", joinColumns = @JoinColumn(name = "deviceid"), inverseJoinColumns = @JoinColumn(name = "type_id"))
 	private ElevatorType elevatorType;
@@ -77,11 +73,6 @@ public class Device {
 	@JoinTable(name = "device_organization", joinColumns = @JoinColumn(name = "deviceid"), inverseJoinColumns = @JoinColumn(name = "organization_id"))
 	private Organization organization;
 
-
-	@Expose
-	@OneToOne(cascade = CascadeType.MERGE,orphanRemoval=true,fetch = FetchType.EAGER)
-	@JoinTable(name = "device_mtc_ipt_status", joinColumns = @JoinColumn(name = "deviceid"), inverseJoinColumns = @JoinColumn(name = "mtc_ipt_statusid"))
-	private MtcIptStatus mtcIptStatus;
 
 	public Camera getCamera() {
 		return camera;
@@ -166,11 +157,5 @@ public class Device {
 		this.country = country;
 	}
 
-	public int getStatus() {
-		return status;
-	}
 
-	public void setStatus(int status) {
-		this.status = status;
-	}
 }
