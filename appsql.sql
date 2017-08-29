@@ -60,6 +60,8 @@ CREATE TABLE `device` (
 
 /*Data for the table `device` */
 
+insert  into `device`(`deviceid`,`address`,`country`,`device_name`,`postcode`) values (1,'1',NULL,'1','1'),(2,'2',NULL,'4','4'),(3,'3',NULL,'4','4'),(4,'1',NULL,'1','1'),(5,'1',NULL,'1','1'),(6,'1',NULL,'1','1'),(7,'1',NULL,'1','1'),(8,'1',NULL,'1','1'),(9,'1',NULL,'1','1'),(10,'1',NULL,'1','1'),(11,'china beijing','SG','device11','123');
+
 /*Table structure for table `device_camera` */
 
 DROP TABLE IF EXISTS `device_camera`;
@@ -90,6 +92,8 @@ CREATE TABLE `device_manufacturer` (
 
 /*Data for the table `device_manufacturer` */
 
+insert  into `device_manufacturer`(`manufacturer_id`,`deviceid`) values (1,1),(1,2),(1,3),(1,4),(1,5),(1,6),(1,7),(1,8),(1,9),(1,10),(1,11);
+
 /*Table structure for table `device_model` */
 
 DROP TABLE IF EXISTS `device_model`;
@@ -104,6 +108,8 @@ CREATE TABLE `device_model` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 /*Data for the table `device_model` */
+
+insert  into `device_model`(`model_id`,`deviceid`) values (1,1),(1,2),(1,3),(1,4),(1,5),(1,6),(1,7),(1,8),(1,9),(1,10),(1,11);
 
 /*Table structure for table `device_organization` */
 
@@ -120,6 +126,8 @@ CREATE TABLE `device_organization` (
 
 /*Data for the table `device_organization` */
 
+insert  into `device_organization`(`organization_id`,`deviceid`) values (1,1),(1,2),(1,3),(1,4),(1,5),(1,6),(1,7),(1,8),(1,9),(1,10),(1,11);
+
 /*Table structure for table `device_task` */
 
 DROP TABLE IF EXISTS `device_task`;
@@ -134,6 +142,8 @@ CREATE TABLE `device_task` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 /*Data for the table `device_task` */
+
+insert  into `device_task`(`deviceid`,`taskid`) values (1,1),(11,11);
 
 /*Table structure for table `device_type` */
 
@@ -150,6 +160,8 @@ CREATE TABLE `device_type` (
 
 /*Data for the table `device_type` */
 
+insert  into `device_type`(`type_id`,`deviceid`) values (1,1),(1,2),(1,3),(1,4),(1,5),(1,6),(1,7),(1,8),(1,9),(1,10),(1,11);
+
 /*Table structure for table `elevator_model` */
 
 DROP TABLE IF EXISTS `elevator_model`;
@@ -161,6 +173,8 @@ CREATE TABLE `elevator_model` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 /*Data for the table `elevator_model` */
+
+insert  into `elevator_model`(`model_id`,`elevator_model`) values (1,'1'),(2,'2');
 
 /*Table structure for table `elevator_type` */
 
@@ -174,6 +188,8 @@ CREATE TABLE `elevator_type` (
 
 /*Data for the table `elevator_type` */
 
+insert  into `elevator_type`(`type_id`,`elevator_type`) values (1,'1'),(2,'2');
+
 /*Table structure for table `elevatorprofile` */
 
 DROP TABLE IF EXISTS `elevatorprofile`;
@@ -184,6 +200,8 @@ CREATE TABLE `elevatorprofile` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 /*Data for the table `elevatorprofile` */
+
+insert  into `elevatorprofile`(`id`) values (1),(2);
 
 /*Table structure for table `job` */
 
@@ -226,6 +244,8 @@ CREATE TABLE `job` (
 
 /*Data for the table `job` */
 
+insert  into `job`(`jobid`,`entrance1_comment`,`entrance1_img_url`,`entrance2_comment`,`entrance2_img_url`,`entrance3_comment`,`entrance3_img_url`,`hoistway1_comment`,`hoistway1_img_url`,`hoistway2_comment`,`hoistway2_img_url`,`hoistway3_comment`,`hoistway3_img_url`,`hoistway4_comment`,`hoistway4_img_url`,`hoistway5_comment`,`hoistway5_img_url`,`hoistway6_comment`,`hoistway6_img_url`,`liftcar1_comment`,`liftcar1_img_url`,`liftcar2_comment`,`liftcar2_img_url`,`liftcar3_comment`,`liftcar3_img_url`,`liftpit1_comment`,`liftpit1_img_url`,`liftpit2_comment`,`liftpit2_img_url`,`liftpit3_comment`,`liftpit3_img_url`) values (1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+
 /*Table structure for table `maintenance_type` */
 
 DROP TABLE IF EXISTS `maintenance_type`;
@@ -237,6 +257,8 @@ CREATE TABLE `maintenance_type` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 /*Data for the table `maintenance_type` */
+
+insert  into `maintenance_type`(`type_id`,`maintenance_type`) values (1,'1'),(2,'2');
 
 /*Table structure for table `manufacturer` */
 
@@ -252,6 +274,8 @@ CREATE TABLE `manufacturer` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 /*Data for the table `manufacturer` */
+
+insert  into `manufacturer`(`manufacturer_id`,`address`,`description`,`manufacturer_name`,`phone`) values (1,'1',NULL,'1',NULL),(2,'2',NULL,'2',NULL);
 
 /*Table structure for table `orgnization` */
 
@@ -269,6 +293,8 @@ CREATE TABLE `orgnization` (
 
 /*Data for the table `orgnization` */
 
+insert  into `orgnization`(`organization_id`,`address`,`email`,`organization_name`,`organization_type`,`phone`) values (1,'','1','1',NULL,''),(2,'','2','2',NULL,'');
+
 /*Table structure for table `role` */
 
 DROP TABLE IF EXISTS `role`;
@@ -281,6 +307,8 @@ CREATE TABLE `role` (
 
 /*Data for the table `role` */
 
+insert  into `role`(`role_id`,`role`) values (1,'admin'),(2,'org'),(3,'user');
+
 /*Table structure for table `schedule` */
 
 DROP TABLE IF EXISTS `schedule`;
@@ -292,11 +320,13 @@ CREATE TABLE `schedule` (
   `schedule_period` int(11) default NULL,
   `schedule_type` int(11) default NULL,
   `status` int(11) default NULL,
-  `task_inperiod` bit(1) default NULL,
+  `task_inperiod` tinyint(1) default NULL,
   PRIMARY KEY  (`scheduleid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 /*Data for the table `schedule` */
+
+insert  into `schedule`(`scheduleid`,`last_mtc_ipt_time`,`notice_period`,`schedule_period`,`schedule_type`,`status`,`task_inperiod`) values (1,'2017-08-29 10:10:10',10,30,1,0,1),(2,'2017-08-29 10:10:10',10,30,2,0,1),(3,'2017-08-18 10:10:10',10,30,1,1,1);
 
 /*Table structure for table `schedule_device` */
 
@@ -313,6 +343,8 @@ CREATE TABLE `schedule_device` (
 
 /*Data for the table `schedule_device` */
 
+insert  into `schedule_device`(`deviceid`,`scheduleid`) values (1,1),(1,2),(11,3);
+
 /*Table structure for table `task` */
 
 DROP TABLE IF EXISTS `task`;
@@ -326,6 +358,8 @@ CREATE TABLE `task` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 /*Data for the table `task` */
+
+insert  into `task`(`taskid`,`status`,`task_type`,`time`) values (1,1,1,'2017-08-29 10:10:10'),(2,1,2,'2017-08-29 10:10:10'),(3,1,1,'2017-08-29 10:10:10'),(4,1,1,'2017-08-29 10:10:10'),(5,1,1,'2017-08-29 10:10:10'),(6,1,1,'2017-08-29 10:10:10'),(7,1,1,'2017-08-29 10:10:10'),(8,1,1,'2017-08-29 10:10:10'),(9,1,1,'2017-08-29 10:10:10'),(10,1,1,'2017-08-29 10:10:10'),(11,1,1,NULL);
 
 /*Table structure for table `task_job` */
 
@@ -341,6 +375,8 @@ CREATE TABLE `task_job` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 /*Data for the table `task_job` */
+
+insert  into `task_job`(`taskid`,`jobid`) values (11,1);
 
 /*Table structure for table `task_user` */
 
@@ -413,6 +449,8 @@ CREATE TABLE `user` (
 
 /*Data for the table `user` */
 
+insert  into `user`(`user_id`,`active`,`email`,`last_name`,`name`,`password`,`phone`) values (1,1,'a@c','a','a','$2a$10$60dOyTtM8bYIN5./v0FQlexh2eapeuNR1va.Libw8B9SZTBsH6Knm','a@c'),(2,1,'a@b','1','1','$2a$10$q//DVh6x5lcTiHuluGO2yOxEnCPBCAq.Kw.woh9VIicFZkLhJeZ/W','a@b');
+
 /*Table structure for table `user_organization` */
 
 DROP TABLE IF EXISTS `user_organization`;
@@ -428,6 +466,8 @@ CREATE TABLE `user_organization` (
 
 /*Data for the table `user_organization` */
 
+insert  into `user_organization`(`organization_id`,`user_id`) values (1,1),(1,2);
+
 /*Table structure for table `user_role` */
 
 DROP TABLE IF EXISTS `user_role`;
@@ -442,6 +482,8 @@ CREATE TABLE `user_role` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 /*Data for the table `user_role` */
+
+insert  into `user_role`(`role_id`,`user_id`) values (1,2);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

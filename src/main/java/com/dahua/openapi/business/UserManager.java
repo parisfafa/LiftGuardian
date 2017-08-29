@@ -14,4 +14,6 @@ public interface UserManager {
 
     public JSONObject userBind(HashMap<String, Object> paramMap);
 
+    public JSONObject bindDevice(HashMap<String, Object> paramMap);
+
 }

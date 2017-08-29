@@ -13,7 +13,7 @@ public class HttpSendSetParam extends HttpSend {
         HttpSend.setAppSecret(CONST.SECRET);
         HttpSend.setPhone(CONST.PHONE);
         HttpSend.setVer("1.0");
-        HttpSend.setNonce(UUID.randomUUID().toString());
+        HttpSend.setNonce(UUID.randomUUID().toString().replace("-",""));
         HttpSend.setId("12345");
 
         return HttpSendMethod(paramMap, method);

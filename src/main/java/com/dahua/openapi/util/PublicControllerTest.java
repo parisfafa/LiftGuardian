@@ -1,11 +1,6 @@
 package com.dahua.openapi.util;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import org.apache.commons.codec.digest.DigestUtils;
 
@@ -25,7 +20,7 @@ public class PublicControllerTest {
         this.test_parm = test_parm;
     }
 
-    protected static Map<String, Object> paramsInit(Map<String, Object> paramsMap) {
+    public static Map<String, Object> paramsInit(Map<String, Object> paramsMap) {
         Map<String, Object> map = new HashMap<String, Object>();
         long time = System.currentTimeMillis() / 1000;
         if (signTime > 0) {
@@ -44,11 +39,13 @@ public class PublicControllerTest {
         for (String param : params) {
             paramString.append(param).append(",");
         }
-
+        UUID uuids = UUID.randomUUID();
+        //System.out.println(uuids.toString().replace("-", ""));
+        String uuid = uuids.toString().replace("-", "");
         paramString.append("time").append(":").append(time).append(",");
-        paramString.append("nonce").append(":").append("12312313123123123").append(",");
+        paramString.append("nonce").append(":").append(uuid).append(",");
         paramString.append("appSecret").append(":").append(CONST.SECRET);
-        System.out.println(paramString.toString().trim());
+        //System.out.println(paramString.toString().trim());
 
         String sign = null;
         try {
@@ -63,7 +60,7 @@ public class PublicControllerTest {
         systemMap.put("sign", sign);
         systemMap.put("appId", CONST.APPID);
         systemMap.put("time", time);
-        systemMap.put("nonce", "12312313123123123");
+        systemMap.put("nonce", uuid);
 
         if (systemMap.containsKey(test_parm))
             systemMap.remove(test_parm);

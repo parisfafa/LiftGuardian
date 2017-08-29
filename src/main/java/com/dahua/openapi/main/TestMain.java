@@ -3,6 +3,8 @@ package com.dahua.openapi.main;
 import java.util.HashMap;
 
 import com.alibaba.fastjson.JSONObject;
+import com.dahua.openapi.business.DeviceManager;
+import com.dahua.openapi.business.impl.DeviceManageImpl;
 import com.dahua.openapi.business.impl.UserManagerImpl;
 import com.dahua.openapi.util.CONST;
 
@@ -21,6 +23,12 @@ public class TestMain {
         JSONObject jsonData = jsonResult.getJSONObject("data");
         String token = jsonData.getString("accessToken");
         System.out.println(token);
+        HashMap<String, Object> bparamsMap = new HashMap<String, Object>();
+        bparamsMap.put("deviceId", "3G00ED7PAA00019");// 设备号
+        bparamsMap.put("code",null);
+        //bparamsMap.put("queryRange","1-30");
+        bparamsMap.put("token",token);
+        userManager.bindDevice(bparamsMap);
 
         /*
          * DeviceManageImpl device = new DeviceManageImpl(); HashMap<String, Object> paramsMap = new

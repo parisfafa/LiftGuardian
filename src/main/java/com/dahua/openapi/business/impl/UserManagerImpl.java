@@ -14,6 +14,14 @@ public class UserManagerImpl implements UserManager   {
 		return (JSONObject) HttpSendSetParam.sent(paramMap,method);
 	}
 
+
+	public JSONObject bindDevice(HashMap<String, Object> paramMap) {
+
+		String	method = "bindDevice";
+		//String	method = "groupList";
+
+		return (JSONObject) HttpSendSetParam.sent(paramMap,method);
+	}
 	@Override
 	public JSONObject userToken(HashMap<String, Object> paramMap) {
 		String	method = "userToken";

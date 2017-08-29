@@ -43,13 +43,16 @@ public class SchedulingConfig {
         logger.info(">>>>>>>>>>>>> scheduled start... ");
         //User user=userService.findUserByEmail(userid);
         List<Device> devices=deviceMonitoringService.findAllDevices();
+        //System.out.println(devices.size()+"size");
         for(Device dev:devices)
         {
             List<Schedule> Mschedules =taskService.findScheduleByDeviceidAndType(Integer.parseInt(dev.getId().toString()),1);
+            //System.out.println(Mschedules.size()+"mchedulesize"+Mschedules.get(0).getTask_inperiod());
             if(Mschedules.size()>0)
             {
                 if(!Mschedules.get(0).getTask_inperiod())
                 {
+                    System.out.println("dddkkk");
                     doCreateTask(Mschedules.get(0),dev);
                 }
             }

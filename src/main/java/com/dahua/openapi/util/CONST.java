@@ -15,7 +15,7 @@ public class CONST {
     // 管理员账号
     public static final String PHONE = "17125ea1b0e3424a";
 
-    public static final String DEVICEID = "******"; // CS TP1
+    public static final String DEVICEID = "3G00ED7PAA00019"; // CS TP1
 
     public static final String LIVE_TOKEN = "******";
 
