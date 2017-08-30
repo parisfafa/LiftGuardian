@@ -21,5 +21,6 @@ public interface DeviceManager {
 	//修改直播计划时间
 	public JSONObject modifyLivePlan(HashMap<String, Object> paramMap);
 
-
+   //
+	public JSONObject bindDeviceLive(HashMap<String, Object> paramMap);
 }

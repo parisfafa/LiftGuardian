@@ -40,7 +40,7 @@ public class SchedulingConfig {
 
     @Scheduled(cron = "0/20 * * * * ?") // 每20秒执行一次
     public void scheduler() {
-        logger.info(">>>>>>>>>>>>> scheduled start... ");
+        //logger.info(">>>>>>>>>>>>> scheduled start... ");
         //User user=userService.findUserByEmail(userid);
         List<Device> devices=deviceMonitoringService.findAllDevices();
         //System.out.println(devices.size()+"size");
@@ -79,6 +79,7 @@ public class SchedulingConfig {
                 schedule.setTask_inperiod(true);
                 task.setDevice(dev);
                 task.setStatus(1);  //0超期 1 request
+                task.setStart_time(DateUtil.getSimpleDateFormat().format(new Date()));
                 Job job=new Job();
                 jobRepository.save(job);
                 task.setJob(job);

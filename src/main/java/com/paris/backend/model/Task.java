@@ -30,6 +30,10 @@ public class Task {
 
 
     @Expose
+    @Column(name="start_time")
+    private String start_time;
+
+    @Expose
     @OneToOne(cascade = CascadeType.MERGE,fetch = FetchType.EAGER)
     @JoinTable(name = "device_task", joinColumns = @JoinColumn(name = "taskid"), inverseJoinColumns = @JoinColumn(name = "deviceid"))
     private Device device;
@@ -103,6 +107,14 @@ public class Task {
     }
 
 
+    public String getStart_time() {
+        return start_time;
+    }
+
+    public void setStart_time(String start_time) {
+        this.start_time = start_time;
+    }
+
     @Override
     public String toString() {
         final StringBuffer sb = new StringBuffer("Task{");
@@ -110,8 +122,9 @@ public class Task {
         sb.append(", task_type=").append(task_type);
         sb.append(", time='").append(time).append('\'');
         sb.append(", status=").append(status);
+        sb.append(", start_time='").append(start_time).append('\'');
         sb.append(", device=").append(device);
-        //sb.append(", user=").append(user);
+        sb.append(", user=").append(user);
         sb.append(", job=").append(job);
         sb.append('}');
         return sb.toString();

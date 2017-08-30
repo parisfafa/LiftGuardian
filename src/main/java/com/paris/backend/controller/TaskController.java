@@ -185,9 +185,9 @@ public class TaskController {
     public ModelAndView getTasks(WebRequest request){
         ModelAndView modelAndView = new ModelAndView();
         int id= Integer.parseInt(request.getParameter("id"));
-        //int type=Integer.parseInt(request.getParameter("type"));
+        int type=Integer.parseInt(request.getParameter("type"));
 
-        List<Integer> taskids = taskService.findTasksByDeviceidAndType(id,1);
+        List<Integer> taskids = taskService.findTasksByDeviceidAndType(id,type);
         List<Task> tasks = new ArrayList<Task>();
         for (int i:taskids)
         {
@@ -205,20 +205,34 @@ public class TaskController {
     @RequestMapping(value = "/h5plus/findByStatus", method = RequestMethod.GET)
     public String findByStatus(WebRequest request) throws Exception{
         /**
-         * 当日工作 0 dalytime 1 request 2 finished
+         * 当日工作 0 dalytime 1 request 2 finished  ok
          */
-        String userid=request.getParameter("userid");
+        //String userid=request.getParameter("userid");
         int status=Integer.parseInt(request.getParameter("status"));
+        int type=Integer.parseInt(request.getParameter("type"));
         //taskService.createTask(userid);
-        List<Task> tasks=taskService.findByStatus(status);
+        List<Task> tasks=taskService.findByStatus(status,type);
         return GsonHelper.modelToJson(tasks);
     }
 
     @ResponseBody
+    @RequestMapping(value = "/h5plus/findByStatusAndUserid", method = RequestMethod.GET)
+    public String findByStatusAndUserid(WebRequest request) throws Exception{
+        /**
+         * 当日工作 0 dalytime 1 request 2 finished  ok
+         */
+        String userid=request.getParameter("userid");
+        int status=Integer.parseInt(request.getParameter("status"));
+        int type=Integer.parseInt(request.getParameter("type"));
+        //taskService.createTask(userid);
+        List<Task> tasks=taskService.findByStatusAndUserid(status,type,userid);
+        return GsonHelper.modelToJson(tasks);
+    }
+    @ResponseBody
     @RequestMapping(value = "/h5plus/findByUserid", method = RequestMethod.GET)
     public String findByUserid(WebRequest request) {
         /**
-         * 当日工作
+         * userid   ok
          */
         String userid=request.getParameter("userid");
         //System.out.println(user);
@@ -226,6 +240,74 @@ public class TaskController {
         return GsonHelper.modelToJson(tasks);
     }
 
+    @ResponseBody
+    @RequestMapping(value="/h5plus/findByDeviceid", method = RequestMethod.GET)
+    public String findByDeviceid(WebRequest request){
+//        2，开始维保（点击start按钮）
+//   /h5plus/activeTask（userid deviceid type）
+//        return task
+        String userid=request.getParameter("userid");
+        int id= Integer.parseInt(request.getParameter("deviceid"));
+        int type=Integer.parseInt(request.getParameter("type"));
+
+        List<Integer> taskids = taskService.findTasksByDeviceidAndType(id,type);
+        List<Task> tasks = new ArrayList<Task>();
+        for (int i:taskids)
+        {
+            System.out.println(i);
+            Task task = taskService.findTaskByTaskid(i);
+            if(task.getUser()==null)
+            {
+                User user = userService.findUserByEmail(userid);
+                task.setUser(user);
+                taskService.saveTask(task);
+            }
+            tasks.add(task);
+        }
+        return GsonHelper.modelToJson(tasks);
+    }
+    @ResponseBody
+    @RequestMapping(value = "/h5plus/findByTime", method = RequestMethod.GET)
+    public String findByTime(WebRequest request) {
+        /**
+         * userid
+         */
+        String userid = request.getParameter("userid");
+        String time = request.getParameter("time");
+        int type=Integer.parseInt(request.getParameter("type"));
+        List<Task> tasks=taskService.findByStartTime(time,type);
+        ArrayList<Task> userTasks = new ArrayList<Task>();
+        for (Task task:tasks)
+        {
+            if(task.getUser().getEmail().equals(userid))
+            {
+                userTasks.add(task);
+            }
+        }
+        return GsonHelper.modelToJson(userTasks);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/h5plus/findByTimeAndStatus", method = RequestMethod.GET)
+    public String findByTimeAndStatus(WebRequest request) {
+        /**
+         * userid
+         */
+        String userid = request.getParameter("userid");
+        int status=Integer.parseInt(request.getParameter("status"));
+        String time = request.getParameter("time");
+        int type=Integer.parseInt(request.getParameter("type"));
+        List<Task> tasks=taskService.findByStartTimeAndStatus(time,type,status);
+        ArrayList<Task> userTasks = new ArrayList<Task>();
+        for (Task task:tasks)
+        {
+            if(task.getUser().getEmail().equals(userid))
+            {
+                userTasks.add(task);
+            }
+        }
+        return GsonHelper.modelToJson(userTasks);
+    }
     @ResponseBody
     @RequestMapping(value = "/h5plus/saveTask", method = {RequestMethod.GET,RequestMethod.POST})
     public String SaveTask(WebRequest request) {

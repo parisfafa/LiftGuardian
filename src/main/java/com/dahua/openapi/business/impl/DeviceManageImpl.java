@@ -40,4 +40,10 @@ public class DeviceManageImpl implements DeviceManager {
 		return (JSONObject) HttpSendSetParam.sent(paramMap,method);
 	}
 
+	public JSONObject bindDeviceLive(HashMap<String, Object> paramMap)
+	{
+		String	method = "bindDeviceLive";
+		return (JSONObject) HttpSendSetParam.sent(paramMap,method);
+	}
+
 }

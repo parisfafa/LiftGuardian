@@ -31,7 +31,7 @@ public class DateUtil {
     {
         if (simpleDateFormat==null)
         {
-          return   simpleDateFormat  = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+          return   simpleDateFormat  = new SimpleDateFormat("yyyy-MM-dd");//设置日期格式
         }
         return simpleDateFormat;
     }

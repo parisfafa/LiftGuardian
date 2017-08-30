@@ -47,13 +47,54 @@ public class TaskServiceImpl implements TaskService{
     {
         taskRepository.delete(taskid);
     }
-    public List<Task> findByStatus(int status)
+    public List<Task> findByStatus(int status,int type)
     {
-        return taskRepository.findByStatus(status);
+        ArrayList<Task> tasks = (ArrayList<Task>)taskRepository.findAll();
+        ArrayList<Task> userTasks = new ArrayList<Task>();
+        for (Task task:tasks)
+        {
+            if(task.getStatus()==status&&task.getTask_type()==type)
+            {
+                userTasks.add(task);
+            }
+        }
+        return userTasks;
+        //return taskRepository.findTasksByStatusAndTask_type(status,type);
+    }
+    public List<Task> findByStatusAndUserid(int status,int type,String userid)
+    {
+        //ArrayList<Task> tasks = (ArrayList<Task>)taskRepository.findTasksByStatusAndTask_type(status,type);
+        ArrayList<Task> tasks = (ArrayList<Task>)taskRepository.findAll();
+        ArrayList<Task> statusTasks = new ArrayList<Task>();
+        for (Task task:tasks)
+        {
+            if(task.getStatus()==status&&task.getTask_type()==type)
+            {
+                statusTasks.add(task);
+            }
+        }
+        ArrayList<Task> userTasks = new ArrayList<Task>();
+        for (Task task:statusTasks)
+        {
+            if(task.getUser().getEmail().equals(userid))
+            {
+                userTasks.add(task);
+            }
+        }
+        return userTasks;
     }
     public List<Task> findByUserid(String userid)
     {
-       return taskRepository.findByUserid(userid);
+       ArrayList<Task> tasks = (ArrayList<Task>)taskRepository.findAll();
+       ArrayList<Task> userTasks = new ArrayList<Task>();
+        for (Task task:tasks)
+        {
+            if(task.getUser().getEmail().equals(userid))
+            {
+                userTasks.add(task);
+            }
+        }
+       return userTasks;
     }
     public List<Schedule> findScheduleByDeviceidAndType(int deviceid,int scheduleType)
     {
@@ -75,67 +116,34 @@ public class TaskServiceImpl implements TaskService{
     {
         return taskRepository.findByDeviceid(deviceid);
     }
-    /***
-     * 创建维保任务
-     * @param userid
-     * @throws Exception
-     */
-//    public void createTask(String userid) throws Exception
-//    {
-//        User user=userService.findUserByEmail(userid);
-//        List<Device> devices=deviceMonitoringService.findAllDevices();
-//        for(Device dev:devices){
-//            if(user.getOrganization().getId()==dev.getOrganization().getId()){
-////                Date lastMaintenanTime= DateUtil.stringToDate(dev.getTime());
-////                int subday=DateUtil.daysBetween(lastMaintenanTime,new Date());//间隔天数
-////                if(subday>=4)
-////                {
-////                    Task task=new Task();
-////                    dev.setStatus(subday>7?0:1);
-////                    task.setDevice(dev);
-////                    task.setUser(user);
-////                    task.setStatus(subday>7?0:1);  //0超期 1 request
-////                    Job job=new Job();
-////                    jobRepository.save(job);
-////                    task.setJob(job);
-////                    task.setTask_type(1); //1 ma 2in
-////                    saveTask(task);
-////                }
-//
-//            }
-//        }
-//    }
 
-    /***
-     * 创建年检
-     * @param userid
-     * @throws Exceptionins
-     */
-//    public void createTaskins(String userid) throws Exception
-//    {
-//        User user=userService.findUserByEmail(userid);
-//        List<Device> devices=deviceMonitoringService.findAllDevices();
-//        for(Device dev:devices){
-//            if(user.getOrganization().getId()==dev.getOrganization().getId()){
-////                Date lastMaintenanTime= DateUtil.stringToDate(dev.getTime());
-////                int subday=DateUtil.daysBetween(lastMaintenanTime,new Date());//间隔天数
-////                if(subday>=365)
-////                {
-////                    Task task=new Task();
-////                    task.setDevice(dev);
-////                    task.setUser(user);
-////                    task.setStatus(subday>400?0:1);  //0超期 1 request
-////                    Job job=new Job();
-////                    jobRepository.save(job);
-////                    task.setJob(job);
-////                    task.setTask_type(2); //1 ma 2in
-////                    saveTask(task);
-////                }
-//
-//            }
-//        }
-//    }
-
-
+    public List<Task> findByStartTime(String time,int type)
+    {
+        ArrayList<Task> tasks = (ArrayList<Task>)taskRepository.findAll();
+        ArrayList<Task> userTasks = new ArrayList<Task>();
+        for (Task task:tasks)
+        {
+            if(task.getStart_time().equals(time)&&task.getTask_type()==type)
+            {
+                userTasks.add(task);
+            }
+        }
+        return userTasks;
+        //return taskRepository.findTasksByStart_timeAndTask_type(time,type);
+    }
+    public List<Task> findByStartTimeAndStatus(String time,int type,int status)
+    {
+        ArrayList<Task> tasks = (ArrayList<Task>)taskRepository.findAll();
+        ArrayList<Task> userTasks = new ArrayList<Task>();
+        for (Task task:tasks)
+        {
+            if(task.getStart_time().equals(time)&&task.getTask_type()==type&&task.getStatus()==status)
+            {
+                userTasks.add(task);
+            }
+        }
+        return userTasks;
+        //return taskRepository.findTasksByStart_timeAndTask_typeAndStatus( time, type,status);
+    }
 
 }

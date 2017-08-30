@@ -922,14 +922,27 @@
 									<div class="widget-box widget-color-green" id="widget-box-2">
 										<embed width="700" height="500" type="application/x-npLCPlug" id="pluginId" style="padding-right: 0px; width:100%;height: 373px; padding-top: 4px">
 									<script th:inline="javascript">
+                                        var plugin = document.getElementById("pluginId");
+                                        plugin.myOnPlayerResult=calltest;
+                                        plugin.myOnPlayBegan=OnPlayBegan;
+                                        function calltest(result,code,type)
+                                        {
+                                            var test = "result="+result+",code="+code+",type="+type;
+                                            //alert(test);
+                                        }
+                                        function OnPlayBegan()
+                                        {
+                                            //alert("onPlayBegin callback");
+                                        }
                                         	function initPlayUrl(){
+
                                                 var token= [[${token}]];
                                                 var devNum= [[${device.camera.serialNumber}]];
                                                 var rev = 0;
                                                 plugin.openLog(1);
                                                 plugin.initOpenApi("openapi.lechange.cn",443);
                                                 //https://openapi.lechange.cn:443/openapi/[method]
-                                                rev = plugin.playRtspReal(token,devNum,1,1);
+                                                rev = plugin.playRtspReal(token,devNum,0,0);
 
                                             }
 									</script>
@@ -1003,6 +1016,7 @@
 		<!-- inline scripts related to this page -->
 		<script>
 			$(function(){
+                initPlayUrl();
 				function refreshDeviceStatus() {//异步刷新
 					var url = "/refreshDeviceStatus";
 					var id=getQueryString("id");
@@ -1012,7 +1026,7 @@
 						async: true,//异步请求
 						url: url,
 						data: data,
-						timeout: 1000,
+						timeout: 5000,
 						success: function (datas) {
 							var elevatorStatus = JSON.parse(datas);
 							$("#deviceStatusTable").find("tbody").find("tr")
@@ -1034,7 +1048,6 @@
 					});
 				}
 				setInterval(refreshDeviceStatus,1000);//定时刷新
-				initPlayUrl();
 			})
 //			获取url中指定的参数值
 			function getQueryString(name) {

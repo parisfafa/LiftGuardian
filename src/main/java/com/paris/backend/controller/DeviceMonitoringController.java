@@ -7,12 +7,14 @@ import javax.validation.Valid;
 
 import com.alibaba.fastjson.JSONObject;
 import com.dahua.openapi.business.impl.UserManagerImpl;
+import com.dahua.openapi.main.TestMain;
 import com.dahua.openapi.util.CONST;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.paris.backend.model.*;
 import com.paris.backend.secondaryModel.ElevatorStatus;
 import com.paris.backend.secondaryModel.Record;
+import com.paris.backend.service.TaskService;
 import com.paris.backend.util.GsonHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -37,6 +39,9 @@ public class DeviceMonitoringController {
 	private BasicInfoService basicInfoService;
 	@Autowired
 	private UserService userService;
+
+	@Autowired
+	private TaskService taskService;
 	
 	@RequestMapping(value="/devices", method = RequestMethod.GET)
 	public ModelAndView getDevices(){
@@ -79,18 +84,28 @@ public class DeviceMonitoringController {
 	public String findDevicesByStatus(WebRequest request){
 		String userid = request.getParameter("userid");
 		int status = Integer.parseInt(request.getParameter("status"));
+		int type = Integer.parseInt(request.getParameter("type"));
 		User user = userService.findUserByEmail(userid);
 		System.out.println("org"+user.getOrganization());
 		List<Device> devices=deviceMonitoringService.findAllDevices();
 		List<Device> filter=new ArrayList<Device>();
-//		for(Device dev:devices){
-//			if(user.getOrganization().getId()==dev.getOrganization().getId()){
-//				if(dev.getStatus()==status)
-//				{
-//					filter.add(dev);
-//				}
-//			}
-//		}
+		for(Device dev:devices){
+			if(user.getOrganization().getId()==dev.getOrganization().getId()){
+				int devid=Integer.parseInt(dev.getId().toString());
+				System.out.println(devid+"ddd");
+
+				List<Schedule> schedules = taskService.findScheduleByDeviceidAndType(devid,type);
+				if (schedules.size()>0)
+				{
+					int devstatus = schedules.get(0).getStatus();
+					if(devstatus==status)
+					{
+						filter.add(dev);
+					}
+				}
+
+			}
+		}
 		return GsonHelper.modelToJson(filter);
 	}
 	@RequestMapping(value="/newDevice", method = RequestMethod.GET)
@@ -193,14 +208,7 @@ public class DeviceMonitoringController {
 		modelAndView.addObject("record", record.isEmpty()?null:record.get(0));
 
 		modelAndView.addObject("device",device.get(0));
-		UserManagerImpl userManager = new UserManagerImpl();
-		HashMap<String, Object> paramsMap = new HashMap<String, Object>();
-		paramsMap.put("phone", CONST.PHONE);// 管理员账号
-		JSONObject json = userManager.accessToken(paramsMap);
-		JSONObject jsonResult = json.getJSONObject("result");
-		JSONObject jsonData = jsonResult.getJSONObject("data");
-		String token = jsonData.getString("accessToken");
-		System.out.println(token);
+		String token = TestMain.getToken();
 		modelAndView.addObject("token",token);
 		modelAndView.setViewName("status");
 		return modelAndView;
@@ -263,6 +271,12 @@ public class DeviceMonitoringController {
 		if (bindingResult.hasErrors()) {
 			modelAndView.setViewName("newCamera");
 		} else {
+//			TestMain.bindDevice(camera.getSerialNumber(),TestMain.getToken());
+//			if(camera.getModel().equals("2"))
+//			{
+//				String url=TestMain.bindDeviceLive(camera.getSerialNumber(),TestMain.getToken());
+//				camera.setUrl(url);
+//			}
 			deviceMonitoringService.saveCamera(camera);
 			modelAndView.addObject("successMessage", "Camera has been added successfully");
 			List<Camera> cameras=deviceMonitoringService.findAllCameras();
