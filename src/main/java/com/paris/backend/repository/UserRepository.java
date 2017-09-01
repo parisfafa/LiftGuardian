@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.paris.backend.model.User;
 
 @Repository("userRepository")
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface UserRepository extends JpaRepository<User, Integer> {
 	 User findByEmail(String email);
 	 @Transactional
 	 List<User> removeById(int id);

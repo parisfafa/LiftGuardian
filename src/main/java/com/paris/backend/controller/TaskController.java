@@ -166,7 +166,28 @@ public class TaskController {
         return modelAndView;
     }
 
+    @RequestMapping(value="/editTask", method = RequestMethod.GET)
+    public ModelAndView editTask(WebRequest request){
+        ModelAndView modelAndView = new ModelAndView();
+        String id=request.getParameter("id");
+        Task task=taskService.findTaskByTaskid(Integer.parseInt(id));
+        modelAndView.addObject("task", task);
+        List<User> users = userService.findAllUsers();
+        modelAndView.addObject("users",users);
+        modelAndView.setViewName("editTask");
+        return modelAndView;
+    }
 
+    @RequestMapping(value = "/saveTask", method = RequestMethod.POST)
+    public ModelAndView saveTask(@Valid Task task, BindingResult bindingResult) {
+        ModelAndView modelAndView = new ModelAndView();
+        Task task1=taskService.findTaskByTaskid(task.getTaskid());
+        task1.setUser(task.getUser());
+        taskService.saveTask(task1);
+        modelAndView.addObject("tasks", task1);
+        modelAndView.setViewName("tasks");
+        return modelAndView;
+    }
     @RequestMapping(value = "/saveSchedule", method = RequestMethod.POST)
     public ModelAndView saveSchedule(WebRequest request) {
         ModelAndView modelAndView = new ModelAndView();
@@ -193,6 +214,11 @@ public class TaskController {
         {
             System.out.println(i);
             Task task = taskService.findTaskByTaskid(i);
+            if(task.getUser()==null)
+            {
+                User user = new User();
+                task.setUser(user);
+            }
             tasks.add(task);
         }
         //System.out.println(schedule.size()+"size" + schedule.get(0).getId());

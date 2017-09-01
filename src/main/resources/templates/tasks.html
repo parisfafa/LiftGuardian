@@ -716,8 +716,8 @@
 														</th>
 														<th class="hidden-480">Device</th>
 
-														<!--<th></th>-->
-														<!--<th></th><th></th>-->
+														<th>User</th>
+														<th></th><th></th>
 													</tr>
 												</thead>
 
@@ -737,12 +737,10 @@
 
 														<td th:text="${task.device.deviceName}"></td>
 
-														<!--<td>-->
-															<!--<a th:href="@{'/deviceSchedule'(id=${device.id},type=1)}"> Maintenance Schedule</a>-->
-														<!--</td>-->
-														<!--<td>-->
-															<!--<a th:href="@{'/deviceSchedule'(id=${device.id},type=2)}"> Inspection Schedule</a>-->
-														<!--</td>-->
+														<td th:text="${task.user.email}"></td>
+														<td>
+															<a th:href="@{'/editTask'(id=${task.taskid})}"> Edit Task</a>
+														</td>
 
 														<!--<td>-->
 															<!--<a th:href="@{'/tasks'(id=${device.id},type=1)}">Device Type</a>-->

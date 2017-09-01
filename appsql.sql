@@ -62,7 +62,7 @@ CREATE TABLE `device` (
 
 /*Data for the table `device` */
 
-insert  into `device`(`deviceid`,`address`,`country`,`device_name`,`postcode`) values (1,'1',NULL,'1','1'),(2,'2',NULL,'4','4'),(3,'3',NULL,'4','4'),(4,'1',NULL,'1','1'),(5,'1',NULL,'1','1'),(6,'1',NULL,'1','1'),(7,'1',NULL,'1','1'),(8,'1',NULL,'1','1'),(9,'1',NULL,'1','1'),(10,'1',NULL,'1','1'),(11,'china beijing','SG','device11','123');
+insert  into `device`(`deviceid`,`address`,`country`,`device_name`,`postcode`) values (1,'1',NULL,'1','1'),(2,'2',NULL,'4','4'),(3,'3',NULL,'4','4'),(4,'1',NULL,'1','1'),(5,'1',NULL,'1','1'),(6,'1',NULL,'1','1'),(7,'1',NULL,'1','1'),(8,'1',NULL,'1','1'),(9,'1',NULL,'1','1'),(10,'1',NULL,'1','1'),(11,'china beijing','SG','device11','123'),(12,'china shanghai','SG','Test','23,34');
 
 /*Table structure for table `device_camera` */
 
@@ -79,7 +79,7 @@ CREATE TABLE `device_camera` (
 
 /*Data for the table `device_camera` */
 
-insert  into `device_camera`(`cameraid`,`deviceid`) values (1,1);
+insert  into `device_camera`(`cameraid`,`deviceid`) values (1,1),(2,12);
 
 /*Table structure for table `device_manufacturer` */
 
@@ -96,7 +96,7 @@ CREATE TABLE `device_manufacturer` (
 
 /*Data for the table `device_manufacturer` */
 
-insert  into `device_manufacturer`(`manufacturer_id`,`deviceid`) values (1,1),(1,2),(1,3),(1,4),(1,5),(1,6),(1,7),(1,8),(1,9),(1,10),(1,11);
+insert  into `device_manufacturer`(`manufacturer_id`,`deviceid`) values (1,1),(1,2),(1,3),(1,4),(1,5),(1,6),(1,7),(1,8),(1,9),(1,10),(1,11),(2,12);
 
 /*Table structure for table `device_model` */
 
@@ -113,7 +113,7 @@ CREATE TABLE `device_model` (
 
 /*Data for the table `device_model` */
 
-insert  into `device_model`(`model_id`,`deviceid`) values (1,1),(1,2),(1,3),(1,4),(1,5),(1,6),(1,7),(1,8),(1,9),(1,10),(1,11);
+insert  into `device_model`(`model_id`,`deviceid`) values (1,1),(1,2),(1,3),(1,4),(1,5),(1,6),(1,7),(1,8),(1,9),(1,10),(1,11),(2,12);
 
 /*Table structure for table `device_organization` */
 
@@ -130,7 +130,7 @@ CREATE TABLE `device_organization` (
 
 /*Data for the table `device_organization` */
 
-insert  into `device_organization`(`organization_id`,`deviceid`) values (1,1),(1,2),(1,3),(1,4),(1,5),(1,6),(1,7),(1,8),(1,9),(1,10),(1,11);
+insert  into `device_organization`(`organization_id`,`deviceid`) values (1,1),(1,2),(1,3),(1,4),(1,5),(1,6),(1,7),(1,8),(1,9),(1,10),(1,11),(1,12);
 
 /*Table structure for table `device_task` */
 
@@ -147,7 +147,7 @@ CREATE TABLE `device_task` (
 
 /*Data for the table `device_task` */
 
-insert  into `device_task`(`deviceid`,`taskid`) values (1,1),(2,10),(3,3),(4,4),(5,5),(6,6),(7,7),(8,8),(9,9),(11,11);
+insert  into `device_task`(`deviceid`,`taskid`) values (1,1),(2,10),(3,3),(4,4),(5,5),(6,6),(7,7),(8,8),(9,9),(11,11),(12,12);
 
 /*Table structure for table `device_type` */
 
@@ -164,7 +164,7 @@ CREATE TABLE `device_type` (
 
 /*Data for the table `device_type` */
 
-insert  into `device_type`(`type_id`,`deviceid`) values (1,1),(1,2),(1,3),(1,4),(1,5),(1,6),(1,7),(1,8),(1,9),(1,10),(1,11);
+insert  into `device_type`(`type_id`,`deviceid`) values (1,1),(1,2),(1,3),(1,4),(1,5),(1,6),(1,7),(1,8),(1,9),(1,10),(1,11),(2,12);
 
 /*Table structure for table `elevator_model` */
 
@@ -248,7 +248,7 @@ CREATE TABLE `job` (
 
 /*Data for the table `job` */
 
-insert  into `job`(`jobid`,`entrance1_comment`,`entrance1_img_url`,`entrance2_comment`,`entrance2_img_url`,`entrance3_comment`,`entrance3_img_url`,`hoistway1_comment`,`hoistway1_img_url`,`hoistway2_comment`,`hoistway2_img_url`,`hoistway3_comment`,`hoistway3_img_url`,`hoistway4_comment`,`hoistway4_img_url`,`hoistway5_comment`,`hoistway5_img_url`,`hoistway6_comment`,`hoistway6_img_url`,`liftcar1_comment`,`liftcar1_img_url`,`liftcar2_comment`,`liftcar2_img_url`,`liftcar3_comment`,`liftcar3_img_url`,`liftpit1_comment`,`liftpit1_img_url`,`liftpit2_comment`,`liftpit2_img_url`,`liftpit3_comment`,`liftpit3_img_url`) values (1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(2,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(4,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(5,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(6,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(7,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(8,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(9,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(10,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(11,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+insert  into `job`(`jobid`,`entrance1_comment`,`entrance1_img_url`,`entrance2_comment`,`entrance2_img_url`,`entrance3_comment`,`entrance3_img_url`,`hoistway1_comment`,`hoistway1_img_url`,`hoistway2_comment`,`hoistway2_img_url`,`hoistway3_comment`,`hoistway3_img_url`,`hoistway4_comment`,`hoistway4_img_url`,`hoistway5_comment`,`hoistway5_img_url`,`hoistway6_comment`,`hoistway6_img_url`,`liftcar1_comment`,`liftcar1_img_url`,`liftcar2_comment`,`liftcar2_img_url`,`liftcar3_comment`,`liftcar3_img_url`,`liftpit1_comment`,`liftpit1_img_url`,`liftpit2_comment`,`liftpit2_img_url`,`liftpit3_comment`,`liftpit3_img_url`) values (1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(2,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(4,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(5,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(6,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(7,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(8,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(9,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(10,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(11,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(12,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 
 /*Table structure for table `maintenance_type` */
 
@@ -330,7 +330,7 @@ CREATE TABLE `schedule` (
 
 /*Data for the table `schedule` */
 
-insert  into `schedule`(`scheduleid`,`last_mtc_ipt_time`,`notice_period`,`schedule_period`,`schedule_type`,`status`,`task_inperiod`) values (1,'2017-08-18 10:10:10',10,30,1,1,1),(2,'2017-08-18 10:10:10',10,30,2,1,1),(3,'2017-08-18 10:10:10',10,30,1,1,1);
+insert  into `schedule`(`scheduleid`,`last_mtc_ipt_time`,`notice_period`,`schedule_period`,`schedule_type`,`status`,`task_inperiod`) values (1,'2017-08-18 10:10:10',10,30,1,1,1),(2,'2017-08-18 10:10:10',10,30,2,1,1),(3,'2017-08-18 10:10:10',10,30,1,1,1),(12,'2017-08-20',10,30,1,1,1);
 
 /*Table structure for table `schedule_device` */
 
@@ -347,7 +347,7 @@ CREATE TABLE `schedule_device` (
 
 /*Data for the table `schedule_device` */
 
-insert  into `schedule_device`(`deviceid`,`scheduleid`) values (1,1),(1,2),(11,3);
+insert  into `schedule_device`(`deviceid`,`scheduleid`) values (1,1),(1,2),(11,3),(12,12);
 
 /*Table structure for table `task` */
 
@@ -364,7 +364,7 @@ CREATE TABLE `task` (
 
 /*Data for the table `task` */
 
-insert  into `task`(`taskid`,`status`,`task_type`,`time`,`start_time`) values (1,1,1,'2017-08-29','2017-08-28'),(2,1,2,'2017-08-29','2017-08-28'),(3,1,1,'2017-08-29','2017-08-28'),(4,1,1,'2017-08-29','2017-08-28'),(5,1,1,'2017-08-29','2017-08-28'),(6,1,1,'2017-08-29','2017-08-28'),(7,1,1,'2017-08-29','2017-08-28'),(8,1,1,'2017-08-29','2017-08-28'),(9,1,1,'2017-08-29','2017-08-28'),(10,1,1,'2017-08-29','2017-08-28'),(11,1,1,NULL,'2017-08-28');
+insert  into `task`(`taskid`,`status`,`task_type`,`time`,`start_time`) values (1,1,1,NULL,'2017-08-28'),(2,1,2,'2017-08-29','2017-08-28'),(3,1,1,'2017-08-29','2017-08-28'),(4,1,1,'2017-08-29','2017-08-28'),(5,1,1,'2017-08-29','2017-08-28'),(6,1,1,'2017-08-29','2017-08-28'),(7,1,1,'2017-08-29','2017-08-28'),(8,1,1,'2017-08-29','2017-08-28'),(9,1,1,'2017-08-29','2017-08-28'),(10,1,1,'2017-08-29','2017-08-28'),(11,1,1,NULL,'2017-08-28'),(12,1,1,NULL,'2017-09-01');
 
 /*Table structure for table `task_job` */
 
@@ -381,7 +381,7 @@ CREATE TABLE `task_job` (
 
 /*Data for the table `task_job` */
 
-insert  into `task_job`(`taskid`,`jobid`) values (11,1),(2,2),(3,3),(4,4),(5,5),(6,6),(7,7),(8,8),(9,9),(10,10),(1,11);
+insert  into `task_job`(`taskid`,`jobid`) values (11,1),(2,2),(3,3),(4,4),(5,5),(6,6),(7,7),(8,8),(9,9),(10,10),(12,12);
 
 /*Table structure for table `task_user` */
 
