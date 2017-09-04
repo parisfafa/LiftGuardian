@@ -58,7 +58,13 @@ public class DeviceMonitoringController {
 				filter.add(dev);
 			}
 		}
-		modelAndView.addObject("devices", filter);		
+
+		if("softgrid".equalsIgnoreCase(user.getOrganization().getOrganizationName())){
+			modelAndView.addObject("devices", devices);
+		}else{
+			modelAndView.addObject("devices", filter);	
+		}
+
 		modelAndView.setViewName("devices");
 		return modelAndView;
 	}
@@ -249,7 +255,30 @@ public class DeviceMonitoringController {
 			gsonBuilder.excludeFieldsWithoutExposeAnnotation();  //使用@Expose 忽略字段
 			gsonBuilder.serializeNulls();    //序列化空值
 			Gson gson=gsonBuilder.create();
-			String jsonRecord=gson.toJson(record==null?null:record.get(0));
+			String jsonRecord=null;
+			if(record==null)
+			{
+				 jsonRecord=gson.toJson(null);
+			}
+			else
+			{
+				 ElevatorStatus elevatorStatus=record.get(0);
+				 if(elevatorStatus.getMidstop().equals("yes")
+						 ||elevatorStatus.getTrap().equals("yes")
+						 || elevatorStatus.getIllegalopen().equals("yes")
+						// ||elevatorStatus.getElevatorOverup().equals("yes")
+						// ||elevatorStatus.getElevatorOverdown().equals("yes")
+				)
+				 {
+				 	elevatorStatus.setElevatorspeed("yes");
+				 }
+				 else
+				 {
+				 	elevatorStatus.setElevatorspeed("no");
+				 }
+				 jsonRecord=gson.toJson(elevatorStatus);
+			}
+
 			System.out.println(jsonRecord);
 			return jsonRecord;
 		}

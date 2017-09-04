@@ -722,7 +722,7 @@
 													</tr>
 
 													<tr>
-														<td class="">Speed</td>
+														<td class="">passenger inside or not</td>
 
 														<td>
 															<a href="#"></a>
@@ -742,12 +742,11 @@
 													</tr>
 
 													<tr>
-														<td class="">passenger inside or not</td>
+														<td class="" id="alarm">Alarm</td>
 
-														<td>
-															<a href="#"></a>
+														<td id="alarmitem">
+															<a href="#" id="alarmitemvalue"></a>
 														</td>
-
 
 													</tr>
 													<tr>
@@ -1034,20 +1033,32 @@
 							$("#deviceStatusTable").find("tbody").find("tr")
 									.eq(1).find("td").eq(1).find("a").html(elevatorStatus.doorstatus);
 							$("#deviceStatusTable").find("tbody").find("tr")
-									.eq(2).find("td").eq(1).find("a").html(elevatorStatus.elevatorspeed);
+									.eq(2).find("td").eq(1).find("a").html(elevatorStatus.bodystatus);
 							$("#deviceStatusTable").find("tbody").find("tr")
 									.eq(3).find("td").eq(1).find("a").html(elevatorStatus.rundirection);
 							$("#deviceStatusTable").find("tbody").find("tr")
-									.eq(4).find("td").eq(1).find("a").html(elevatorStatus.bodystatus);
+									.eq(4).find("td").eq(1).find("a").html(elevatorStatus.elevatorspeed);
 							$("#deviceStatusTable").find("tbody").find("tr")
 									.eq(5).find("td").eq(1).find("a").html(elevatorStatus.datatime);
-						},
+							var alarmvalue=document.getElementById("alarmitemvalue").innerText;
+							if(alarmvalue=="yes")
+							{
+                                document.getElementById("alarmitem").style.backgroundColor="red";
+                                document.getElementById("alarm").style.backgroundColor="highlight";
+							}
+							else
+							{
+                                document.getElementById("alarmitem").style.backgroundColor="transparent";
+                                document.getElementById("alarm").style.backgroundColor="transparent";
+							}
+							},
 						error: function () {
 //							alert("失败，请稍后再试！");
 						}
 					});
 				}
-				setInterval(refreshDeviceStatus,1000);//定时刷新
+
+				setInterval(refreshDeviceStatus,5000);//定时刷新
 			})
 //			获取url中指定的参数值
 			function getQueryString(name) {
