@@ -89,7 +89,8 @@ public class TaskServiceImpl implements TaskService{
        ArrayList<Task> userTasks = new ArrayList<Task>();
         for (Task task:tasks)
         {
-            if(task.getUser().getEmail().equals(userid))
+
+            if(task.getUser()!=null&&task.getUser().getEmail().equals(userid))
             {
                 userTasks.add(task);
             }

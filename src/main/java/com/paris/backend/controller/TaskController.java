@@ -1,38 +1,55 @@
 package com.paris.backend.controller;
 
 import com.paris.backend.model.*;
-import com.paris.backend.secondaryModel.ElevatorStatus;
+
 import com.paris.backend.service.DeviceMonitoringService;
 import com.paris.backend.service.TaskService;
 import com.paris.backend.service.UserService;
-import com.paris.backend.util.DateUtil;
 import com.paris.backend.util.GsonHelper;
-import io.swagger.models.auth.In;
-import org.apache.tomcat.util.http.fileupload.FileUtils;
+import org.apache.catalina.servlet4preview.http.HttpServletRequest;
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ResourceLoader;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.jws.WebResult;
 import javax.validation.Valid;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Controller
 public class TaskController {
 
+
+    private static final Logger log = LoggerFactory.getLogger(TaskController.class);
+
+    public static final String ROOT = "upload-dir";
+
+    private final ResourceLoader resourceLoader;
+
+    @Autowired
+    public TaskController(ResourceLoader resourceLoader) {
+        this.resourceLoader = resourceLoader;
+    }
     @Autowired
     private UserService userService;
 
@@ -290,6 +307,7 @@ public class TaskController {
             }
             tasks.add(task);
         }
+        System.out.println(GsonHelper.modelToJson(tasks));
         return GsonHelper.modelToJson(tasks);
     }
     @ResponseBody
@@ -334,56 +352,33 @@ public class TaskController {
         }
         return GsonHelper.modelToJson(userTasks);
     }
-    @ResponseBody
-    @RequestMapping(value = "/h5plus/saveTask", method = {RequestMethod.GET,RequestMethod.POST})
-    public String SaveTask(WebRequest request) {
-        //MultipartFile file, @RequestParam(value = "file")
-        /**
-         * 保存 提交的维保数据
-         * img job user time
-         */
-//        Map<String, Object> map = new HashMap<String, Object>();
-//        if (file.isEmpty()) {
-//            map.put("message", "文件不能为空");
-//           return "0";
-//        }
-//        if (!isTrue) {
-//            map.put("message", "选择正确的文件格式");
-//            return "0";
-//        }
-//        if (file.getSize()>file_size) {
-//            map.put("message", "文件大小不能超过2M");
-//            return "0";
-//        }
-//        try {
-//            FileUtils.copyInputStreamToFile(file.getInputStream(), new File("你想存放的位置"));
-//            map.put("message", "Y");// 文件上传成功
-//        } catch (IOException e) {
-//            map.put("message", "N");// 文件上传失败
-//        }
-//        String path = fileString.substring(resourceDir.length());//
-//        path = path + fileType;
-//        path = path.replace("\\", "/");
-//        map.put("fileName", path);
 
-       // String userid=request.getParameter("userid");
-//        //System.out.println(user);
-        int taskid=Integer.parseInt(request.getParameter("taskid"));
-        Task task=taskService.findTaskByTaskid(taskid);
-        Job job=task.getJob();
-        job.setEntrance1_img_url("11111");
-        //job.setEntrance1_comment();
-        //saveimg();
-        //todo
-        //job.setEntrance1_img_url();
-        task.setJob(job);
-        task.setTime(DateUtil.getSimpleDateFormat().format(new Date()));
-        task.setStatus(2);
-       // task.getDevice().setStatus(2);
-        //task.getDevice().setTime(DateUtil.getSimpleDateFormat().format(new Date()));
-        taskService.saveTask(task);
-//        List<Task> tasks=taskService.findByUserid(userid);
-//        return GsonHelper.modelToJson(tasks);
-        return "1";
-    }
+    @ResponseBody
+    @RequestMapping(value = "/h5plus/saveTask", method = {RequestMethod.GET})
+   public String SaveTask( WebRequest request) {
+
+//   /h5plus/activeTask（userid deviceid type）
+//        return task
+            String userid=request.getParameter("userid");
+            int id= Integer.parseInt(request.getParameter("deviceid"));
+            int type=Integer.parseInt(request.getParameter("type"));
+
+            List<Integer> taskids = taskService.findTasksByDeviceidAndType(id,type);
+//            List<Task> tasks = new ArrayList<Task>();
+            for (int i:taskids)
+            {
+                System.out.println(i);
+                Task task = taskService.findTaskByTaskid(i);
+                task.getJob().setEntrance1_comment(request.getParameter("hoistway1_comment"));
+                task.setStatus(4);
+                taskService.saveTask(task);
+//                Schedule schedule =  taskService.findScheduleByDeviceidAndType(Integer.parseInt(task.getDevice().getId().toString()),1).get(0);
+//                schedule.setTask_inperiod(false);
+//                schedule.setStatus(4);
+//                taskService.saveSchedule(schedule);
+//                tasks.add(task);
+            }
+            return "1";
+        }
+
 }
