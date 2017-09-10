@@ -2,6 +2,7 @@ package com.paris.backend.service;
 
 import java.util.List;
 
+import com.paris.backend.util.GsonHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -58,5 +59,17 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public void deleteRoleById(int id){
 		 roleRepository.removeById(id);
+	}
+	@Override
+	public String  validate(String username, String password) {
+		User user = findUserByEmail(username);
+		if(user!=null)
+		{
+			if(bCryptPasswordEncoder.matches(password,user.getPassword()))
+			{
+				return GsonHelper.modelToJson(user);
+			}
+		}
+		return "0";
 	}
 }

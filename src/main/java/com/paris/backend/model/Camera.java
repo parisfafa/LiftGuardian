@@ -18,33 +18,39 @@ import javax.validation.constraints.Digits;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 
+import com.google.gson.annotations.Expose;
 import org.hibernate.validator.constraints.NotEmpty;
 @Entity
 @Table(name = "camera")
 public class Camera {
 
+    @Expose
     @Id
     @Digits(integer=10, fraction=0)
-
     @Column(name="cameraid")
     private int id;
 
+    @Expose
     @NotEmpty(message = "*Please provide an camera name")
     @Column(name="cameraName")
     private String cameraName;
 
+    @Expose
     @NotEmpty(message = "*Please provide an Url")
     @Column(name="url")
     private String url;
 
+    @Expose
     @NotEmpty(message = "*Please provide an serialNumber")
     @Column(name="serialNumber")
     private String serialNumber;
 
+    @Expose
     @NotEmpty(message = "*Please provide an model")
     @Column(name="model")
     private String model;
 
+    @Expose
     @NotEmpty(message = "*Please provide an manufacturer")
     @Column(name="manufacturer")
     private String manufacturer;

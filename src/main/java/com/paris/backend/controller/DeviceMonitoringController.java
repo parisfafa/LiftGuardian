@@ -1,14 +1,21 @@
 package com.paris.backend.controller;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.validation.Valid;
 
+import com.alibaba.fastjson.JSONObject;
+import com.dahua.openapi.business.impl.UserManagerImpl;
+import com.dahua.openapi.main.TestMain;
+import com.dahua.openapi.util.CONST;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.paris.backend.model.*;
 import com.paris.backend.secondaryModel.ElevatorStatus;
 import com.paris.backend.secondaryModel.Record;
+import com.paris.backend.service.TaskService;
+import com.paris.backend.util.GsonHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -32,6 +39,9 @@ public class DeviceMonitoringController {
 	private BasicInfoService basicInfoService;
 	@Autowired
 	private UserService userService;
+
+	@Autowired
+	private TaskService taskService;
 	
 	@RequestMapping(value="/devices", method = RequestMethod.GET)
 	public ModelAndView getDevices(){
@@ -48,15 +58,62 @@ public class DeviceMonitoringController {
 				filter.add(dev);
 			}
 		}
+
 		if("softgrid".equalsIgnoreCase(user.getOrganization().getOrganizationName())){
 			modelAndView.addObject("devices", devices);
 		}else{
 			modelAndView.addObject("devices", filter);	
 		}
+
 		modelAndView.setViewName("devices");
 		return modelAndView;
 	}
-	
+
+	@ResponseBody
+	@RequestMapping(value="/h5plus/devices", method = RequestMethod.GET)
+	public String getDevicesByUserid(WebRequest request){
+		String userid=request.getParameter("userid");
+		User user=userService.findUserByEmail(userid);
+		System.out.println("org"+user.getOrganization());
+		List<Device> devices=deviceMonitoringService.findAllDevices();
+		List<Device> filter=new ArrayList<Device>();
+		for(Device dev:devices){
+			if(user.getOrganization().getId()==dev.getOrganization().getId()){
+				filter.add(dev);
+			}
+		}
+		return GsonHelper.modelToJson(filter);
+	}
+
+	@ResponseBody
+	@RequestMapping(value="/h5plus/findDevicesByStatus", method = RequestMethod.GET)
+	public String findDevicesByStatus(WebRequest request){
+		String userid = request.getParameter("userid");
+		int status = Integer.parseInt(request.getParameter("status"));
+		int type = Integer.parseInt(request.getParameter("type"));
+		User user = userService.findUserByEmail(userid);
+		System.out.println("org"+user.getOrganization());
+		List<Device> devices=deviceMonitoringService.findAllDevices();
+		List<Device> filter=new ArrayList<Device>();
+		for(Device dev:devices){
+			if(user.getOrganization().getId()==dev.getOrganization().getId()){
+				int devid=Integer.parseInt(dev.getId().toString());
+				System.out.println(devid+"ddd");
+
+				List<Schedule> schedules = taskService.findScheduleByDeviceidAndType(devid,type);
+				if (schedules.size()>0)
+				{
+					int devstatus = schedules.get(0).getStatus();
+					if(devstatus==status)
+					{
+						filter.add(dev);
+					}
+				}
+
+			}
+		}
+		return GsonHelper.modelToJson(filter);
+	}
 	@RequestMapping(value="/newDevice", method = RequestMethod.GET)
 	public ModelAndView newDevice(){
 		ModelAndView modelAndView = new ModelAndView();
@@ -157,8 +214,25 @@ public class DeviceMonitoringController {
 		modelAndView.addObject("record", record.isEmpty()?null:record.get(0));
 
 		modelAndView.addObject("device",device.get(0));
+		String token = TestMain.getToken();
+		modelAndView.addObject("token",token);
 		modelAndView.setViewName("status");
 		return modelAndView;
+	}
+
+	@RequestMapping(value="/h5plus/deviceStatus", method = RequestMethod.GET)
+	public String getDeviceStatusByDeviceid(WebRequest request){
+		ModelAndView modelAndView = new ModelAndView();
+		String id=request.getParameter("deviceid");
+		List<ElevatorStatus> record = deviceMonitoringService.findRecordById(id);
+		if(record.isEmpty())
+		{
+			return "0";
+		}
+		else
+		{
+			return GsonHelper.modelToJson(record.get(0));
+		}
 	}
 
 	@ResponseBody
@@ -226,6 +300,12 @@ public class DeviceMonitoringController {
 		if (bindingResult.hasErrors()) {
 			modelAndView.setViewName("newCamera");
 		} else {
+//			TestMain.bindDevice(camera.getSerialNumber(),TestMain.getToken());
+//			if(camera.getModel().equals("2"))
+//			{
+//				String url=TestMain.bindDeviceLive(camera.getSerialNumber(),TestMain.getToken());
+//				camera.setUrl(url);
+//			}
 			deviceMonitoringService.saveCamera(camera);
 			modelAndView.addObject("successMessage", "Camera has been added successfully");
 			List<Camera> cameras=deviceMonitoringService.findAllCameras();
