@@ -73,6 +73,33 @@
 			<artifactId>gson</artifactId>
 			<version>2.8.0</version>
 		</dependency>
+		<!--&lt;!&ndash; cxf支持 &ndash;&gt;-->
+		<!--<dependency>-->
+			<!--<groupId>org.apache.cxf</groupId>-->
+			<!--<artifactId>cxf-rt-frontend-jaxws</artifactId>-->
+			<!--<version>3.1.6</version>-->
+		<!--</dependency>-->
+		<!--<dependency>-->
+			<!--<groupId>org.apache.cxf</groupId>-->
+			<!--<artifactId>cxf-rt-frontend-jaxrs</artifactId>-->
+			<!--<version>3.1.12</version>-->
+		<!--</dependency>-->
+		<!--<dependency>-->
+			<!--<groupId>org.apache.cxf</groupId>-->
+			<!--<artifactId>cxf-rt-transports-http</artifactId>-->
+			<!--<version>3.1.6</version>-->
+		<!--</dependency>-->
+		<!--<dependency>-->
+			<!--<groupId>org.apache.cxf</groupId>-->
+			<!--<artifactId>cxf-rt-rs-service-description-swagger</artifactId>-->
+			<!--<version>3.1.11</version>-->
+		<!--</dependency>-->
+		<!--图片上传-->
+		<dependency>
+			<groupId>org.springframework.hateoas</groupId>
+			<artifactId>spring-hateoas</artifactId>
+			<version>0.23.0.RELEASE</version>
+		</dependency>
 	</dependencies>
 
 	<build>

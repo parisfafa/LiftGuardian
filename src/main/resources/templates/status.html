@@ -919,42 +919,31 @@
 								<!--VIDEO BEGIN-->
 								<div class="col-xs-12 col-sm-6 widget-container-col ui-sortable" id="video" >
 									<div class="widget-box widget-color-green" id="widget-box-2">
-									<object events="false" id="vlc" pluginspage="http://www.videolan.org/" type="application/x-vlc-plugin" style="padding-right: 0px; width:100%;height: 373px; padding-top: 4px" >
-										<param name="mrl" value="">
-										<param name="volume" value="50">
-										<param name="autoplay" value="true">
-										<param name="loop" value="false">
-										<param name="fullscreen" value="false">
-										<param name="controls" value="false">
-									</object>
+										<embed width="700" height="500" type="application/x-npLCPlug" id="pluginId" style="padding-right: 0px; width:100%;height: 373px; padding-top: 4px">
 									<script th:inline="javascript">
-										<!-- 屏蔽右键
-										// document.oncontextmenu=function(e){return false;}
-										//-->
-										var vlc; // VLC对象
-										var itemId;  // 播放列表中播放节目的id
-										var vlcSound; // vlc音量大小（初始化默认为50）
-										var videoLength; // 视频总时长
-										var then_time; // 播放开始时间(播放开始的日期，看下面实现代码，它是毫秒哦)
-										var isPlaying=0; // 是否播放状态 （0 未播放 1 播放）
-										// 初始化 === 很重要哦，控制程序的入口
-										function initPlayUrl(){
-											vlc=document.getElementById("vlc");
-											var vedio_url = "rtsp://118.200.131.22";
-											//var vedio_url=window.opener.vdUrl;
-											itemId= vlc.playlist.add(vedio_url);
-											vlc.playlist.playItem(itemId);
+                                        var plugin = document.getElementById("pluginId");
+                                        plugin.myOnPlayerResult=calltest;
+                                        plugin.myOnPlayBegan=OnPlayBegan;
+                                        function calltest(result,code,type)
+                                        {
+                                            var test = "result="+result+",code="+code+",type="+type;
+                                            //alert(test);
+                                        }
+                                        function OnPlayBegan()
+                                        {
+                                            //alert("onPlayBegin callback");
+                                        }
+                                        	function initPlayUrl(){
 
-											// 获取VLC当前音量
-											vlcSound=vlc.audio.volume;
-											// 设置VLC音量值
-											document.getElementById("vlc_sound").value=vlcSound;
-											// 播放按钮不可用
-											document.getElementById("play_button").disabled=true;
+                                                var token= [[${token}]];
+                                                var devNum= [[${device.camera.serialNumber}]];
+                                                var rev = 0;
+                                                plugin.openLog(1);
+                                                plugin.initOpenApi("openapi.lechange.cn",443);
+                                                //https://openapi.lechange.cn:443/openapi/[method]
+                                                rev = plugin.playRtspReal(token,devNum,0,0);
 
-											// 检查播放节目的状态 -- 注意这个是延时操作哦（setTimeout以毫秒为单位，这里延时0.5秒）
-											setTimeout(checkVedioStatus,500);
-										}
+                                            }
 									</script>
 									</div>
 								</div>
@@ -1026,6 +1015,7 @@
 		<!-- inline scripts related to this page -->
 		<script>
 			$(function(){
+                initPlayUrl();
 				function refreshDeviceStatus() {//异步刷新
 					var url = "/refreshDeviceStatus";
 					var id=getQueryString("id");
@@ -1067,8 +1057,8 @@
 						}
 					});
 				}
+
 				setInterval(refreshDeviceStatus,5000);//定时刷新
-				initPlayUrl();
 			})
 //			获取url中指定的参数值
 			function getQueryString(name) {

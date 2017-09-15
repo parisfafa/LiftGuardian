@@ -12,6 +12,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.paris.backend.model.Role;
@@ -26,11 +28,19 @@ public class LoginController {
 
 	@RequestMapping(value={"/", "/login"}, method = RequestMethod.GET)
 	public ModelAndView login() {
+		System.out.println("login");
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("login");
 		return modelAndView;
 	}
 
+	@ResponseBody
+	@RequestMapping(value={ "h5plus/login"}, method = RequestMethod.GET)
+	public String applogin(WebRequest request) {
+		String userName = request.getParameter("pUserName");
+		String password = request.getParameter("pUserPwd");
+		return userService.validate(userName,password);
+	}
 	@RequestMapping(value="/index", method = RequestMethod.GET)
 	public ModelAndView home(HttpSession session){
 		ModelAndView modelAndView = new ModelAndView();

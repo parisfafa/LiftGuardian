@@ -7,15 +7,18 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.google.gson.annotations.Expose;
 import org.hibernate.validator.constraints.NotEmpty;
 @Entity
 @Table(name = "elevator_type")
 public class ElevatorType {
+	@Expose
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="type_id")
 	private int id;
-	
+
+	@Expose
 	@NotEmpty(message = "*Please provide your elevator type")
 	@Column(name="elevator_type")
 	private String elevatorType;

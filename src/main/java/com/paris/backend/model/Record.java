@@ -25,7 +25,7 @@ public class Record {
 	@Column(name="createtime")
 	private String createtime;
 
-	@Expose
+
 	@OneToOne(cascade = CascadeType.ALL,orphanRemoval=true,fetch = FetchType.EAGER)
 	@JoinColumn(name = "recordid")
 	private ElevatorStatus elevatorStatus;

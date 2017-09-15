@@ -15,55 +15,63 @@ import javax.validation.constraints.Digits;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 
+import com.google.gson.annotations.Expose;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.validator.constraints.NotEmpty;
 @Entity
 @Table(name = "device")
 public class Device {
+	@Expose
 	@Id
 	@Digits(integer=10, fraction=0) 
 	@Min(value = 1) 
 	@Column(name="deviceid")
 	private Long id;
-	
+
+	@Expose
 	@NotEmpty(message = "*Please provide an device name")
 	@Column(name="device_name")
 	private String deviceName;
-	
+
+	@Expose
 	@NotEmpty(message = "*Please provide an address")
 	@Column(name="address")
 	private String address;
-	
+
+	@Expose
 	@NotEmpty(message = "*Please provide an post code")
 	@Column(name="postcode")
 	private String postcode;
-	
+
+	@Expose
 	@Column(name="country")
 	private String country="SG";
-	
 
 
+	@Expose
 	@OneToOne(cascade = CascadeType.MERGE,orphanRemoval=true,fetch = FetchType.EAGER)
-
 	@JoinTable(name = "device_type", joinColumns = @JoinColumn(name = "deviceid"), inverseJoinColumns = @JoinColumn(name = "type_id"))
 	private ElevatorType elevatorType;
 
+	@Expose
 	@OneToOne(cascade = CascadeType.MERGE,orphanRemoval=true,fetch = FetchType.EAGER)
 	@JoinTable(name = "device_camera", joinColumns = @JoinColumn(name = "deviceid"), inverseJoinColumns = @JoinColumn(name = "cameraid"))
 	private Camera camera;
-	
+
+	@Expose
 	@OneToOne(cascade = CascadeType.MERGE,orphanRemoval=true,fetch = FetchType.EAGER)
 	@JoinTable(name = "device_model", joinColumns = @JoinColumn(name = "deviceid"), inverseJoinColumns = @JoinColumn(name = "model_id"))
 	private ElevatorModel elevatorModel;
-	
+
+	@Expose
 	@OneToOne(cascade = CascadeType.MERGE,orphanRemoval=true,fetch = FetchType.EAGER)
 	@JoinTable(name = "device_manufacturer", joinColumns = @JoinColumn(name = "deviceid"), inverseJoinColumns = @JoinColumn(name = "manufacturer_id"))
 	private Manufacturer manufacturer;
-	
+
+	@Expose
 	@OneToOne(cascade = CascadeType.MERGE,orphanRemoval=true,fetch = FetchType.EAGER)
 	@JoinTable(name = "device_organization", joinColumns = @JoinColumn(name = "deviceid"), inverseJoinColumns = @JoinColumn(name = "organization_id"))
 	private Organization organization;
-
 
 
 	public Camera getCamera() {
@@ -148,5 +156,6 @@ public class Device {
 	public void setCountry(String country) {
 		this.country = country;
 	}
-	
+
+
 }
