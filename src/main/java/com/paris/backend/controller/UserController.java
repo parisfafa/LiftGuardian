@@ -192,4 +192,12 @@ public class UserController {
 		List<Role> roles=userService.findAllRoles();
 		return GsonHelper.modelToJson(roles);
 	}
+
+	@ResponseBody
+	@RequestMapping(value = "/h5plus/findAllOrg", method = RequestMethod.GET)
+	public String findAllOrg() {
+		//System.out.println(user);
+		List<Organization> organizations = basicInfoService.findAllOrganization();
+		return GsonHelper.modelToJson(organizations);
+	}
 }
